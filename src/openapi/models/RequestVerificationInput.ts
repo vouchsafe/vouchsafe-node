@@ -50,7 +50,7 @@ export interface RequestVerificationInput {
      */
     postcode?: string;
     /**
-     * The user's date of birth, if you have it
+     * The user's date of birth, if you have it. Format as YYYY-MM-DD or ISO 8601
      * @type {string}
      * @memberof RequestVerificationInput
      */

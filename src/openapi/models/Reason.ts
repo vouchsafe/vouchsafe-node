@@ -21,7 +21,9 @@ export const Reason = {
     InvalidPostcode: 'INVALID_POSTCODE',
     InvalidAddress: 'INVALID_ADDRESS',
     MedMatchPersonAtAddress: 'MED_MATCH_PERSON_AT_ADDRESS',
-    LowMatchPersonAtAddress: 'LOW_MATCH_PERSON_AT_ADDRESS'
+    LowMatchPersonAtAddress: 'LOW_MATCH_PERSON_AT_ADDRESS',
+    NoIdentityMatch: 'NO_IDENTITY_MATCH',
+    NoResidencyMatch: 'NO_RESIDENCY_MATCH'
 } as const;
 export type Reason = typeof Reason[keyof typeof Reason];
 

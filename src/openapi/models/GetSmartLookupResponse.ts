@@ -13,20 +13,20 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Report } from './Report';
+import type { CreditBureauVerificationReport } from './CreditBureauVerificationReport';
 import {
-    ReportFromJSON,
-    ReportFromJSONTyped,
-    ReportToJSON,
-    ReportToJSONTyped,
-} from './Report';
-import type { Model36EnumsBackgroundCheck } from './Model36EnumsBackgroundCheck';
+    CreditBureauVerificationReportFromJSON,
+    CreditBureauVerificationReportFromJSONTyped,
+    CreditBureauVerificationReportToJSON,
+    CreditBureauVerificationReportToJSONTyped,
+} from './CreditBureauVerificationReport';
+import type { AddressVerificationReport } from './AddressVerificationReport';
 import {
-    Model36EnumsBackgroundCheckFromJSON,
-    Model36EnumsBackgroundCheckFromJSONTyped,
-    Model36EnumsBackgroundCheckToJSON,
-    Model36EnumsBackgroundCheckToJSONTyped,
-} from './Model36EnumsBackgroundCheck';
+    AddressVerificationReportFromJSON,
+    AddressVerificationReportFromJSONTyped,
+    AddressVerificationReportToJSON,
+    AddressVerificationReportToJSONTyped,
+} from './AddressVerificationReport';
 
 /**
  * 
@@ -48,10 +48,10 @@ export interface GetSmartLookupResponse {
     team_id: string;
     /**
      * 
-     * @type {Array<Model36EnumsBackgroundCheck>}
+     * @type {Array<string>}
      * @memberof GetSmartLookupResponse
      */
-    checks: Array<Model36EnumsBackgroundCheck>;
+    checks: Array<GetSmartLookupResponseChecksEnum>;
     /**
      * 
      * @type {string}
@@ -77,11 +77,35 @@ export interface GetSmartLookupResponse {
      */
     postcode: string | null;
     /**
-     * Whether the overall check and its sub-checks passed, failed or somethng else.
-     * @type {Report}
+     * 
+     * @type {string}
      * @memberof GetSmartLookupResponse
      */
-    address_verification_report: Report | null;
+    date_of_birth?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetSmartLookupResponse
+     */
+    email?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetSmartLookupResponse
+     */
+    phone?: string;
+    /**
+     * 
+     * @type {AddressVerificationReport}
+     * @memberof GetSmartLookupResponse
+     */
+    address_verification_report?: AddressVerificationReport;
+    /**
+     * 
+     * @type {CreditBureauVerificationReport}
+     * @memberof GetSmartLookupResponse
+     */
+    credit_bureau_verification_report?: CreditBureauVerificationReport;
     /**
      * Extra information to aid debugging. May change without notice.
      * @type {any}
@@ -96,6 +120,17 @@ export interface GetSmartLookupResponse {
     created_at: string;
 }
 
+
+/**
+ * @export
+ */
+export const GetSmartLookupResponseChecksEnum = {
+    Address: 'Address',
+    CreditBureau: 'CreditBureau'
+} as const;
+export type GetSmartLookupResponseChecksEnum = typeof GetSmartLookupResponseChecksEnum[keyof typeof GetSmartLookupResponseChecksEnum];
+
+
 /**
  * Check if a given object implements the GetSmartLookupResponse interface.
  */
@@ -107,7 +142,6 @@ export function instanceOfGetSmartLookupResponse(value: object): value is GetSma
     if (!('last_name' in value) || value['last_name'] === undefined) return false;
     if (!('first_line_of_address' in value) || value['first_line_of_address'] === undefined) return false;
     if (!('postcode' in value) || value['postcode'] === undefined) return false;
-    if (!('address_verification_report' in value) || value['address_verification_report'] === undefined) return false;
     if (!('metadata' in value) || value['metadata'] === undefined) return false;
     if (!('created_at' in value) || value['created_at'] === undefined) return false;
     return true;
@@ -125,12 +159,16 @@ export function GetSmartLookupResponseFromJSONTyped(json: any, ignoreDiscriminat
         
         'id': json['id'],
         'team_id': json['team_id'],
-        'checks': ((json['checks'] as Array<any>).map(Model36EnumsBackgroundCheckFromJSON)),
+        'checks': json['checks'],
         'first_name': json['first_name'],
         'last_name': json['last_name'],
         'first_line_of_address': json['first_line_of_address'],
         'postcode': json['postcode'],
-        'address_verification_report': ReportFromJSON(json['address_verification_report']),
+        'date_of_birth': json['date_of_birth'] == null ? undefined : json['date_of_birth'],
+        'email': json['email'] == null ? undefined : json['email'],
+        'phone': json['phone'] == null ? undefined : json['phone'],
+        'address_verification_report': json['address_verification_report'] == null ? undefined : AddressVerificationReportFromJSON(json['address_verification_report']),
+        'credit_bureau_verification_report': json['credit_bureau_verification_report'] == null ? undefined : CreditBureauVerificationReportFromJSON(json['credit_bureau_verification_report']),
         'metadata': json['metadata'],
         'created_at': json['created_at'],
     };
@@ -149,12 +187,16 @@ export function GetSmartLookupResponseToJSONTyped(value?: GetSmartLookupResponse
         
         'id': value['id'],
         'team_id': value['team_id'],
-        'checks': ((value['checks'] as Array<any>).map(Model36EnumsBackgroundCheckToJSON)),
+        'checks': value['checks'],
         'first_name': value['first_name'],
         'last_name': value['last_name'],
         'first_line_of_address': value['first_line_of_address'],
         'postcode': value['postcode'],
-        'address_verification_report': ReportToJSON(value['address_verification_report']),
+        'date_of_birth': value['date_of_birth'],
+        'email': value['email'],
+        'phone': value['phone'],
+        'address_verification_report': AddressVerificationReportToJSON(value['address_verification_report']),
+        'credit_bureau_verification_report': CreditBureauVerificationReportToJSON(value['credit_bureau_verification_report']),
         'metadata': value['metadata'],
         'created_at': value['created_at'],
     };

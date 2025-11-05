@@ -5,6 +5,7 @@ apis/TeamApi.ts
 apis/VerificationsApi.ts
 apis/index.ts
 index.ts
+models/AddressVerificationReport.ts
 models/ApiErrorResponse.ts
 models/AuthenticateInput.ts
 models/AuthenticateResponse.ts
@@ -13,15 +14,15 @@ models/CheckState.ts
 models/CreateTeamInput.ts
 models/CreateTeamResponse.ts
 models/CreateTeamResponseCredentials.ts
+models/CreditBureauVerificationReport.ts
 models/Flow.ts
 models/FlowTemplate.ts
 models/GetSmartLookupResponse.ts
-models/Model36EnumsBackgroundCheck.ts
 models/Model36EnumsEnvironment.ts
 models/PostcodeResponse.ts
 models/Reason.ts
 models/RecordAddressVerificationChecksCheckResult.ts
-models/Report.ts
+models/RecordCreditBureauVerificationChecksCheckResult.ts
 models/RequestVerificationInput.ts
 models/RequestVerificationResponse.ts
 models/SmartLookupInput.ts
