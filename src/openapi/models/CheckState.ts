@@ -20,6 +20,7 @@
 export const CheckState = {
     Pass: 'PASS',
     Fail: 'FAIL',
+    Inconclusive: 'INCONCLUSIVE',
     Partial: 'PARTIAL',
     NotPerformed: 'NOT_PERFORMED'
 } as const;
