@@ -20,18 +20,6 @@ import { mapValues } from '../runtime';
  */
 export interface SmartLookupInput {
     /**
-     * (required) - Should be taken from GET /postcode endpoint
-     * @type {string}
-     * @memberof SmartLookupInput
-     */
-    first_line_of_address: string;
-    /**
-     * (required) - Postcode used in GET /postcode
-     * @type {string}
-     * @memberof SmartLookupInput
-     */
-    postcode: string;
-    /**
      * (required) — Given name(s)
      * @type {string}
      * @memberof SmartLookupInput
@@ -44,29 +32,41 @@ export interface SmartLookupInput {
      */
     last_name: string;
     /**
-     * (optional) — Email address
+     * (required)
+     * @type {Array<string>}
+     * @memberof SmartLookupInput
+     */
+    checks: Array<SmartLookupInputChecksEnum>;
+    /**
+     * (conditionally required) - Required when checks includes Address or CreditBureau; otherwise optional. Should be taken from GET /postcode endpoint
+     * @type {string}
+     * @memberof SmartLookupInput
+     */
+    first_line_of_address?: string;
+    /**
+     * (conditionally required) - Postcode used in GET /postcode. Required when checks includes Address or CreditBureau; otherwise optional.
+     * @type {string}
+     * @memberof SmartLookupInput
+     */
+    postcode?: string;
+    /**
+     * (conditionally required) — Email address. Either email or phone is required when checks includes OnlineFootprint; otherwise optional.
      * @type {string}
      * @memberof SmartLookupInput
      */
     email?: string;
     /**
-     * (optional) — Phone number
+     * (conditionally required) — Phone number. Either email or phone is required when checks includes OnlineFootprint; otherwise optional.
      * @type {string}
      * @memberof SmartLookupInput
      */
     phone?: string;
     /**
-     * (conditionally required) — Required when checks includes CreditBureau; otherwise optional. Format as YYYY-MM-DD or ISO 8601
+     * (conditionally required) — Required when checks includes CreditBureau or AML; otherwise optional. Format as YYYY-MM-DD or ISO 8601
      * @type {string}
      * @memberof SmartLookupInput
      */
     date_of_birth?: string;
-    /**
-     * (required) - Experimental, other checks coming soon
-     * @type {Array<string>}
-     * @memberof SmartLookupInput
-     */
-    checks: Array<SmartLookupInputChecksEnum>;
 }
 
 
@@ -75,7 +75,9 @@ export interface SmartLookupInput {
  */
 export const SmartLookupInputChecksEnum = {
     Address: 'Address',
-    CreditBureau: 'CreditBureau'
+    CreditBureau: 'CreditBureau',
+    OnlineFootprint: 'OnlineFootprint',
+    Aml: 'AML'
 } as const;
 export type SmartLookupInputChecksEnum = typeof SmartLookupInputChecksEnum[keyof typeof SmartLookupInputChecksEnum];
 
@@ -84,8 +86,6 @@ export type SmartLookupInputChecksEnum = typeof SmartLookupInputChecksEnum[keyof
  * Check if a given object implements the SmartLookupInput interface.
  */
 export function instanceOfSmartLookupInput(value: object): value is SmartLookupInput {
-    if (!('first_line_of_address' in value) || value['first_line_of_address'] === undefined) return false;
-    if (!('postcode' in value) || value['postcode'] === undefined) return false;
     if (!('first_name' in value) || value['first_name'] === undefined) return false;
     if (!('last_name' in value) || value['last_name'] === undefined) return false;
     if (!('checks' in value) || value['checks'] === undefined) return false;
@@ -102,14 +102,14 @@ export function SmartLookupInputFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'first_line_of_address': json['first_line_of_address'],
-        'postcode': json['postcode'],
         'first_name': json['first_name'],
         'last_name': json['last_name'],
+        'checks': json['checks'],
+        'first_line_of_address': json['first_line_of_address'] == null ? undefined : json['first_line_of_address'],
+        'postcode': json['postcode'] == null ? undefined : json['postcode'],
         'email': json['email'] == null ? undefined : json['email'],
         'phone': json['phone'] == null ? undefined : json['phone'],
         'date_of_birth': json['date_of_birth'] == null ? undefined : json['date_of_birth'],
-        'checks': json['checks'],
     };
 }
 
@@ -124,14 +124,14 @@ export function SmartLookupInputToJSONTyped(value?: SmartLookupInput | null, ign
 
     return {
         
-        'first_line_of_address': value['first_line_of_address'],
-        'postcode': value['postcode'],
         'first_name': value['first_name'],
         'last_name': value['last_name'],
+        'checks': value['checks'],
+        'first_line_of_address': value['first_line_of_address'],
+        'postcode': value['postcode'],
         'email': value['email'],
         'phone': value['phone'],
         'date_of_birth': value['date_of_birth'],
-        'checks': value['checks'],
     };
 }
 

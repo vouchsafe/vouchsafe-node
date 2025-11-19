@@ -6,6 +6,7 @@ apis/VerificationsApi.ts
 apis/index.ts
 index.ts
 models/AddressVerificationReport.ts
+models/AmlVerificationReport.ts
 models/ApiErrorResponse.ts
 models/AuthenticateInput.ts
 models/AuthenticateResponse.ts
@@ -19,10 +20,13 @@ models/Flow.ts
 models/FlowTemplate.ts
 models/GetSmartLookupResponse.ts
 models/Model36EnumsEnvironment.ts
+models/OnlineFootprintVerificationReport.ts
 models/PostcodeResponse.ts
 models/Reason.ts
 models/RecordAddressVerificationChecksCheckResult.ts
+models/RecordAmlVerificationChecksCheckResult.ts
 models/RecordCreditBureauVerificationChecksCheckResult.ts
+models/RecordOnlineFootprintVerificationChecksCheckResult.ts
 models/RequestVerificationInput.ts
 models/RequestVerificationResponse.ts
 models/SmartLookupInput.ts

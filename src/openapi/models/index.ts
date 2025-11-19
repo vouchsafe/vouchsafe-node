@@ -1,6 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export * from './AddressVerificationReport';
+export * from './AmlVerificationReport';
 export * from './ApiErrorResponse';
 export * from './AuthenticateInput';
 export * from './AuthenticateResponse';
@@ -14,10 +15,13 @@ export * from './Flow';
 export * from './FlowTemplate';
 export * from './GetSmartLookupResponse';
 export * from './Model36EnumsEnvironment';
+export * from './OnlineFootprintVerificationReport';
 export * from './PostcodeResponse';
 export * from './Reason';
 export * from './RecordAddressVerificationChecksCheckResult';
+export * from './RecordAmlVerificationChecksCheckResult';
 export * from './RecordCreditBureauVerificationChecksCheckResult';
+export * from './RecordOnlineFootprintVerificationChecksCheckResult';
 export * from './RequestVerificationInput';
 export * from './RequestVerificationResponse';
 export * from './SmartLookupInput';

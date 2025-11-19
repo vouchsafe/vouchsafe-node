@@ -20,6 +20,20 @@ import {
     CreditBureauVerificationReportToJSON,
     CreditBureauVerificationReportToJSONTyped,
 } from './CreditBureauVerificationReport';
+import type { AmlVerificationReport } from './AmlVerificationReport';
+import {
+    AmlVerificationReportFromJSON,
+    AmlVerificationReportFromJSONTyped,
+    AmlVerificationReportToJSON,
+    AmlVerificationReportToJSONTyped,
+} from './AmlVerificationReport';
+import type { OnlineFootprintVerificationReport } from './OnlineFootprintVerificationReport';
+import {
+    OnlineFootprintVerificationReportFromJSON,
+    OnlineFootprintVerificationReportFromJSONTyped,
+    OnlineFootprintVerificationReportToJSON,
+    OnlineFootprintVerificationReportToJSONTyped,
+} from './OnlineFootprintVerificationReport';
 import type { AddressVerificationReport } from './AddressVerificationReport';
 import {
     AddressVerificationReportFromJSON,
@@ -107,6 +121,18 @@ export interface GetSmartLookupResponse {
      */
     credit_bureau_verification_report?: CreditBureauVerificationReport;
     /**
+     * 
+     * @type {OnlineFootprintVerificationReport}
+     * @memberof GetSmartLookupResponse
+     */
+    online_footprint_verification_report?: OnlineFootprintVerificationReport;
+    /**
+     * 
+     * @type {AmlVerificationReport}
+     * @memberof GetSmartLookupResponse
+     */
+    aml_verification_report?: AmlVerificationReport;
+    /**
      * Extra information to aid debugging. May change without notice.
      * @type {any}
      * @memberof GetSmartLookupResponse
@@ -126,7 +152,9 @@ export interface GetSmartLookupResponse {
  */
 export const GetSmartLookupResponseChecksEnum = {
     Address: 'Address',
-    CreditBureau: 'CreditBureau'
+    CreditBureau: 'CreditBureau',
+    OnlineFootprint: 'OnlineFootprint',
+    Aml: 'AML'
 } as const;
 export type GetSmartLookupResponseChecksEnum = typeof GetSmartLookupResponseChecksEnum[keyof typeof GetSmartLookupResponseChecksEnum];
 
@@ -169,6 +197,8 @@ export function GetSmartLookupResponseFromJSONTyped(json: any, ignoreDiscriminat
         'phone': json['phone'] == null ? undefined : json['phone'],
         'address_verification_report': json['address_verification_report'] == null ? undefined : AddressVerificationReportFromJSON(json['address_verification_report']),
         'credit_bureau_verification_report': json['credit_bureau_verification_report'] == null ? undefined : CreditBureauVerificationReportFromJSON(json['credit_bureau_verification_report']),
+        'online_footprint_verification_report': json['online_footprint_verification_report'] == null ? undefined : OnlineFootprintVerificationReportFromJSON(json['online_footprint_verification_report']),
+        'aml_verification_report': json['aml_verification_report'] == null ? undefined : AmlVerificationReportFromJSON(json['aml_verification_report']),
         'metadata': json['metadata'],
         'created_at': json['created_at'],
     };
@@ -197,6 +227,8 @@ export function GetSmartLookupResponseToJSONTyped(value?: GetSmartLookupResponse
         'phone': value['phone'],
         'address_verification_report': AddressVerificationReportToJSON(value['address_verification_report']),
         'credit_bureau_verification_report': CreditBureauVerificationReportToJSON(value['credit_bureau_verification_report']),
+        'online_footprint_verification_report': OnlineFootprintVerificationReportToJSON(value['online_footprint_verification_report']),
+        'aml_verification_report': AmlVerificationReportToJSON(value['aml_verification_report']),
         'metadata': value['metadata'],
         'created_at': value['created_at'],
     };
