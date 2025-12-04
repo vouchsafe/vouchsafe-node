@@ -25,6 +25,7 @@ export * from './RecordOnlineFootprintVerificationChecksCheckResult';
 export * from './RequestVerificationInput';
 export * from './RequestVerificationResponse';
 export * from './SmartLookupInput';
+export * from './SmartLookupInputThresholds';
 export * from './Status';
 export * from './Team';
 export * from './Verification';

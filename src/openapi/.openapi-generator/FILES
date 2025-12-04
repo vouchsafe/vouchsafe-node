@@ -30,6 +30,7 @@ models/RecordOnlineFootprintVerificationChecksCheckResult.ts
 models/RequestVerificationInput.ts
 models/RequestVerificationResponse.ts
 models/SmartLookupInput.ts
+models/SmartLookupInputThresholds.ts
 models/Status.ts
 models/Team.ts
 models/Verification.ts

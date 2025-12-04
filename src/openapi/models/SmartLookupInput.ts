@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { SmartLookupInputThresholds } from './SmartLookupInputThresholds';
+import {
+    SmartLookupInputThresholdsFromJSON,
+    SmartLookupInputThresholdsFromJSONTyped,
+    SmartLookupInputThresholdsToJSON,
+    SmartLookupInputThresholdsToJSONTyped,
+} from './SmartLookupInputThresholds';
+
 /**
  * 
  * @export
@@ -67,6 +75,12 @@ export interface SmartLookupInput {
      * @memberof SmartLookupInput
      */
     date_of_birth?: string;
+    /**
+     * 
+     * @type {SmartLookupInputThresholds}
+     * @memberof SmartLookupInput
+     */
+    thresholds?: SmartLookupInputThresholds;
 }
 
 
@@ -110,6 +124,7 @@ export function SmartLookupInputFromJSONTyped(json: any, ignoreDiscriminator: bo
         'email': json['email'] == null ? undefined : json['email'],
         'phone': json['phone'] == null ? undefined : json['phone'],
         'date_of_birth': json['date_of_birth'] == null ? undefined : json['date_of_birth'],
+        'thresholds': json['thresholds'] == null ? undefined : SmartLookupInputThresholdsFromJSON(json['thresholds']),
     };
 }
 
@@ -132,6 +147,7 @@ export function SmartLookupInputToJSONTyped(value?: SmartLookupInput | null, ign
         'email': value['email'],
         'phone': value['phone'],
         'date_of_birth': value['date_of_birth'],
+        'thresholds': SmartLookupInputThresholdsToJSON(value['thresholds']),
     };
 }
 
