@@ -23,7 +23,8 @@ export const Status = {
     Verified: 'Verified',
     Refused: 'Refused',
     Cancelled: 'Cancelled',
-    LockedOut: 'LockedOut'
+    LockedOut: 'LockedOut',
+    ManuallyReviewed: 'ManuallyReviewed'
 } as const;
 export type Status = typeof Status[keyof typeof Status];
 
