@@ -1,6 +1,6 @@
 {
   "name": "@vouchsafe/node",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "Official TypeScript and Node.js library for the Vouchsafe identity platform. Use it for easy KYC checks, identity verification, remote right-to-work and more.",
   "keywords": [
     "vouchsafe",
