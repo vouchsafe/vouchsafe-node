@@ -77,7 +77,7 @@ export interface DigitalIdSession {
      * @type {string}
      * @memberof DigitalIdSession
      */
-    workflow_id: string;
+    flow_id: string;
     /**
      * 
      * @type {string}
@@ -120,7 +120,7 @@ export function instanceOfDigitalIdSession(value: object): value is DigitalIdSes
     if (!('verified_claims' in value) || value['verified_claims'] === undefined) return false;
     if (!('known_claims' in value) || value['known_claims'] === undefined) return false;
     if (!('provider_id' in value) || value['provider_id'] === undefined) return false;
-    if (!('workflow_id' in value) || value['workflow_id'] === undefined) return false;
+    if (!('flow_id' in value) || value['flow_id'] === undefined) return false;
     if (!('redirect_url' in value) || value['redirect_url'] === undefined) return false;
     if (!('expires_at' in value) || value['expires_at'] === undefined) return false;
     if (!('created_at' in value) || value['created_at'] === undefined) return false;
@@ -143,7 +143,7 @@ export function DigitalIdSessionFromJSONTyped(json: any, ignoreDiscriminator: bo
         'verified_claims': VerifiedClaimsFromJSON(json['verified_claims']),
         'known_claims': KnownClaimsFromJSON(json['known_claims']),
         'provider_id': json['provider_id'],
-        'workflow_id': json['workflow_id'],
+        'flow_id': json['flow_id'],
         'redirect_url': json['redirect_url'],
         'expires_at': json['expires_at'],
         'created_at': json['created_at'],
@@ -167,7 +167,7 @@ export function DigitalIdSessionToJSONTyped(value?: DigitalIdSession | null, ign
         'verified_claims': VerifiedClaimsToJSON(value['verified_claims']),
         'known_claims': KnownClaimsToJSON(value['known_claims']),
         'provider_id': value['provider_id'],
-        'workflow_id': value['workflow_id'],
+        'flow_id': value['flow_id'],
         'redirect_url': value['redirect_url'],
         'expires_at': value['expires_at'],
         'created_at': value['created_at'],

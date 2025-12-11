@@ -40,7 +40,7 @@ export interface GetSessionRequest {
 }
 
 export interface ListSessionsRequest {
-    workflowId?: string;
+    flowId?: string;
     status?: ListSessionsStatusEnum;
     providerId?: string;
     limit?: number;
@@ -147,13 +147,13 @@ export class DigitalIDApi extends runtime.BaseAPI {
     }
 
     /**
-     * <div style=\"background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;\"> <strong style=\"color: #c62828;\">Experimental:</strong> This feature is brand new. <a href=\"https://vouchsafe.id/contact\">Contact us</a> to set it up. </div>  List Digital ID verification sessions.  Retrieve a list of Digital ID verification sessions for your team. You can filter sessions by workflow, status, provider, or creation date.  Each session includes verified claims and enrichments (Radar risk assessment and smart lookup results) when available. The `enrichments` field will be `null` for sessions that haven\'t completed.  Use pagination parameters (`limit` and `offset`) to page through large result sets.
+     * <div style=\"background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;\"> <strong style=\"color: #c62828;\">Experimental:</strong> This feature is brand new. <a href=\"https://vouchsafe.id/contact\">Contact us</a> to set it up. </div>  List Digital ID verification sessions.  Retrieve a list of Digital ID verification sessions for your team. You can filter sessions by flow, status, provider, or creation date.  Each session includes verified claims and enrichments (Radar risk assessment and smart lookup results) when available. The `enrichments` field will be `null` for sessions that haven\'t completed.  Use pagination parameters (`limit` and `offset`) to page through large result sets.
      */
     async listSessionsRaw(requestParameters: ListSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DigitalIdSession>>> {
         const queryParameters: any = {};
 
-        if (requestParameters['workflowId'] != null) {
-            queryParameters['workflow_id'] = requestParameters['workflowId'];
+        if (requestParameters['flowId'] != null) {
+            queryParameters['flow_id'] = requestParameters['flowId'];
         }
 
         if (requestParameters['status'] != null) {
@@ -204,7 +204,7 @@ export class DigitalIDApi extends runtime.BaseAPI {
     }
 
     /**
-     * <div style=\"background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;\"> <strong style=\"color: #c62828;\">Experimental:</strong> This feature is brand new. <a href=\"https://vouchsafe.id/contact\">Contact us</a> to set it up. </div>  List Digital ID verification sessions.  Retrieve a list of Digital ID verification sessions for your team. You can filter sessions by workflow, status, provider, or creation date.  Each session includes verified claims and enrichments (Radar risk assessment and smart lookup results) when available. The `enrichments` field will be `null` for sessions that haven\'t completed.  Use pagination parameters (`limit` and `offset`) to page through large result sets.
+     * <div style=\"background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;\"> <strong style=\"color: #c62828;\">Experimental:</strong> This feature is brand new. <a href=\"https://vouchsafe.id/contact\">Contact us</a> to set it up. </div>  List Digital ID verification sessions.  Retrieve a list of Digital ID verification sessions for your team. You can filter sessions by flow, status, provider, or creation date.  Each session includes verified claims and enrichments (Radar risk assessment and smart lookup results) when available. The `enrichments` field will be `null` for sessions that haven\'t completed.  Use pagination parameters (`limit` and `offset`) to page through large result sets.
      */
     async listSessions(requestParameters: ListSessionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<DigitalIdSession>> {
         const response = await this.listSessionsRaw(requestParameters, initOverrides);

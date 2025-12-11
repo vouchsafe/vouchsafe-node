@@ -30,7 +30,7 @@ export interface CreateDigitalIdSessionResponse {
      * @type {string}
      * @memberof CreateDigitalIdSessionResponse
      */
-    workflow_id: string;
+    flow_id: string;
     /**
      * 
      * @type {string}
@@ -50,7 +50,7 @@ export interface CreateDigitalIdSessionResponse {
  */
 export function instanceOfCreateDigitalIdSessionResponse(value: object): value is CreateDigitalIdSessionResponse {
     if (!('expires_at' in value) || value['expires_at'] === undefined) return false;
-    if (!('workflow_id' in value) || value['workflow_id'] === undefined) return false;
+    if (!('flow_id' in value) || value['flow_id'] === undefined) return false;
     if (!('url' in value) || value['url'] === undefined) return false;
     if (!('id' in value) || value['id'] === undefined) return false;
     return true;
@@ -67,7 +67,7 @@ export function CreateDigitalIdSessionResponseFromJSONTyped(json: any, ignoreDis
     return {
         
         'expires_at': json['expires_at'],
-        'workflow_id': json['workflow_id'],
+        'flow_id': json['flow_id'],
         'url': json['url'],
         'id': json['id'],
     };
@@ -85,7 +85,7 @@ export function CreateDigitalIdSessionResponseToJSONTyped(value?: CreateDigitalI
     return {
         
         'expires_at': value['expires_at'],
-        'workflow_id': value['workflow_id'],
+        'flow_id': value['flow_id'],
         'url': value['url'],
         'id': value['id'],
     };

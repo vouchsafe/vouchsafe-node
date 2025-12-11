@@ -44,14 +44,14 @@ export interface CreateDigitalIdSessionInput {
      * @type {string}
      * @memberof CreateDigitalIdSessionInput
      */
-    workflow_id: string;
+    flow_id: string;
 }
 
 /**
  * Check if a given object implements the CreateDigitalIdSessionInput interface.
  */
 export function instanceOfCreateDigitalIdSessionInput(value: object): value is CreateDigitalIdSessionInput {
-    if (!('workflow_id' in value) || value['workflow_id'] === undefined) return false;
+    if (!('flow_id' in value) || value['flow_id'] === undefined) return false;
     return true;
 }
 
@@ -67,7 +67,7 @@ export function CreateDigitalIdSessionInputFromJSONTyped(json: any, ignoreDiscri
         
         'known_claims': json['known_claims'] == null ? undefined : KnownClaimsFromJSON(json['known_claims']),
         'redirect_url': json['redirect_url'] == null ? undefined : json['redirect_url'],
-        'workflow_id': json['workflow_id'],
+        'flow_id': json['flow_id'],
     };
 }
 
@@ -84,7 +84,7 @@ export function CreateDigitalIdSessionInputToJSONTyped(value?: CreateDigitalIdSe
         
         'known_claims': KnownClaimsToJSON(value['known_claims']),
         'redirect_url': value['redirect_url'],
-        'workflow_id': value['workflow_id'],
+        'flow_id': value['flow_id'],
     };
 }
 
