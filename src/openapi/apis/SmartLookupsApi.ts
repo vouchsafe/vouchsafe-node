@@ -45,7 +45,7 @@ export interface SearchPostcodeRequest {
 export class SmartLookupsApi extends runtime.BaseAPI {
 
     /**
-     * > The supported checks for this feature are `CreditBureau` (via an FCA-authorised bureau), `Address` (via the electoral roll), `OnlineFootprint` (aggregated from various sources), and `AML` (via a watchlist and sanctions database).  Run quick [background checks](https://help.vouchsafe.id/en/articles/11075009-how-background-checks-work) on a user\'s details.  Provide the user\'s details and the check(s) to run and receive the report.  First line of address should be taken from the results returned by the [`GET /postcode` endpoint](https://app.vouchsafe.id/docs/operations/SearchPostcode).  > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     * > The supported checks for this feature are `CreditBureau` (via an FCA-authorised bureau), `OnlineFootprint` (aggregated from various sources), and `AML` (via a watchlist and sanctions database).  Run quick [background checks](https://help.vouchsafe.id/en/articles/11075009-how-background-checks-work) on a user\'s details.  Provide the user\'s details and the check(s) to run and receive the report.  First line of address should be taken from the results returned by the [`GET /postcode` endpoint](https://app.vouchsafe.id/docs/operations/SearchPostcode).  > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
      */
     async performSmartLookupRaw(requestParameters: PerformSmartLookupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetSmartLookupResponse>> {
         if (requestParameters['smartLookupInput'] == null) {
@@ -84,7 +84,7 @@ export class SmartLookupsApi extends runtime.BaseAPI {
     }
 
     /**
-     * > The supported checks for this feature are `CreditBureau` (via an FCA-authorised bureau), `Address` (via the electoral roll), `OnlineFootprint` (aggregated from various sources), and `AML` (via a watchlist and sanctions database).  Run quick [background checks](https://help.vouchsafe.id/en/articles/11075009-how-background-checks-work) on a user\'s details.  Provide the user\'s details and the check(s) to run and receive the report.  First line of address should be taken from the results returned by the [`GET /postcode` endpoint](https://app.vouchsafe.id/docs/operations/SearchPostcode).  > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     * > The supported checks for this feature are `CreditBureau` (via an FCA-authorised bureau), `OnlineFootprint` (aggregated from various sources), and `AML` (via a watchlist and sanctions database).  Run quick [background checks](https://help.vouchsafe.id/en/articles/11075009-how-background-checks-work) on a user\'s details.  Provide the user\'s details and the check(s) to run and receive the report.  First line of address should be taken from the results returned by the [`GET /postcode` endpoint](https://app.vouchsafe.id/docs/operations/SearchPostcode).  > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
      */
     async performSmartLookup(requestParameters: PerformSmartLookupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetSmartLookupResponse> {
         const response = await this.performSmartLookupRaw(requestParameters, initOverrides);
@@ -92,7 +92,7 @@ export class SmartLookupsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Look up all addresses for a given UK postcode in the Post Office Address File.  Useful for guaranteeing that a user\'s address is recognised before onboarding.
+     * Look up all addresses for a given UK postcode.  Useful for guaranteeing that a user\'s address is recognised before onboarding.
      */
     async searchPostcodeRaw(requestParameters: SearchPostcodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostcodeResponse>> {
         if (requestParameters['postcode'] == null) {
@@ -132,7 +132,7 @@ export class SmartLookupsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Look up all addresses for a given UK postcode in the Post Office Address File.  Useful for guaranteeing that a user\'s address is recognised before onboarding.
+     * Look up all addresses for a given UK postcode.  Useful for guaranteeing that a user\'s address is recognised before onboarding.
      */
     async searchPostcode(requestParameters: SearchPostcodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostcodeResponse> {
         const response = await this.searchPostcodeRaw(requestParameters, initOverrides);

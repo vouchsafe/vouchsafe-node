@@ -1,6 +1,5 @@
 /* tslint:disable */
 /* eslint-disable */
-export * from './AddressVerificationReport';
 export * from './AmlVerificationReport';
 export * from './ApiErrorResponse';
 export * from './AuthenticateInput';
@@ -29,7 +28,6 @@ export * from './PostcodeResponse';
 export * from './RadarReason';
 export * from './RadarResult';
 export * from './Reason';
-export * from './RecordAddressVerificationChecksCheckResult';
 export * from './RecordAmlVerificationChecksCheckResult';
 export * from './RecordCreditBureauVerificationChecksCheckResult';
 export * from './RecordOnlineFootprintVerificationChecksCheckResult';

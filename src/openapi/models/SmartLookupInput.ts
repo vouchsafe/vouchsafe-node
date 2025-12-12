@@ -46,13 +46,13 @@ export interface SmartLookupInput {
      */
     checks: Array<SmartLookupInputChecksEnum>;
     /**
-     * (conditionally required) - Required when checks includes Address or CreditBureau; otherwise optional. Should be taken from GET /postcode endpoint
+     * (conditionally required) - Required when checks includes CreditBureau; otherwise optional. Should be taken from GET /postcode endpoint
      * @type {string}
      * @memberof SmartLookupInput
      */
     first_line_of_address?: string;
     /**
-     * (conditionally required) - Postcode used in GET /postcode. Required when checks includes Address or CreditBureau; otherwise optional.
+     * (conditionally required) - Postcode used in GET /postcode. Required when checks includes CreditBureau; otherwise optional.
      * @type {string}
      * @memberof SmartLookupInput
      */
@@ -88,7 +88,6 @@ export interface SmartLookupInput {
  * @export
  */
 export const SmartLookupInputChecksEnum = {
-    Address: 'Address',
     CreditBureau: 'CreditBureau',
     OnlineFootprint: 'OnlineFootprint',
     Aml: 'AML'

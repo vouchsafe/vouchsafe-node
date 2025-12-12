@@ -6,7 +6,6 @@ apis/TeamApi.ts
 apis/VerificationsApi.ts
 apis/index.ts
 index.ts
-models/AddressVerificationReport.ts
 models/AmlVerificationReport.ts
 models/ApiErrorResponse.ts
 models/AuthenticateInput.ts
@@ -35,7 +34,6 @@ models/PostcodeResponse.ts
 models/RadarReason.ts
 models/RadarResult.ts
 models/Reason.ts
-models/RecordAddressVerificationChecksCheckResult.ts
 models/RecordAmlVerificationChecksCheckResult.ts
 models/RecordCreditBureauVerificationChecksCheckResult.ts
 models/RecordOnlineFootprintVerificationChecksCheckResult.ts

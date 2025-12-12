@@ -34,13 +34,6 @@ import {
     OnlineFootprintVerificationReportToJSON,
     OnlineFootprintVerificationReportToJSONTyped,
 } from './OnlineFootprintVerificationReport';
-import type { AddressVerificationReport } from './AddressVerificationReport';
-import {
-    AddressVerificationReportFromJSON,
-    AddressVerificationReportFromJSONTyped,
-    AddressVerificationReportToJSON,
-    AddressVerificationReportToJSONTyped,
-} from './AddressVerificationReport';
 
 /**
  * 
@@ -110,12 +103,6 @@ export interface GetSmartLookupResponse {
     phone?: string;
     /**
      * 
-     * @type {AddressVerificationReport}
-     * @memberof GetSmartLookupResponse
-     */
-    address_verification_report?: AddressVerificationReport;
-    /**
-     * 
      * @type {CreditBureauVerificationReport}
      * @memberof GetSmartLookupResponse
      */
@@ -151,7 +138,6 @@ export interface GetSmartLookupResponse {
  * @export
  */
 export const GetSmartLookupResponseChecksEnum = {
-    Address: 'Address',
     CreditBureau: 'CreditBureau',
     OnlineFootprint: 'OnlineFootprint',
     Aml: 'AML'
@@ -195,7 +181,6 @@ export function GetSmartLookupResponseFromJSONTyped(json: any, ignoreDiscriminat
         'date_of_birth': json['date_of_birth'] == null ? undefined : json['date_of_birth'],
         'email': json['email'] == null ? undefined : json['email'],
         'phone': json['phone'] == null ? undefined : json['phone'],
-        'address_verification_report': json['address_verification_report'] == null ? undefined : AddressVerificationReportFromJSON(json['address_verification_report']),
         'credit_bureau_verification_report': json['credit_bureau_verification_report'] == null ? undefined : CreditBureauVerificationReportFromJSON(json['credit_bureau_verification_report']),
         'online_footprint_verification_report': json['online_footprint_verification_report'] == null ? undefined : OnlineFootprintVerificationReportFromJSON(json['online_footprint_verification_report']),
         'aml_verification_report': json['aml_verification_report'] == null ? undefined : AmlVerificationReportFromJSON(json['aml_verification_report']),
@@ -225,7 +210,6 @@ export function GetSmartLookupResponseToJSONTyped(value?: GetSmartLookupResponse
         'date_of_birth': value['date_of_birth'],
         'email': value['email'],
         'phone': value['phone'],
-        'address_verification_report': AddressVerificationReportToJSON(value['address_verification_report']),
         'credit_bureau_verification_report': CreditBureauVerificationReportToJSON(value['credit_bureau_verification_report']),
         'online_footprint_verification_report': OnlineFootprintVerificationReportToJSON(value['online_footprint_verification_report']),
         'aml_verification_report': AmlVerificationReportToJSON(value['aml_verification_report']),
