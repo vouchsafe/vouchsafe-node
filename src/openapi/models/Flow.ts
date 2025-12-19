@@ -51,6 +51,12 @@ export interface Flow {
      */
     created_at: string;
     /**
+     * When the flow was archived, formatted as an ISO 8601 string. Defaults to null if the flow is active
+     * @type {string}
+     * @memberof Flow
+     */
+    archived_at: string | null;
+    /**
      * How many tokens the flow uses per completed verification. [What are tokens?](https://help.vouchsafe.id/en/articles/11075413-what-are-tokens)
      * @type {number}
      * @memberof Flow
@@ -66,6 +72,7 @@ export function instanceOfFlow(value: object): value is Flow {
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('updated_at' in value) || value['updated_at'] === undefined) return false;
     if (!('created_at' in value) || value['created_at'] === undefined) return false;
+    if (!('archived_at' in value) || value['archived_at'] === undefined) return false;
     if (!('tokens_per_verification' in value) || value['tokens_per_verification'] === undefined) return false;
     return true;
 }
@@ -84,6 +91,7 @@ export function FlowFromJSONTyped(json: any, ignoreDiscriminator: boolean): Flow
         'name': json['name'],
         'updated_at': json['updated_at'],
         'created_at': json['created_at'],
+        'archived_at': json['archived_at'],
         'tokens_per_verification': json['tokens_per_verification'],
     };
 }
@@ -103,6 +111,7 @@ export function FlowToJSONTyped(value?: Flow | null, ignoreDiscriminator: boolea
         'name': value['name'],
         'updated_at': value['updated_at'],
         'created_at': value['created_at'],
+        'archived_at': value['archived_at'],
         'tokens_per_verification': value['tokens_per_verification'],
     };
 }
