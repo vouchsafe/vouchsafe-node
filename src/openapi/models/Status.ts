@@ -24,6 +24,7 @@ export const Status = {
     Refused: 'Refused',
     Cancelled: 'Cancelled',
     LockedOut: 'LockedOut',
+    Blocked: 'Blocked',
     ManuallyReviewed: 'ManuallyReviewed'
 } as const;
 export type Status = typeof Status[keyof typeof Status];
