@@ -16,20 +16,23 @@
 import * as runtime from '../runtime';
 import type {
   ApiErrorResponse,
+  CaseStatus,
+  GetVerificationResponse,
   RequestVerificationInput,
   RequestVerificationResponse,
-  Status,
   Verification,
 } from '../models/index';
 import {
     ApiErrorResponseFromJSON,
     ApiErrorResponseToJSON,
+    CaseStatusFromJSON,
+    CaseStatusToJSON,
+    GetVerificationResponseFromJSON,
+    GetVerificationResponseToJSON,
     RequestVerificationInputFromJSON,
     RequestVerificationInputToJSON,
     RequestVerificationResponseFromJSON,
     RequestVerificationResponseToJSON,
-    StatusFromJSON,
-    StatusToJSON,
     VerificationFromJSON,
     VerificationToJSON,
 } from '../models/index';
@@ -39,7 +42,7 @@ export interface GetVerificationRequest {
 }
 
 export interface ListVerificationsRequest {
-    status?: Status;
+    status?: CaseStatus;
 }
 
 export interface RequestVerificationRequest {
@@ -54,7 +57,7 @@ export class VerificationsApi extends runtime.BaseAPI {
     /**
      * Get a single verification by ID.  Returns the latest status and metadata for a verification you previously requested.  > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
      */
-    async getVerificationRaw(requestParameters: GetVerificationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Verification>> {
+    async getVerificationRaw(requestParameters: GetVerificationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetVerificationResponse>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -85,13 +88,13 @@ export class VerificationsApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => VerificationFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetVerificationResponseFromJSON(jsonValue));
     }
 
     /**
      * Get a single verification by ID.  Returns the latest status and metadata for a verification you previously requested.  > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
      */
-    async getVerification(requestParameters: GetVerificationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Verification> {
+    async getVerification(requestParameters: GetVerificationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetVerificationResponse> {
         const response = await this.getVerificationRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -17,22 +17,23 @@
  * 
  * @export
  */
-export const Reason = {
-    InvalidPostcode: 'INVALID_POSTCODE',
-    InvalidAddress: 'INVALID_ADDRESS',
-    MedMatchPersonAtAddress: 'MED_MATCH_PERSON_AT_ADDRESS',
-    LowMatchPersonAtAddress: 'LOW_MATCH_PERSON_AT_ADDRESS',
-    DobNotMatched: 'DOB_NOT_MATCHED',
-    NoIdentityMatch: 'NO_IDENTITY_MATCH',
-    NoResidencyMatch: 'NO_RESIDENCY_MATCH'
+export const CaseStatus = {
+    InProgress: 'InProgress',
+    ReadyForReview: 'ReadyForReview',
+    Verified: 'Verified',
+    Refused: 'Refused',
+    Cancelled: 'Cancelled',
+    LockedOut: 'LockedOut',
+    Blocked: 'Blocked',
+    ManuallyReviewed: 'ManuallyReviewed'
 } as const;
-export type Reason = typeof Reason[keyof typeof Reason];
+export type CaseStatus = typeof CaseStatus[keyof typeof CaseStatus];
 
 
-export function instanceOfReason(value: any): boolean {
-    for (const key in Reason) {
-        if (Object.prototype.hasOwnProperty.call(Reason, key)) {
-            if (Reason[key as keyof typeof Reason] === value) {
+export function instanceOfCaseStatus(value: any): boolean {
+    for (const key in CaseStatus) {
+        if (Object.prototype.hasOwnProperty.call(CaseStatus, key)) {
+            if (CaseStatus[key as keyof typeof CaseStatus] === value) {
                 return true;
             }
         }
@@ -40,19 +41,19 @@ export function instanceOfReason(value: any): boolean {
     return false;
 }
 
-export function ReasonFromJSON(json: any): Reason {
-    return ReasonFromJSONTyped(json, false);
+export function CaseStatusFromJSON(json: any): CaseStatus {
+    return CaseStatusFromJSONTyped(json, false);
 }
 
-export function ReasonFromJSONTyped(json: any, ignoreDiscriminator: boolean): Reason {
-    return json as Reason;
+export function CaseStatusFromJSONTyped(json: any, ignoreDiscriminator: boolean): CaseStatus {
+    return json as CaseStatus;
 }
 
-export function ReasonToJSON(value?: Reason | null): any {
+export function CaseStatusToJSON(value?: CaseStatus | null): any {
     return value as any;
 }
 
-export function ReasonToJSONTyped(value: any, ignoreDiscriminator: boolean): Reason {
-    return value as Reason;
+export function CaseStatusToJSONTyped(value: any, ignoreDiscriminator: boolean): CaseStatus {
+    return value as CaseStatus;
 }
 

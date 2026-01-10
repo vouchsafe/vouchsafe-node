@@ -17,22 +17,17 @@
  * 
  * @export
  */
-export const Reason = {
-    InvalidPostcode: 'INVALID_POSTCODE',
-    InvalidAddress: 'INVALID_ADDRESS',
-    MedMatchPersonAtAddress: 'MED_MATCH_PERSON_AT_ADDRESS',
-    LowMatchPersonAtAddress: 'LOW_MATCH_PERSON_AT_ADDRESS',
-    DobNotMatched: 'DOB_NOT_MATCHED',
-    NoIdentityMatch: 'NO_IDENTITY_MATCH',
-    NoResidencyMatch: 'NO_RESIDENCY_MATCH'
+export const CheckStatus = {
+    Pass: 'pass',
+    Fail: 'fail'
 } as const;
-export type Reason = typeof Reason[keyof typeof Reason];
+export type CheckStatus = typeof CheckStatus[keyof typeof CheckStatus];
 
 
-export function instanceOfReason(value: any): boolean {
-    for (const key in Reason) {
-        if (Object.prototype.hasOwnProperty.call(Reason, key)) {
-            if (Reason[key as keyof typeof Reason] === value) {
+export function instanceOfCheckStatus(value: any): boolean {
+    for (const key in CheckStatus) {
+        if (Object.prototype.hasOwnProperty.call(CheckStatus, key)) {
+            if (CheckStatus[key as keyof typeof CheckStatus] === value) {
                 return true;
             }
         }
@@ -40,19 +35,19 @@ export function instanceOfReason(value: any): boolean {
     return false;
 }
 
-export function ReasonFromJSON(json: any): Reason {
-    return ReasonFromJSONTyped(json, false);
+export function CheckStatusFromJSON(json: any): CheckStatus {
+    return CheckStatusFromJSONTyped(json, false);
 }
 
-export function ReasonFromJSONTyped(json: any, ignoreDiscriminator: boolean): Reason {
-    return json as Reason;
+export function CheckStatusFromJSONTyped(json: any, ignoreDiscriminator: boolean): CheckStatus {
+    return json as CheckStatus;
 }
 
-export function ReasonToJSON(value?: Reason | null): any {
+export function CheckStatusToJSON(value?: CheckStatus | null): any {
     return value as any;
 }
 
-export function ReasonToJSONTyped(value: any, ignoreDiscriminator: boolean): Reason {
-    return value as Reason;
+export function CheckStatusToJSONTyped(value: any, ignoreDiscriminator: boolean): CheckStatus {
+    return value as CheckStatus;
 }
 

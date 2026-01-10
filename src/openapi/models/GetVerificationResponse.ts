@@ -13,6 +13,20 @@
  */
 
 import { mapValues } from '../runtime';
+import type { GetVerificationResponseChecksInner } from './GetVerificationResponseChecksInner';
+import {
+    GetVerificationResponseChecksInnerFromJSON,
+    GetVerificationResponseChecksInnerFromJSONTyped,
+    GetVerificationResponseChecksInnerToJSON,
+    GetVerificationResponseChecksInnerToJSONTyped,
+} from './GetVerificationResponseChecksInner';
+import type { ClaimDetails } from './ClaimDetails';
+import {
+    ClaimDetailsFromJSON,
+    ClaimDetailsFromJSONTyped,
+    ClaimDetailsToJSON,
+    ClaimDetailsToJSONTyped,
+} from './ClaimDetails';
 import type { CaseStatus } from './CaseStatus';
 import {
     CaseStatusFromJSON,
@@ -24,65 +38,77 @@ import {
 /**
  * 
  * @export
- * @interface Verification
+ * @interface GetVerificationResponse
  */
-export interface Verification {
+export interface GetVerificationResponse {
     /**
      * Unique ID for tracking a verification session over time
      * @type {string}
-     * @memberof Verification
+     * @memberof GetVerificationResponse
      */
     id: string;
     /**
      * 
      * @type {CaseStatus}
-     * @memberof Verification
+     * @memberof GetVerificationResponse
      */
     status: CaseStatus;
     /**
      * When it was originally requested or begun
      * @type {string}
-     * @memberof Verification
+     * @memberof GetVerificationResponse
      */
     created_at: string;
     /**
      * When the user will stop getting reminders
      * @type {string}
-     * @memberof Verification
+     * @memberof GetVerificationResponse
      */
     expires_at: string;
     /**
      * The originally supplied email address
      * @type {string}
-     * @memberof Verification
+     * @memberof GetVerificationResponse
      */
     email: string | null;
     /**
      * Where to send the user upon success. If null, the verification flow default will be used.
      * @type {string}
-     * @memberof Verification
+     * @memberof GetVerificationResponse
      */
     redirect_url: string | null;
     /**
      * The verification flow it belongs to
      * @type {string}
-     * @memberof Verification
+     * @memberof GetVerificationResponse
      */
     workflow_id: string;
     /**
      * An identifier from your own systems, to avoid needing to store Vouchsafe's own ID. Provided at request time.
      * @type {string}
-     * @memberof Verification
+     * @memberof GetVerificationResponse
      */
     external_id: string | null;
+    /**
+     * 
+     * @type {ClaimDetails}
+     * @memberof GetVerificationResponse
+     */
+    claim_details: ClaimDetails;
+    /**
+     * The collected evidence and validations performed
+     * @type {Array<GetVerificationResponseChecksInner>}
+     * @memberof GetVerificationResponse
+     */
+    checks: Array<GetVerificationResponseChecksInner>;
 }
 
 
 
 /**
- * Check if a given object implements the Verification interface.
+ * Check if a given object implements the GetVerificationResponse interface.
  */
-export function instanceOfVerification(value: object): value is Verification {
+export function instanceOfGetVerificationResponse(value: object): value is GetVerificationResponse {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
     if (!('created_at' in value) || value['created_at'] === undefined) return false;
@@ -91,14 +117,16 @@ export function instanceOfVerification(value: object): value is Verification {
     if (!('redirect_url' in value) || value['redirect_url'] === undefined) return false;
     if (!('workflow_id' in value) || value['workflow_id'] === undefined) return false;
     if (!('external_id' in value) || value['external_id'] === undefined) return false;
+    if (!('claim_details' in value) || value['claim_details'] === undefined) return false;
+    if (!('checks' in value) || value['checks'] === undefined) return false;
     return true;
 }
 
-export function VerificationFromJSON(json: any): Verification {
-    return VerificationFromJSONTyped(json, false);
+export function GetVerificationResponseFromJSON(json: any): GetVerificationResponse {
+    return GetVerificationResponseFromJSONTyped(json, false);
 }
 
-export function VerificationFromJSONTyped(json: any, ignoreDiscriminator: boolean): Verification {
+export function GetVerificationResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetVerificationResponse {
     if (json == null) {
         return json;
     }
@@ -112,14 +140,16 @@ export function VerificationFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'redirect_url': json['redirect_url'],
         'workflow_id': json['workflow_id'],
         'external_id': json['external_id'],
+        'claim_details': ClaimDetailsFromJSON(json['claim_details']),
+        'checks': ((json['checks'] as Array<any>).map(GetVerificationResponseChecksInnerFromJSON)),
     };
 }
 
-export function VerificationToJSON(json: any): Verification {
-    return VerificationToJSONTyped(json, false);
+export function GetVerificationResponseToJSON(json: any): GetVerificationResponse {
+    return GetVerificationResponseToJSONTyped(json, false);
 }
 
-export function VerificationToJSONTyped(value?: Verification | null, ignoreDiscriminator: boolean = false): any {
+export function GetVerificationResponseToJSONTyped(value?: GetVerificationResponse | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -134,6 +164,8 @@ export function VerificationToJSONTyped(value?: Verification | null, ignoreDiscr
         'redirect_url': value['redirect_url'],
         'workflow_id': value['workflow_id'],
         'external_id': value['external_id'],
+        'claim_details': ClaimDetailsToJSON(value['claim_details']),
+        'checks': ((value['checks'] as Array<any>).map(GetVerificationResponseChecksInnerToJSON)),
     };
 }
 
