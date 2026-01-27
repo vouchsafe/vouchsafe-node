@@ -3,13 +3,13 @@ name: Publish SDK
 on:
   workflow_dispatch:
 
-permissions:
-  id-token: write  # Required for OIDC
-  contents: write
-
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -52,8 +52,18 @@ jobs:
           git push origin main
           git push --tags
 
+      - name: Debug npm auth (redacted)
+        run: |
+          echo "registry=$(npm config get registry)"
+          echo "NODE_AUTH_TOKEN set? $([[ -n "${NODE_AUTH_TOKEN:-}" ]] && echo yes || echo no)"
+          echo "NPM_TOKEN set? $([[ -n "${NPM_TOKEN:-}" ]] && echo yes || echo no)"
+          (test -f ~/.npmrc && sed 's/_authToken=.*/_authToken=***REDACTED***/' ~/.npmrc) || echo "no ~/.npmrc"
+
       - name: Publish to npm
         run: npm publish --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ""
+          NPM_TOKEN: ""
 
       - name: Summary
         run: |
