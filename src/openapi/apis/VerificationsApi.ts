@@ -55,7 +55,7 @@ export interface RequestVerificationRequest {
 export class VerificationsApi extends runtime.BaseAPI {
 
     /**
-     * Get a single verification by ID.  Returns the latest status and metadata for a verification you previously requested.  > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     * Get a single verification by ID.  Returns the latest status, claim details and results for a verification you previously requested.  Vouchsafe will respond with:  - the verification status and timestamps - the identity claim details (e.g. name, email, phone number) - the list of checks performed (e.g. liveness, photo ID, email verification) including outcomes and validations - results of any background checks (e.g. radar, online footprint analysis, aml sanctions)  #### Downloading files (artefacts)  Some checks may include an `artefacts` array (for example: face scan or document images). For security reasons, the verification response only contains an `artefact key` — not the file itself.  To download an artefact, use:  - `GET /artefacts/{artefact_key}`  This returns a **time-limited pre-signed URL** which can be used to download the file.  > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
      */
     async getVerificationRaw(requestParameters: GetVerificationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetVerificationResponse>> {
         if (requestParameters['id'] == null) {
@@ -92,7 +92,7 @@ export class VerificationsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get a single verification by ID.  Returns the latest status and metadata for a verification you previously requested.  > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     * Get a single verification by ID.  Returns the latest status, claim details and results for a verification you previously requested.  Vouchsafe will respond with:  - the verification status and timestamps - the identity claim details (e.g. name, email, phone number) - the list of checks performed (e.g. liveness, photo ID, email verification) including outcomes and validations - results of any background checks (e.g. radar, online footprint analysis, aml sanctions)  #### Downloading files (artefacts)  Some checks may include an `artefacts` array (for example: face scan or document images). For security reasons, the verification response only contains an `artefact key` — not the file itself.  To download an artefact, use:  - `GET /artefacts/{artefact_key}`  This returns a **time-limited pre-signed URL** which can be used to download the file.  > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
      */
     async getVerification(requestParameters: GetVerificationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetVerificationResponse> {
         const response = await this.getVerificationRaw(requestParameters, initOverrides);

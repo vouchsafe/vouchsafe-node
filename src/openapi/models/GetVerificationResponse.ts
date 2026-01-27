@@ -34,6 +34,13 @@ import {
     CaseStatusToJSON,
     CaseStatusToJSONTyped,
 } from './CaseStatus';
+import type { GetVerificationResponseEnrichmentsInner } from './GetVerificationResponseEnrichmentsInner';
+import {
+    GetVerificationResponseEnrichmentsInnerFromJSON,
+    GetVerificationResponseEnrichmentsInnerFromJSONTyped,
+    GetVerificationResponseEnrichmentsInnerToJSON,
+    GetVerificationResponseEnrichmentsInnerToJSONTyped,
+} from './GetVerificationResponseEnrichmentsInner';
 
 /**
  * 
@@ -101,6 +108,12 @@ export interface GetVerificationResponse {
      * @memberof GetVerificationResponse
      */
     checks: Array<GetVerificationResponseChecksInner>;
+    /**
+     * 
+     * @type {Array<GetVerificationResponseEnrichmentsInner>}
+     * @memberof GetVerificationResponse
+     */
+    enrichments: Array<GetVerificationResponseEnrichmentsInner>;
 }
 
 
@@ -119,6 +132,7 @@ export function instanceOfGetVerificationResponse(value: object): value is GetVe
     if (!('external_id' in value) || value['external_id'] === undefined) return false;
     if (!('claim_details' in value) || value['claim_details'] === undefined) return false;
     if (!('checks' in value) || value['checks'] === undefined) return false;
+    if (!('enrichments' in value) || value['enrichments'] === undefined) return false;
     return true;
 }
 
@@ -142,6 +156,7 @@ export function GetVerificationResponseFromJSONTyped(json: any, ignoreDiscrimina
         'external_id': json['external_id'],
         'claim_details': ClaimDetailsFromJSON(json['claim_details']),
         'checks': ((json['checks'] as Array<any>).map(GetVerificationResponseChecksInnerFromJSON)),
+        'enrichments': ((json['enrichments'] as Array<any>).map(GetVerificationResponseEnrichmentsInnerFromJSON)),
     };
 }
 
@@ -166,6 +181,7 @@ export function GetVerificationResponseToJSONTyped(value?: GetVerificationRespon
         'external_id': value['external_id'],
         'claim_details': ClaimDetailsToJSON(value['claim_details']),
         'checks': ((value['checks'] as Array<any>).map(GetVerificationResponseChecksInnerToJSON)),
+        'enrichments': ((value['enrichments'] as Array<any>).map(GetVerificationResponseEnrichmentsInnerToJSON)),
     };
 }
 

@@ -13,48 +13,90 @@
  */
 
 import { mapValues } from '../runtime';
-import type { OtpCheck } from './OtpCheck';
+import type { ApiRefereeEvidenceItem } from './ApiRefereeEvidenceItem';
 import {
-    OtpCheckFromJSON,
-    OtpCheckFromJSONTyped,
-    OtpCheckToJSON,
-    OtpCheckToJSONTyped,
-} from './OtpCheck';
-import type { ReviewUserCheck } from './ReviewUserCheck';
+    ApiRefereeEvidenceItemFromJSON,
+    ApiRefereeEvidenceItemFromJSONTyped,
+    ApiRefereeEvidenceItemToJSON,
+    ApiRefereeEvidenceItemToJSONTyped,
+} from './ApiRefereeEvidenceItem';
+import type { ApiVideoSelfieCheckArtefactsInner } from './ApiVideoSelfieCheckArtefactsInner';
 import {
-    ReviewUserCheckFromJSON,
-    ReviewUserCheckFromJSONTyped,
-    ReviewUserCheckToJSON,
-    ReviewUserCheckToJSONTyped,
-} from './ReviewUserCheck';
-import type { ReviewUserCheckAllOfConfirmedClaims } from './ReviewUserCheckAllOfConfirmedClaims';
+    ApiVideoSelfieCheckArtefactsInnerFromJSON,
+    ApiVideoSelfieCheckArtefactsInnerFromJSONTyped,
+    ApiVideoSelfieCheckArtefactsInnerToJSON,
+    ApiVideoSelfieCheckArtefactsInnerToJSONTyped,
+} from './ApiVideoSelfieCheckArtefactsInner';
+import type { ApiPhotoIdEvidenceItem } from './ApiPhotoIdEvidenceItem';
 import {
-    ReviewUserCheckAllOfConfirmedClaimsFromJSON,
-    ReviewUserCheckAllOfConfirmedClaimsFromJSONTyped,
-    ReviewUserCheckAllOfConfirmedClaimsToJSON,
-    ReviewUserCheckAllOfConfirmedClaimsToJSONTyped,
-} from './ReviewUserCheckAllOfConfirmedClaims';
-import type { VideoSelfieEvidenceItem } from './VideoSelfieEvidenceItem';
+    ApiPhotoIdEvidenceItemFromJSON,
+    ApiPhotoIdEvidenceItemFromJSONTyped,
+    ApiPhotoIdEvidenceItemToJSON,
+    ApiPhotoIdEvidenceItemToJSONTyped,
+} from './ApiPhotoIdEvidenceItem';
+import type { ApiSupportingDocEvidenceItem } from './ApiSupportingDocEvidenceItem';
 import {
-    VideoSelfieEvidenceItemFromJSON,
-    VideoSelfieEvidenceItemFromJSONTyped,
-    VideoSelfieEvidenceItemToJSON,
-    VideoSelfieEvidenceItemToJSONTyped,
-} from './VideoSelfieEvidenceItem';
-import type { BaseCheckExtendedVideoSelfieVideoSelfieEvidenceItem } from './BaseCheckExtendedVideoSelfieVideoSelfieEvidenceItem';
+    ApiSupportingDocEvidenceItemFromJSON,
+    ApiSupportingDocEvidenceItemFromJSONTyped,
+    ApiSupportingDocEvidenceItemToJSON,
+    ApiSupportingDocEvidenceItemToJSONTyped,
+} from './ApiSupportingDocEvidenceItem';
+import type { ApiVerifyPhoneNumberCheck } from './ApiVerifyPhoneNumberCheck';
 import {
-    BaseCheckExtendedVideoSelfieVideoSelfieEvidenceItemFromJSON,
-    BaseCheckExtendedVideoSelfieVideoSelfieEvidenceItemFromJSONTyped,
-    BaseCheckExtendedVideoSelfieVideoSelfieEvidenceItemToJSON,
-    BaseCheckExtendedVideoSelfieVideoSelfieEvidenceItemToJSONTyped,
-} from './BaseCheckExtendedVideoSelfieVideoSelfieEvidenceItem';
-import type { OverallStatus } from './OverallStatus';
+    ApiVerifyPhoneNumberCheckFromJSON,
+    ApiVerifyPhoneNumberCheckFromJSONTyped,
+    ApiVerifyPhoneNumberCheckToJSON,
+    ApiVerifyPhoneNumberCheckToJSONTyped,
+} from './ApiVerifyPhoneNumberCheck';
+import type { ApiBankAccountEvidenceItem } from './ApiBankAccountEvidenceItem';
 import {
-    OverallStatusFromJSON,
-    OverallStatusFromJSONTyped,
-    OverallStatusToJSON,
-    OverallStatusToJSONTyped,
-} from './OverallStatus';
+    ApiBankAccountEvidenceItemFromJSON,
+    ApiBankAccountEvidenceItemFromJSONTyped,
+    ApiBankAccountEvidenceItemToJSON,
+    ApiBankAccountEvidenceItemToJSONTyped,
+} from './ApiBankAccountEvidenceItem';
+import type { ApiRefereeEvidenceItemExtractedDetails } from './ApiRefereeEvidenceItemExtractedDetails';
+import {
+    ApiRefereeEvidenceItemExtractedDetailsFromJSON,
+    ApiRefereeEvidenceItemExtractedDetailsFromJSONTyped,
+    ApiRefereeEvidenceItemExtractedDetailsToJSON,
+    ApiRefereeEvidenceItemExtractedDetailsToJSONTyped,
+} from './ApiRefereeEvidenceItemExtractedDetails';
+import type { ApiVideoSelfieCheck } from './ApiVideoSelfieCheck';
+import {
+    ApiVideoSelfieCheckFromJSON,
+    ApiVideoSelfieCheckFromJSONTyped,
+    ApiVideoSelfieCheckToJSON,
+    ApiVideoSelfieCheckToJSONTyped,
+} from './ApiVideoSelfieCheck';
+import type { ApiEvisaEvidenceItem } from './ApiEvisaEvidenceItem';
+import {
+    ApiEvisaEvidenceItemFromJSON,
+    ApiEvisaEvidenceItemFromJSONTyped,
+    ApiEvisaEvidenceItemToJSON,
+    ApiEvisaEvidenceItemToJSONTyped,
+} from './ApiEvisaEvidenceItem';
+import type { ApiReviewUserCheck } from './ApiReviewUserCheck';
+import {
+    ApiReviewUserCheckFromJSON,
+    ApiReviewUserCheckFromJSONTyped,
+    ApiReviewUserCheckToJSON,
+    ApiReviewUserCheckToJSONTyped,
+} from './ApiReviewUserCheck';
+import type { ApiRefereeEvidenceItemValidations } from './ApiRefereeEvidenceItemValidations';
+import {
+    ApiRefereeEvidenceItemValidationsFromJSON,
+    ApiRefereeEvidenceItemValidationsFromJSONTyped,
+    ApiRefereeEvidenceItemValidationsToJSON,
+    ApiRefereeEvidenceItemValidationsToJSONTyped,
+} from './ApiRefereeEvidenceItemValidations';
+import type { ApiVerifyEmailCheck } from './ApiVerifyEmailCheck';
+import {
+    ApiVerifyEmailCheckFromJSON,
+    ApiVerifyEmailCheckFromJSONTyped,
+    ApiVerifyEmailCheckToJSON,
+    ApiVerifyEmailCheckToJSONTyped,
+} from './ApiVerifyEmailCheck';
 
 /**
  * 
@@ -64,69 +106,92 @@ import {
 export interface GetVerificationResponseChecksInner {
     /**
      * 
-     * @type {Array<VideoSelfieEvidenceItem>}
+     * @type {Array<ApiVideoSelfieCheckArtefactsInner>}
      * @memberof GetVerificationResponseChecksInner
      */
-    recorded_past_attempts: Array<VideoSelfieEvidenceItem>;
+    artefacts: Array<ApiVideoSelfieCheckArtefactsInner>;
     /**
      * 
-     * @type {Array<VideoSelfieEvidenceItem>}
+     * @type {ApiRefereeEvidenceItemValidations}
      * @memberof GetVerificationResponseChecksInner
      */
-    submitted_evidence: Array<VideoSelfieEvidenceItem>;
+    validations: ApiRefereeEvidenceItemValidations;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetVerificationResponseChecksInner
+     */
+    created_at?: string;
     /**
      * 
      * @type {number}
      * @memberof GetVerificationResponseChecksInner
      */
-    total_attempts: number;
-    /**
-     * 
-     * @type {OverallStatus}
-     * @memberof GetVerificationResponseChecksInner
-     */
-    status: OverallStatus;
+    total_attempts?: number;
     /**
      * 
      * @type {string}
      * @memberof GetVerificationResponseChecksInner
      */
-    check_type: GetVerificationResponseChecksInnerCheckTypeEnum;
+    outcome?: GetVerificationResponseChecksInnerOutcomeEnum;
     /**
      * 
      * @type {string}
      * @memberof GetVerificationResponseChecksInner
      */
-    verified_at: string | null;
+    step: GetVerificationResponseChecksInnerStepEnum;
     /**
      * 
-     * @type {ReviewUserCheckAllOfConfirmedClaims}
+     * @type {ApiRefereeEvidenceItemExtractedDetails}
      * @memberof GetVerificationResponseChecksInner
      */
-    confirmed_claims: ReviewUserCheckAllOfConfirmedClaims | null;
+    extracted_details: ApiRefereeEvidenceItemExtractedDetails;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetVerificationResponseChecksInner
+     */
+    evidence_type: GetVerificationResponseChecksInnerEvidenceTypeEnum;
 }
 
 
 /**
  * @export
  */
-export const GetVerificationResponseChecksInnerCheckTypeEnum = {
-    VerifyUserDetails: 'verify_user_details'
+export const GetVerificationResponseChecksInnerOutcomeEnum = {
+    InProgress: 'in_progress',
+    Pass: 'pass',
+    Fail: 'fail'
 } as const;
-export type GetVerificationResponseChecksInnerCheckTypeEnum = typeof GetVerificationResponseChecksInnerCheckTypeEnum[keyof typeof GetVerificationResponseChecksInnerCheckTypeEnum];
+export type GetVerificationResponseChecksInnerOutcomeEnum = typeof GetVerificationResponseChecksInnerOutcomeEnum[keyof typeof GetVerificationResponseChecksInnerOutcomeEnum];
+
+/**
+ * @export
+ */
+export const GetVerificationResponseChecksInnerStepEnum = {
+    Vouch: 'vouch'
+} as const;
+export type GetVerificationResponseChecksInnerStepEnum = typeof GetVerificationResponseChecksInnerStepEnum[keyof typeof GetVerificationResponseChecksInnerStepEnum];
+
+/**
+ * @export
+ */
+export const GetVerificationResponseChecksInnerEvidenceTypeEnum = {
+    ProfessionalReferee: 'professional_referee',
+    PersonalReferee: 'personal_referee'
+} as const;
+export type GetVerificationResponseChecksInnerEvidenceTypeEnum = typeof GetVerificationResponseChecksInnerEvidenceTypeEnum[keyof typeof GetVerificationResponseChecksInnerEvidenceTypeEnum];
 
 
 /**
  * Check if a given object implements the GetVerificationResponseChecksInner interface.
  */
 export function instanceOfGetVerificationResponseChecksInner(value: object): value is GetVerificationResponseChecksInner {
-    if (!('recorded_past_attempts' in value) || value['recorded_past_attempts'] === undefined) return false;
-    if (!('submitted_evidence' in value) || value['submitted_evidence'] === undefined) return false;
-    if (!('total_attempts' in value) || value['total_attempts'] === undefined) return false;
-    if (!('status' in value) || value['status'] === undefined) return false;
-    if (!('check_type' in value) || value['check_type'] === undefined) return false;
-    if (!('verified_at' in value) || value['verified_at'] === undefined) return false;
-    if (!('confirmed_claims' in value) || value['confirmed_claims'] === undefined) return false;
+    if (!('artefacts' in value) || value['artefacts'] === undefined) return false;
+    if (!('validations' in value) || value['validations'] === undefined) return false;
+    if (!('step' in value) || value['step'] === undefined) return false;
+    if (!('extracted_details' in value) || value['extracted_details'] === undefined) return false;
+    if (!('evidence_type' in value) || value['evidence_type'] === undefined) return false;
     return true;
 }
 
@@ -140,13 +205,14 @@ export function GetVerificationResponseChecksInnerFromJSONTyped(json: any, ignor
     }
     return {
         
-        'recorded_past_attempts': ((json['recorded_past_attempts'] as Array<any>).map(VideoSelfieEvidenceItemFromJSON)),
-        'submitted_evidence': ((json['submitted_evidence'] as Array<any>).map(VideoSelfieEvidenceItemFromJSON)),
-        'total_attempts': json['total_attempts'],
-        'status': OverallStatusFromJSON(json['status']),
-        'check_type': json['check_type'],
-        'verified_at': json['verified_at'],
-        'confirmed_claims': ReviewUserCheckAllOfConfirmedClaimsFromJSON(json['confirmed_claims']),
+        'artefacts': ((json['artefacts'] as Array<any>).map(ApiVideoSelfieCheckArtefactsInnerFromJSON)),
+        'validations': ApiRefereeEvidenceItemValidationsFromJSON(json['validations']),
+        'created_at': json['created_at'] == null ? undefined : json['created_at'],
+        'total_attempts': json['total_attempts'] == null ? undefined : json['total_attempts'],
+        'outcome': json['outcome'] == null ? undefined : json['outcome'],
+        'step': json['step'],
+        'extracted_details': ApiRefereeEvidenceItemExtractedDetailsFromJSON(json['extracted_details']),
+        'evidence_type': json['evidence_type'],
     };
 }
 
@@ -161,13 +227,14 @@ export function GetVerificationResponseChecksInnerToJSONTyped(value?: GetVerific
 
     return {
         
-        'recorded_past_attempts': ((value['recorded_past_attempts'] as Array<any>).map(VideoSelfieEvidenceItemToJSON)),
-        'submitted_evidence': ((value['submitted_evidence'] as Array<any>).map(VideoSelfieEvidenceItemToJSON)),
+        'artefacts': ((value['artefacts'] as Array<any>).map(ApiVideoSelfieCheckArtefactsInnerToJSON)),
+        'validations': ApiRefereeEvidenceItemValidationsToJSON(value['validations']),
+        'created_at': value['created_at'],
         'total_attempts': value['total_attempts'],
-        'status': OverallStatusToJSON(value['status']),
-        'check_type': value['check_type'],
-        'verified_at': value['verified_at'],
-        'confirmed_claims': ReviewUserCheckAllOfConfirmedClaimsToJSON(value['confirmed_claims']),
+        'outcome': value['outcome'],
+        'step': value['step'],
+        'extracted_details': ApiRefereeEvidenceItemExtractedDetailsToJSON(value['extracted_details']),
+        'evidence_type': value['evidence_type'],
     };
 }
 
