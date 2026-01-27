@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write # Required to push commits and tags
+      id-token: write # Required for npm provenance
 
     steps:
       - name: Checkout repository
@@ -70,9 +71,7 @@ jobs:
 
       - name: Publish to npm
         if: steps.changes.outputs.changed == 'true'
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --access public --provenance
 
       - name: Summary
         if: steps.changes.outputs.changed == 'true'
