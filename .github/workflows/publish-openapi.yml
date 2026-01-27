@@ -1,0 +1,62 @@
+name: Publish SDK
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Generate model exports
+        run: npx tsx scripts/generate-model-exports.ts
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate SDK from OpenAPI spec
+        run: npm run generate
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit changes
+        run: |
+          git add .
+          git commit -m "chore: regenerate SDK from OpenAPI spec [skip ci]" || echo "No changes to commit"
+
+      - name: Bump version and create tag
+        run: |
+          npm version patch -m "chore: release v%s [skip ci]"
+          echo "NEW_VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
+
+      - name: Push changes and tags
+        run: |
+          git push origin main
+          git push --tags
+
+      - name: Publish to npm
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Summary
+        run: |
+          echo "✅ SDK published successfully!" >> $GITHUB_STEP_SUMMARY
+          echo "📦 New version: ${{ env.NEW_VERSION }}" >> $GITHUB_STEP_SUMMARY
