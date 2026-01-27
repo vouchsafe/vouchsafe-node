@@ -24,6 +24,9 @@ jobs:
           node-version: "18"
           registry-url: "https://registry.npmjs.org"
 
+      - name: Generate model exports
+        run: npx tsx scripts/generate-model-exports.ts
+
       - name: Install dependencies
         run: npm install
 
