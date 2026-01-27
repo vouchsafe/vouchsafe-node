@@ -1,8 +1,8 @@
-name: Notify Slack on Failure
+name: Notify on Failure
 
 on:
   workflow_run:
-    workflows: ["Auto-Update SDK"] # Your workflow name
+    workflows: ["Auto-Update SDK"]
     types: [completed]
 
 jobs:
