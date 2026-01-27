@@ -1,8 +1,11 @@
 /* tslint:disable */
 /* eslint-disable */
+// This file is auto-generated. Do not edit manually.
+export * from './AddressVerificationReport';
 export * from './AmlVerificationReport';
 export * from './ApiErrorResponse';
 export * from './AuthenticateInput';
+export * from './AuthenticateRequestBody';
 export * from './AuthenticateResponse';
 export * from './BaseCheckExtendedVideoSelfieVideoSelfieEvidenceItem';
 export * from './BaseCheckVerifyEmailOrVerifyPhoneNumber';
@@ -31,6 +34,7 @@ export * from './GetVerificationResponse';
 export * from './GetVerificationResponseChecksInner';
 export * from './KnownClaims';
 export * from './KnownClaimsAddress';
+export * from './Model36EnumsBackgroundCheck';
 export * from './Model36EnumsEnvironment';
 export * from './OnlineFootprintVerificationReport';
 export * from './OtpCheck';
@@ -39,15 +43,19 @@ export * from './PostcodeResponse';
 export * from './RadarReason';
 export * from './RadarResult';
 export * from './Reason';
+export * from './RecordAddressVerificationChecksCheckResult';
 export * from './RecordAmlVerificationChecksCheckResult';
 export * from './RecordCreditBureauVerificationChecksCheckResult';
 export * from './RecordOnlineFootprintVerificationChecksCheckResult';
+export * from './Report';
 export * from './RequestVerificationInput';
+export * from './RequestVerificationRequestBody';
 export * from './RequestVerificationResponse';
 export * from './ReviewUserCheck';
 export * from './ReviewUserCheckAllOfConfirmedClaims';
 export * from './SmartLookupInput';
 export * from './SmartLookupInputThresholds';
+export * from './Status';
 export * from './Team';
 export * from './Verification';
 export * from './VerifiedClaims';

@@ -25,11 +25,18 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "generate": "npx openapi-generator-cli generate -i https://app.vouchsafe.id/openapi/swagger.json -g typescript-fetch -o src/openapi --skip-validate-spec   --additional-properties=modelPropertyNaming=original",
-    "prepare": "npm run build"
+    "generate": "npx openapi-generator-cli generate -i https://app.vouchsafe.id/openapi/swagger.json -g typescript-fetch -o src/openapi --skip-validate-spec   --additional-properties=modelPropertyNaming=original && npm run generate:exports",
+    "prepare": "npm run build",
+    "generate:exports": "tsx scripts/generate-model-exports.ts"
   },
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^2.22.0",
+    "@types/node": "^25.0.10",
     "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
+    "url": "^0.11.4"
   }
 }
