@@ -9,6 +9,9 @@ jobs:
     permissions:
       id-token: write
       contents: write
+    env:
+      # Force OIDC/Trusted Publisher publishing (prevents any injected stale npm token)
+      NODE_AUTH_TOKEN: ""
 
     steps:
       - name: Checkout repository
@@ -16,6 +19,11 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
+
+      - name: Trace NODE_AUTH_TOKEN early
+        shell: bash
+        run: |
+          echo "Early: NODE_AUTH_TOKEN set? $([[ -n "${NODE_AUTH_TOKEN:-}" ]] && echo yes || echo no)"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -52,18 +60,40 @@ jobs:
           git push origin main
           git push --tags
 
+      # ---- Debug (remove once we've identified the source of injection) ----
+
       - name: Debug npm auth (redacted)
+        shell: bash
         run: |
           echo "registry=$(npm config get registry)"
           echo "NODE_AUTH_TOKEN set? $([[ -n "${NODE_AUTH_TOKEN:-}" ]] && echo yes || echo no)"
           echo "NPM_TOKEN set? $([[ -n "${NPM_TOKEN:-}" ]] && echo yes || echo no)"
+          echo "--- ~/.npmrc (redacted) ---"
           (test -f ~/.npmrc && sed 's/_authToken=.*/_authToken=***REDACTED***/' ~/.npmrc) || echo "no ~/.npmrc"
+
+      - name: Search runner env-export commands
+        shell: bash
+        run: |
+          echo "NODE_AUTH_TOKEN set? $([[ -n "${NODE_AUTH_TOKEN:-}" ]] && echo yes || echo no)"
+          echo "GITHUB_ENV file for this step: $GITHUB_ENV"
+          echo "Searching runner file-command history for NODE_AUTH_TOKEN..."
+          ls -la /home/runner/work/_temp/_runner_file_commands || true
+          grep -RIn "NODE_AUTH_TOKEN" /home/runner/work/_temp/_runner_file_commands || true
+
+      - name: Search workspace for NODE_AUTH_TOKEN usage
+        shell: bash
+        run: |
+          grep -RIn "NODE_AUTH_TOKEN" .github workflows scripts package.json package-lock.json 2>/dev/null || true
+
+      - name: Search downloaded actions for NODE_AUTH_TOKEN exports
+        shell: bash
+        run: |
+          grep -RIn "NODE_AUTH_TOKEN" /home/runner/work/_actions 2>/dev/null || true
+
+      # ---------------------------------------------------------------------
 
       - name: Publish to npm
         run: npm publish --access public --provenance
-        env:
-          NODE_AUTH_TOKEN: ""
-          NPM_TOKEN: ""
 
       - name: Summary
         run: |
