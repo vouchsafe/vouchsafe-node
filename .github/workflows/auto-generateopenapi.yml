@@ -25,7 +25,7 @@ jobs:
           registry-url: "https://registry.npmjs.org"
 
       - name: Generate model exports
-        run: npx tsx scripts/generate-model-exports.ts
+        run: node scripts/generate-model-exports.js
 
       - name: Install dependencies
         run: npm install

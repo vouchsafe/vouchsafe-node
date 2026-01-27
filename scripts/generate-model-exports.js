@@ -8,19 +8,17 @@ const __dirname = path.dirname(__filename);
 const modelsDir = path.join(__dirname, '../src/openapi/models');
 const indexPath = path.join(modelsDir, 'index.ts');
 
-// Get all .ts files in models folder except index.ts
 const files = fs.readdirSync(modelsDir)
-  .filter((file: string) => file.endsWith('.ts') && file !== 'index.ts')
-  .map((file: string) => file.replace('.ts', ''))
+  .filter(file => file.endsWith('.ts') && file !== 'index.ts')
+  .map(file => file.replace('.ts', ''))
   .sort();
 
-// Generate export statements
-const exportStatements = files.map((file: string) => `export * from './${file}';`).join('\n');
+const exports = files.map(file => `export * from './${file}';`).join('\n');
 
 const content = `/* tslint:disable */
 /* eslint-disable */
 // This file is auto-generated. Do not edit manually.
-${exportStatements}
+${exports}
 `;
 
 fs.writeFileSync(indexPath, content);
