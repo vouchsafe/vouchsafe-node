@@ -72,6 +72,7 @@ export * from './Flow';
 export * from './FlowTemplate';
 export * from './FraudFlag';
 export * from './GetArtefactResponse';
+export * from './GetArtefactsResponse';
 export * from './GetSmartLookupResponse';
 export * from './GetVerificationResponse';
 export * from './GetVerificationResponseChecksInner';

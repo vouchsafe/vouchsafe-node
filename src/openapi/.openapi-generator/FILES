@@ -1,4 +1,4 @@
-apis/ArtefactApi.ts
+apis/ArtefactsApi.ts
 apis/AuthenticationApi.ts
 apis/DigitalIDApi.ts
 apis/FlowsApi.ts
@@ -70,7 +70,7 @@ models/Enrichments.ts
 models/Flow.ts
 models/FlowTemplate.ts
 models/FraudFlag.ts
-models/GetArtefactResponse.ts
+models/GetArtefactsResponse.ts
 models/GetSmartLookupResponse.ts
 models/GetVerificationResponse.ts
 models/GetVerificationResponseChecksInner.ts

@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-export * from './ArtefactApi';
+export * from './ArtefactsApi';
 export * from './AuthenticationApi';
 export * from './DigitalIDApi';
 export * from './FlowsApi';
