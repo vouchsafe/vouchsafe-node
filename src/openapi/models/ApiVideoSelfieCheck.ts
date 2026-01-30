@@ -63,7 +63,7 @@ export interface ApiVideoSelfieCheck {
      * @type {string}
      * @memberof ApiVideoSelfieCheck
      */
-    outcome?: ApiVideoSelfieCheckOutcomeEnum;
+    outcome: ApiVideoSelfieCheckOutcomeEnum;
     /**
      * 
      * @type {string}
@@ -98,6 +98,7 @@ export type ApiVideoSelfieCheckStepEnum = typeof ApiVideoSelfieCheckStepEnum[key
 export function instanceOfApiVideoSelfieCheck(value: object): value is ApiVideoSelfieCheck {
     if (!('artefacts' in value) || value['artefacts'] === undefined) return false;
     if (!('validations' in value) || value['validations'] === undefined) return false;
+    if (!('outcome' in value) || value['outcome'] === undefined) return false;
     if (!('step' in value) || value['step'] === undefined) return false;
     return true;
 }
@@ -116,7 +117,7 @@ export function ApiVideoSelfieCheckFromJSONTyped(json: any, ignoreDiscriminator:
         'validations': ApiVideoSelfieCheckValidationsFromJSON(json['validations']),
         'created_at': json['created_at'] == null ? undefined : json['created_at'],
         'total_attempts': json['total_attempts'] == null ? undefined : json['total_attempts'],
-        'outcome': json['outcome'] == null ? undefined : json['outcome'],
+        'outcome': json['outcome'],
         'step': json['step'],
     };
 }

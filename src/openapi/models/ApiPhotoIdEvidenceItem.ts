@@ -82,7 +82,7 @@ export interface ApiPhotoIdEvidenceItem {
      * @type {string}
      * @memberof ApiPhotoIdEvidenceItem
      */
-    outcome?: ApiPhotoIdEvidenceItemOutcomeEnum;
+    outcome: ApiPhotoIdEvidenceItemOutcomeEnum;
     /**
      * 
      * @type {string}
@@ -132,6 +132,7 @@ export function instanceOfApiPhotoIdEvidenceItem(value: object): value is ApiPho
     if (!('extracted_details' in value) || value['extracted_details'] === undefined) return false;
     if (!('evidence_type' in value) || value['evidence_type'] === undefined) return false;
     if (!('validations' in value) || value['validations'] === undefined) return false;
+    if (!('outcome' in value) || value['outcome'] === undefined) return false;
     if (!('step' in value) || value['step'] === undefined) return false;
     return true;
 }
@@ -152,7 +153,7 @@ export function ApiPhotoIdEvidenceItemFromJSONTyped(json: any, ignoreDiscriminat
         'validations': ApiPhotoIdEvidenceItemValidationsFromJSON(json['validations']),
         'created_at': json['created_at'] == null ? undefined : json['created_at'],
         'total_attempts': json['total_attempts'] == null ? undefined : json['total_attempts'],
-        'outcome': json['outcome'] == null ? undefined : json['outcome'],
+        'outcome': json['outcome'],
         'step': json['step'],
     };
 }

@@ -82,7 +82,7 @@ export interface ApiSupportingDocEvidenceItem {
      * @type {string}
      * @memberof ApiSupportingDocEvidenceItem
      */
-    outcome?: ApiSupportingDocEvidenceItemOutcomeEnum;
+    outcome: ApiSupportingDocEvidenceItemOutcomeEnum;
     /**
      * 
      * @type {string}
@@ -142,6 +142,7 @@ export function instanceOfApiSupportingDocEvidenceItem(value: object): value is 
     if (!('extracted_details' in value) || value['extracted_details'] === undefined) return false;
     if (!('evidence_type' in value) || value['evidence_type'] === undefined) return false;
     if (!('validations' in value) || value['validations'] === undefined) return false;
+    if (!('outcome' in value) || value['outcome'] === undefined) return false;
     if (!('step' in value) || value['step'] === undefined) return false;
     return true;
 }
@@ -162,7 +163,7 @@ export function ApiSupportingDocEvidenceItemFromJSONTyped(json: any, ignoreDiscr
         'validations': ApiSupportingDocEvidenceItemValidationsFromJSON(json['validations']),
         'created_at': json['created_at'] == null ? undefined : json['created_at'],
         'total_attempts': json['total_attempts'] == null ? undefined : json['total_attempts'],
-        'outcome': json['outcome'] == null ? undefined : json['outcome'],
+        'outcome': json['outcome'],
         'step': json['step'],
     };
 }

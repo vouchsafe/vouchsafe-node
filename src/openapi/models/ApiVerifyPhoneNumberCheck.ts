@@ -50,7 +50,7 @@ export interface ApiVerifyPhoneNumberCheck {
      * @type {string}
      * @memberof ApiVerifyPhoneNumberCheck
      */
-    outcome?: ApiVerifyPhoneNumberCheckOutcomeEnum;
+    outcome: ApiVerifyPhoneNumberCheckOutcomeEnum;
     /**
      * 
      * @type {string}
@@ -84,6 +84,7 @@ export type ApiVerifyPhoneNumberCheckStepEnum = typeof ApiVerifyPhoneNumberCheck
  */
 export function instanceOfApiVerifyPhoneNumberCheck(value: object): value is ApiVerifyPhoneNumberCheck {
     if (!('validations' in value) || value['validations'] === undefined) return false;
+    if (!('outcome' in value) || value['outcome'] === undefined) return false;
     if (!('step' in value) || value['step'] === undefined) return false;
     return true;
 }
@@ -101,7 +102,7 @@ export function ApiVerifyPhoneNumberCheckFromJSONTyped(json: any, ignoreDiscrimi
         'validations': ApiVerifyPhoneNumberCheckValidationsFromJSON(json['validations']),
         'created_at': json['created_at'] == null ? undefined : json['created_at'],
         'total_attempts': json['total_attempts'] == null ? undefined : json['total_attempts'],
-        'outcome': json['outcome'] == null ? undefined : json['outcome'],
+        'outcome': json['outcome'],
         'step': json['step'],
     };
 }
