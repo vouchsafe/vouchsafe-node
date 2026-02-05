@@ -110,9 +110,10 @@ export type ApiPhotoIdEvidenceItemEvidenceTypeEnum = typeof ApiPhotoIdEvidenceIt
  * @export
  */
 export const ApiPhotoIdEvidenceItemOutcomeEnum = {
-    InProgress: 'in_progress',
     Pass: 'pass',
-    Fail: 'fail'
+    Fail: 'fail',
+    InProgress: 'in_progress',
+    Error: 'error'
 } as const;
 export type ApiPhotoIdEvidenceItemOutcomeEnum = typeof ApiPhotoIdEvidenceItemOutcomeEnum[keyof typeof ApiPhotoIdEvidenceItemOutcomeEnum];
 

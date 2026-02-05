@@ -120,9 +120,10 @@ export type ApiSupportingDocEvidenceItemEvidenceTypeEnum = typeof ApiSupportingD
  * @export
  */
 export const ApiSupportingDocEvidenceItemOutcomeEnum = {
-    InProgress: 'in_progress',
     Pass: 'pass',
-    Fail: 'fail'
+    Fail: 'fail',
+    InProgress: 'in_progress',
+    Error: 'error'
 } as const;
 export type ApiSupportingDocEvidenceItemOutcomeEnum = typeof ApiSupportingDocEvidenceItemOutcomeEnum[keyof typeof ApiSupportingDocEvidenceItemOutcomeEnum];
 

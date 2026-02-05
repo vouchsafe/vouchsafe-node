@@ -159,9 +159,10 @@ export interface GetVerificationResponseChecksInner {
  * @export
  */
 export const GetVerificationResponseChecksInnerOutcomeEnum = {
-    InProgress: 'in_progress',
     Pass: 'pass',
-    Fail: 'fail'
+    Fail: 'fail',
+    InProgress: 'in_progress',
+    Error: 'error'
 } as const;
 export type GetVerificationResponseChecksInnerOutcomeEnum = typeof GetVerificationResponseChecksInnerOutcomeEnum[keyof typeof GetVerificationResponseChecksInnerOutcomeEnum];
 

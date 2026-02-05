@@ -45,13 +45,13 @@ export interface ApiEvisaEvidenceItemValidations {
      * @type {ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth}
      * @memberof ApiEvisaEvidenceItemValidations
      */
-    has_not_expired: ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth;
+    evisa_not_expired: ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth;
     /**
      * 
      * @type {ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth}
      * @memberof ApiEvisaEvidenceItemValidations
      */
-    valid_from_reached: ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth;
+    evisa_started: ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth;
     /**
      * 
      * @type {ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth}
@@ -63,17 +63,17 @@ export interface ApiEvisaEvidenceItemValidations {
      * @type {ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth}
      * @memberof ApiEvisaEvidenceItemValidations
      */
-    submitted_details_accepted: ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth;
+    evisa_exists: ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth;
 }
 
 /**
  * Check if a given object implements the ApiEvisaEvidenceItemValidations interface.
  */
 export function instanceOfApiEvisaEvidenceItemValidations(value: object): value is ApiEvisaEvidenceItemValidations {
-    if (!('has_not_expired' in value) || value['has_not_expired'] === undefined) return false;
-    if (!('valid_from_reached' in value) || value['valid_from_reached'] === undefined) return false;
+    if (!('evisa_not_expired' in value) || value['evisa_not_expired'] === undefined) return false;
+    if (!('evisa_started' in value) || value['evisa_started'] === undefined) return false;
     if (!('required_fields_extracted' in value) || value['required_fields_extracted'] === undefined) return false;
-    if (!('submitted_details_accepted' in value) || value['submitted_details_accepted'] === undefined) return false;
+    if (!('evisa_exists' in value) || value['evisa_exists'] === undefined) return false;
     return true;
 }
 
@@ -88,10 +88,10 @@ export function ApiEvisaEvidenceItemValidationsFromJSONTyped(json: any, ignoreDi
     return {
         
         'face_match': json['face_match'] == null ? undefined : ApiVideoSelfieCheckValidationsRefereeDissimilarityCheckFromJSON(json['face_match']),
-        'has_not_expired': ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirthFromJSON(json['has_not_expired']),
-        'valid_from_reached': ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirthFromJSON(json['valid_from_reached']),
+        'evisa_not_expired': ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirthFromJSON(json['evisa_not_expired']),
+        'evisa_started': ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirthFromJSON(json['evisa_started']),
         'required_fields_extracted': ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirthFromJSON(json['required_fields_extracted']),
-        'submitted_details_accepted': ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirthFromJSON(json['submitted_details_accepted']),
+        'evisa_exists': ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirthFromJSON(json['evisa_exists']),
     };
 }
 
@@ -107,10 +107,10 @@ export function ApiEvisaEvidenceItemValidationsToJSONTyped(value?: ApiEvisaEvide
     return {
         
         'face_match': ApiVideoSelfieCheckValidationsRefereeDissimilarityCheckToJSON(value['face_match']),
-        'has_not_expired': ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirthToJSON(value['has_not_expired']),
-        'valid_from_reached': ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirthToJSON(value['valid_from_reached']),
+        'evisa_not_expired': ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirthToJSON(value['evisa_not_expired']),
+        'evisa_started': ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirthToJSON(value['evisa_started']),
         'required_fields_extracted': ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirthToJSON(value['required_fields_extracted']),
-        'submitted_details_accepted': ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirthToJSON(value['submitted_details_accepted']),
+        'evisa_exists': ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirthToJSON(value['evisa_exists']),
     };
 }
 

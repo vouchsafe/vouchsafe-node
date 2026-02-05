@@ -40,7 +40,8 @@ export interface ApiVideoSelfieCheckValidationsRefereeDissimilarityCheck {
  */
 export const ApiVideoSelfieCheckValidationsRefereeDissimilarityCheckStatusEnum = {
     Pass: 'pass',
-    Fail: 'fail'
+    Fail: 'fail',
+    Error: 'error'
 } as const;
 export type ApiVideoSelfieCheckValidationsRefereeDissimilarityCheckStatusEnum = typeof ApiVideoSelfieCheckValidationsRefereeDissimilarityCheckStatusEnum[keyof typeof ApiVideoSelfieCheckValidationsRefereeDissimilarityCheckStatusEnum];
 

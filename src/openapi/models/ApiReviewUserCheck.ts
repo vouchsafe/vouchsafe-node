@@ -64,9 +64,10 @@ export interface ApiReviewUserCheck {
  * @export
  */
 export const ApiReviewUserCheckOutcomeEnum = {
-    InProgress: 'in_progress',
     Pass: 'pass',
-    Fail: 'fail'
+    Fail: 'fail',
+    InProgress: 'in_progress',
+    Error: 'error'
 } as const;
 export type ApiReviewUserCheckOutcomeEnum = typeof ApiReviewUserCheckOutcomeEnum[keyof typeof ApiReviewUserCheckOutcomeEnum];
 

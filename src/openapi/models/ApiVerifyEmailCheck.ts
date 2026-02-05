@@ -64,9 +64,10 @@ export interface ApiVerifyEmailCheck {
  * @export
  */
 export const ApiVerifyEmailCheckOutcomeEnum = {
-    InProgress: 'in_progress',
     Pass: 'pass',
-    Fail: 'fail'
+    Fail: 'fail',
+    InProgress: 'in_progress',
+    Error: 'error'
 } as const;
 export type ApiVerifyEmailCheckOutcomeEnum = typeof ApiVerifyEmailCheckOutcomeEnum[keyof typeof ApiVerifyEmailCheckOutcomeEnum];
 

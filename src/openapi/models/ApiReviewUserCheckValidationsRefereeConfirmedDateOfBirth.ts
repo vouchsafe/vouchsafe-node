@@ -34,7 +34,8 @@ export interface ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth {
  */
 export const ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirthStatusEnum = {
     Pass: 'pass',
-    Fail: 'fail'
+    Fail: 'fail',
+    Error: 'error'
 } as const;
 export type ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirthStatusEnum = typeof ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirthStatusEnum[keyof typeof ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirthStatusEnum];
 

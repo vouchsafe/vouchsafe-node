@@ -104,9 +104,10 @@ export type ApiBankAccountEvidenceItemEvidenceTypeEnum = typeof ApiBankAccountEv
  * @export
  */
 export const ApiBankAccountEvidenceItemOutcomeEnum = {
-    InProgress: 'in_progress',
     Pass: 'pass',
-    Fail: 'fail'
+    Fail: 'fail',
+    InProgress: 'in_progress',
+    Error: 'error'
 } as const;
 export type ApiBankAccountEvidenceItemOutcomeEnum = typeof ApiBankAccountEvidenceItemOutcomeEnum[keyof typeof ApiBankAccountEvidenceItemOutcomeEnum];
 

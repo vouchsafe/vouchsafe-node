@@ -107,9 +107,10 @@ export type ApiEvisaEvidenceItemEvidenceTypeEnum = typeof ApiEvisaEvidenceItemEv
  * @export
  */
 export const ApiEvisaEvidenceItemOutcomeEnum = {
-    InProgress: 'in_progress',
     Pass: 'pass',
-    Fail: 'fail'
+    Fail: 'fail',
+    InProgress: 'in_progress',
+    Error: 'error'
 } as const;
 export type ApiEvisaEvidenceItemOutcomeEnum = typeof ApiEvisaEvidenceItemOutcomeEnum[keyof typeof ApiEvisaEvidenceItemOutcomeEnum];
 

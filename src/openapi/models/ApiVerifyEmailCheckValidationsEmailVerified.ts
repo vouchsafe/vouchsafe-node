@@ -40,7 +40,8 @@ export interface ApiVerifyEmailCheckValidationsEmailVerified {
  */
 export const ApiVerifyEmailCheckValidationsEmailVerifiedStatusEnum = {
     Pass: 'pass',
-    Fail: 'fail'
+    Fail: 'fail',
+    Error: 'error'
 } as const;
 export type ApiVerifyEmailCheckValidationsEmailVerifiedStatusEnum = typeof ApiVerifyEmailCheckValidationsEmailVerifiedStatusEnum[keyof typeof ApiVerifyEmailCheckValidationsEmailVerifiedStatusEnum];
 

@@ -1,6 +1,7 @@
 apis/ArtefactsApi.ts
 apis/AuthenticationApi.ts
 apis/DigitalIDApi.ts
+apis/EVisaVerificationApi.ts
 apis/FlowsApi.ts
 apis/SmartLookupsApi.ts
 apis/TeamApi.ts
@@ -41,6 +42,7 @@ models/ApiReviewUserCheckValidationsRefereeConfirmedDateOfBirth.ts
 models/ApiSupportingDocEvidenceItem.ts
 models/ApiSupportingDocEvidenceItemExtractedDetails.ts
 models/ApiSupportingDocEvidenceItemValidations.ts
+models/ApiValidationStatus.ts
 models/ApiVerifyEmailCheck.ts
 models/ApiVerifyEmailCheckValidations.ts
 models/ApiVerifyEmailCheckValidationsEmailVerified.ts
@@ -50,6 +52,7 @@ models/ApiVideoSelfieCheck.ts
 models/ApiVideoSelfieCheckArtefactsInner.ts
 models/ApiVideoSelfieCheckValidations.ts
 models/ApiVideoSelfieCheckValidationsRefereeDissimilarityCheck.ts
+models/ArtefactRoleType.ts
 models/AuthenticateInput.ts
 models/AuthenticateResponse.ts
 models/CaseStatus.ts
@@ -67,6 +70,13 @@ models/DigitalIdSessionStatus.ts
 models/EnrichmentCheckResult.ts
 models/EnrichmentVerificationReport.ts
 models/Enrichments.ts
+models/EvisaArtefact.ts
+models/EvisaBaseExtractedDetails.ts
+models/EvisaValidationResult.ts
+models/EvisaValidations.ts
+models/EvisaVerificationInput.ts
+models/EvisaVerificationResponse.ts
+models/FailedReason.ts
 models/Flow.ts
 models/FlowTemplate.ts
 models/FraudFlag.ts
@@ -75,6 +85,12 @@ models/GetSmartLookupResponse.ts
 models/GetVerificationResponse.ts
 models/GetVerificationResponseChecksInner.ts
 models/GetVerificationResponseEnrichmentsInner.ts
+models/ImmigrationStatusExtractedDetails.ts
+models/ImmigrationStatusInput.ts
+models/ImmigrationStatusInputPayload.ts
+models/ImmigrationStatusVerificationResponse.ts
+models/ImmigrationStatusVerificationResponseExtractedDetails.ts
+models/ImmigrationStatusVerificationResponseValidations.ts
 models/KnownClaims.ts
 models/KnownClaimsAddress.ts
 models/Model36EnumsEnvironment.ts
@@ -89,6 +105,14 @@ models/RecordCreditBureauVerificationChecksCheckResult.ts
 models/RecordOnlineFootprintVerificationChecksCheckResult.ts
 models/RequestVerificationInput.ts
 models/RequestVerificationResponse.ts
+models/RightToRentInput.ts
+models/RightToRentInputPayload.ts
+models/RightToRentVerificationResponse.ts
+models/RightToRentVerificationResponseExtractedDetails.ts
+models/RightToWorkInput.ts
+models/RightToWorkInputPayload.ts
+models/RightToWorkVerificationResponse.ts
+models/RightToWorkVerificationResponseExtractedDetails.ts
 models/SmartLookupInput.ts
 models/SmartLookupInputThresholds.ts
 models/Team.ts

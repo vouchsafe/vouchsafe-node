@@ -105,9 +105,10 @@ export type ApiRefereeEvidenceItemEvidenceTypeEnum = typeof ApiRefereeEvidenceIt
  * @export
  */
 export const ApiRefereeEvidenceItemOutcomeEnum = {
-    InProgress: 'in_progress',
     Pass: 'pass',
-    Fail: 'fail'
+    Fail: 'fail',
+    InProgress: 'in_progress',
+    Error: 'error'
 } as const;
 export type ApiRefereeEvidenceItemOutcomeEnum = typeof ApiRefereeEvidenceItemOutcomeEnum[keyof typeof ApiRefereeEvidenceItemOutcomeEnum];
 

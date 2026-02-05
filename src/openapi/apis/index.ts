@@ -3,6 +3,7 @@
 export * from './ArtefactsApi';
 export * from './AuthenticationApi';
 export * from './DigitalIDApi';
+export * from './EVisaVerificationApi';
 export * from './FlowsApi';
 export * from './SmartLookupsApi';
 export * from './TeamApi';
