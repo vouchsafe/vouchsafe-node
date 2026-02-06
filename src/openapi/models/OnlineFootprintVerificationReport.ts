@@ -20,13 +20,13 @@ import {
     CheckStateToJSON,
     CheckStateToJSONTyped,
 } from './CheckState';
-import type { RecordOnlineFootprintVerificationChecksCheckResult } from './RecordOnlineFootprintVerificationChecksCheckResult';
+import type { OnlineFootprintChecks } from './OnlineFootprintChecks';
 import {
-    RecordOnlineFootprintVerificationChecksCheckResultFromJSON,
-    RecordOnlineFootprintVerificationChecksCheckResultFromJSONTyped,
-    RecordOnlineFootprintVerificationChecksCheckResultToJSON,
-    RecordOnlineFootprintVerificationChecksCheckResultToJSONTyped,
-} from './RecordOnlineFootprintVerificationChecksCheckResult';
+    OnlineFootprintChecksFromJSON,
+    OnlineFootprintChecksFromJSONTyped,
+    OnlineFootprintChecksToJSON,
+    OnlineFootprintChecksToJSONTyped,
+} from './OnlineFootprintChecks';
 
 /**
  * 
@@ -42,10 +42,10 @@ export interface OnlineFootprintVerificationReport {
     state: CheckState;
     /**
      * 
-     * @type {RecordOnlineFootprintVerificationChecksCheckResult}
+     * @type {OnlineFootprintChecks}
      * @memberof OnlineFootprintVerificationReport
      */
-    checks: RecordOnlineFootprintVerificationChecksCheckResult;
+    checks: OnlineFootprintChecks;
 }
 
 
@@ -70,7 +70,7 @@ export function OnlineFootprintVerificationReportFromJSONTyped(json: any, ignore
     return {
         
         'state': CheckStateFromJSON(json['state']),
-        'checks': RecordOnlineFootprintVerificationChecksCheckResultFromJSON(json['checks']),
+        'checks': OnlineFootprintChecksFromJSON(json['checks']),
     };
 }
 
@@ -86,7 +86,7 @@ export function OnlineFootprintVerificationReportToJSONTyped(value?: OnlineFootp
     return {
         
         'state': CheckStateToJSON(value['state']),
-        'checks': RecordOnlineFootprintVerificationChecksCheckResultToJSON(value['checks']),
+        'checks': OnlineFootprintChecksToJSON(value['checks']),
     };
 }
 

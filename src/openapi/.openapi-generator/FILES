@@ -94,6 +94,9 @@ models/ImmigrationStatusVerificationResponseValidations.ts
 models/KnownClaims.ts
 models/KnownClaimsAddress.ts
 models/Model36EnumsEnvironment.ts
+models/OnlineFootprintChecks.ts
+models/OnlineFootprintChecksAnyOf.ts
+models/OnlineFootprintChecksAnyOf1.ts
 models/OnlineFootprintVerificationReport.ts
 models/PersonalRelationship.ts
 models/PostcodeResponse.ts
@@ -102,7 +105,6 @@ models/RadarResult.ts
 models/Reason.ts
 models/RecordAmlVerificationChecksCheckResult.ts
 models/RecordCreditBureauVerificationChecksCheckResult.ts
-models/RecordOnlineFootprintVerificationChecksCheckResult.ts
 models/RequestVerificationInput.ts
 models/RequestVerificationResponse.ts
 models/RightToRentInput.ts
