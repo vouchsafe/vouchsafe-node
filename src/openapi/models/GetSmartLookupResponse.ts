@@ -120,7 +120,12 @@ export interface GetSmartLookupResponse {
      */
     aml_verification_report?: AmlVerificationReport;
     /**
-     * Extra information to aid debugging. May change without notice.
+     * Extra information about the checks performed. May include:
+     * - creditBureauVerification: Raw credit check data (identityMatches, residencyMatches, etc.)
+     * - onlineFootprintVerification: Email/phone validation data with scores and signals
+     * - amlVerification: Sanctions screening results
+     * 
+     * Structure depends on which checks were requested. May change without notice.
      * @type {any}
      * @memberof GetSmartLookupResponse
      */
