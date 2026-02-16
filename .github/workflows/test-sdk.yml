@@ -22,7 +22,7 @@ jobs:
         uses: dawidd6/action-download-artifact@v3
         with:
           github_token: ${{ secrets.GH_PAT }}
-          workflow: generate-sdk-spec.yml
+          workflow: npm SDK Test
           repo: ${{ github.event.client_payload.repo }}
           run_id: ${{ github.event.client_payload.run_id }}
           name: openapi-spec-${{ github.event.client_payload.sha }}
@@ -47,8 +47,8 @@ jobs:
       # - name: Run tests
       #   run: npm run test:ci
       #   env:
-      #     TEST_CLIENT_ID: secrets.TEST_CLIENT_ID
-      #     TEST_CLIENT_SECRET: secrets.TEST_CLIENT_SECRET
+      #     TEST_CLIENT_ID: secrets.TEST_CLIENT_ID }}
+      #     TEST_CLIENT_SECRET: ${{ secrets.TEST_CLIENT_SECRET }}
 
       # Report success back to API repo (if this was triggered by a PR)
       - name: Report success to API repo
