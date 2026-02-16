@@ -74,22 +74,22 @@ export interface ApiSupportingDocEvidenceItemExtractedDetails {
  * @export
  */
 export const ApiSupportingDocEvidenceItemExtractedDetailsDocumentCategoryEnum = {
+    Payslip: 'payslip',
+    PensionAnnualStatement: 'pension_annual_statement',
+    BenefitsLetter: 'benefits_letter',
+    HmppsLetter: 'hmpps_letter',
+    NhsLetter: 'nhs_letter',
+    BankStatement: 'bank_statement',
+    CreditCardStatement: 'credit_card_statement',
+    MortgageStatement: 'mortgage_statement',
+    UtilityBill: 'utility_bill',
+    MobilePhoneBill: 'mobile_phone_bill',
     BirthOrAdoptionCertificate: 'birth_or_adoption_certificate',
     MarriageCertificate: 'marriage_certificate',
     NaturalisationOrRegCertificate: 'naturalisation_or_reg_certificate',
     EducationCertificate: 'education_certificate',
     PayeTaxSummary: 'paye_tax_summary',
-    Payslip: 'payslip',
-    PensionAnnualStatement: 'pension_annual_statement',
-    BenefitsLetter: 'benefits_letter',
-    NhsLetter: 'nhs_letter',
-    BankStatement: 'bank_statement',
-    CreditCardStatement: 'credit_card_statement',
-    MortgageStatement: 'mortgage_statement',
     InsurancePolicyAgreement: 'insurance_policy_agreement',
-    UtilityBill: 'utility_bill',
-    MobilePhoneBill: 'mobile_phone_bill',
-    HmppsLetter: 'hmpps_letter',
     OlderPersonBusPass: 'older_person_bus_pass'
 } as const;
 export type ApiSupportingDocEvidenceItemExtractedDetailsDocumentCategoryEnum = typeof ApiSupportingDocEvidenceItemExtractedDetailsDocumentCategoryEnum[keyof typeof ApiSupportingDocEvidenceItemExtractedDetailsDocumentCategoryEnum];

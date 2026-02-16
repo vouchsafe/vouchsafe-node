@@ -4,6 +4,7 @@ apis/DigitalIDApi.ts
 apis/EVisaVerificationApi.ts
 apis/FlowsApi.ts
 apis/SmartLookupsApi.ts
+apis/SupportingDocumentVerificationApi.ts
 apis/TeamApi.ts
 apis/VerificationsApi.ts
 apis/index.ts
@@ -56,6 +57,8 @@ models/ArtefactRoleType.ts
 models/AuthenticateInput.ts
 models/AuthenticateResponse.ts
 models/CaseStatus.ts
+models/CategoryMatchFailedReason.ts
+models/CategoryMatchResult.ts
 models/CheckResult.ts
 models/CheckState.ts
 models/ClaimDetails.ts
@@ -67,6 +70,10 @@ models/CreateTeamResponseCredentials.ts
 models/CreditBureauVerificationReport.ts
 models/DigitalIdSession.ts
 models/DigitalIdSessionStatus.ts
+models/DocumentAgeValidFailedReason.ts
+models/DocumentAgeValidResult.ts
+models/DocumentCompleteAndLegibleFailedReason.ts
+models/DocumentCompleteAndLegibleResult.ts
 models/EnrichmentCheckResult.ts
 models/EnrichmentVerificationReport.ts
 models/Enrichments.ts
@@ -107,6 +114,8 @@ models/RecordAmlVerificationChecksCheckResult.ts
 models/RecordCreditBureauVerificationChecksCheckResult.ts
 models/RequestVerificationInput.ts
 models/RequestVerificationResponse.ts
+models/RequiredFieldsExtractedFailedReason.ts
+models/RequiredFieldsExtractedResult.ts
 models/RightToRentInput.ts
 models/RightToRentInputPayload.ts
 models/RightToRentVerificationResponse.ts
@@ -117,6 +126,14 @@ models/RightToWorkVerificationResponse.ts
 models/RightToWorkVerificationResponseExtractedDetails.ts
 models/SmartLookupInput.ts
 models/SmartLookupInputThresholds.ts
+models/SupportingDocumentEvidenceType.ts
+models/SupportingDocumentExtractedDetails.ts
+models/SupportingDocumentValidations.ts
+models/SupportingDocumentVerificationResponse.ts
+models/SupportingDocumentVerificationResponseExtractedDetails.ts
+models/SupportingDocumentVerificationResponseValidations.ts
+models/TamperingSignalsCheckFailedReason.ts
+models/TamperingSignalsCheckResult.ts
 models/Team.ts
 models/Verification.ts
 models/VerifiedClaims.ts

@@ -6,5 +6,6 @@ export * from './DigitalIDApi';
 export * from './EVisaVerificationApi';
 export * from './FlowsApi';
 export * from './SmartLookupsApi';
+export * from './SupportingDocumentVerificationApi';
 export * from './TeamApi';
 export * from './VerificationsApi';
