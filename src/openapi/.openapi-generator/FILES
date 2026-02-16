@@ -32,8 +32,6 @@ models/ApiRadarCheck.ts
 models/ApiRadarCheckDetails.ts
 models/ApiRadarCheckDetailsValidations.ts
 models/ApiRadarCheckDetailsValidationsNoKnownFraudsterMatch.ts
-models/ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchAnyOf.ts
-models/ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchAnyOf1.ts
 models/ApiRefereeEvidenceItem.ts
 models/ApiRefereeEvidenceItemExtractedDetails.ts
 models/ApiRefereeEvidenceItemValidations.ts

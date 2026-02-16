@@ -20,20 +20,6 @@ import {
     FraudFlagToJSON,
     FraudFlagToJSONTyped,
 } from './FraudFlag';
-import type { ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchAnyOf } from './ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchAnyOf';
-import {
-    ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchAnyOfFromJSON,
-    ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchAnyOfFromJSONTyped,
-    ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchAnyOfToJSON,
-    ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchAnyOfToJSONTyped,
-} from './ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchAnyOf';
-import type { ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchAnyOf1 } from './ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchAnyOf1';
-import {
-    ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchAnyOf1FromJSON,
-    ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchAnyOf1FromJSONTyped,
-    ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchAnyOf1ToJSON,
-    ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchAnyOf1ToJSONTyped,
-} from './ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchAnyOf1';
 
 /**
  * 
@@ -46,35 +32,27 @@ export interface ApiRadarCheckDetailsValidationsNoKnownFraudsterMatch {
      * @type {string}
      * @memberof ApiRadarCheckDetailsValidationsNoKnownFraudsterMatch
      */
-    status: ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchStatusEnum;
+    risk?: ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchRiskEnum;
     /**
      * 
      * @type {Array<string>}
      * @memberof ApiRadarCheckDetailsValidationsNoKnownFraudsterMatch
      */
-    messages: Array<string>;
-    /**
-     * 
-     * @type {string}
-     * @memberof ApiRadarCheckDetailsValidationsNoKnownFraudsterMatch
-     */
-    risk: ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchRiskEnum;
+    messages?: Array<string>;
     /**
      * 
      * @type {Array<FraudFlag>}
      * @memberof ApiRadarCheckDetailsValidationsNoKnownFraudsterMatch
      */
-    flags: Array<FraudFlag>;
+    flags?: Array<FraudFlag>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiRadarCheckDetailsValidationsNoKnownFraudsterMatch
+     */
+    status: ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchStatusEnum;
 }
 
-
-/**
- * @export
- */
-export const ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchStatusEnum = {
-    Fail: 'fail'
-} as const;
-export type ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchStatusEnum = typeof ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchStatusEnum[keyof typeof ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchStatusEnum];
 
 /**
  * @export
@@ -86,15 +64,22 @@ export const ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchRiskEnum = {
 } as const;
 export type ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchRiskEnum = typeof ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchRiskEnum[keyof typeof ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchRiskEnum];
 
+/**
+ * @export
+ */
+export const ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchStatusEnum = {
+    Pass: 'pass',
+    Fail: 'fail',
+    Error: 'error'
+} as const;
+export type ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchStatusEnum = typeof ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchStatusEnum[keyof typeof ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchStatusEnum];
+
 
 /**
  * Check if a given object implements the ApiRadarCheckDetailsValidationsNoKnownFraudsterMatch interface.
  */
 export function instanceOfApiRadarCheckDetailsValidationsNoKnownFraudsterMatch(value: object): value is ApiRadarCheckDetailsValidationsNoKnownFraudsterMatch {
     if (!('status' in value) || value['status'] === undefined) return false;
-    if (!('messages' in value) || value['messages'] === undefined) return false;
-    if (!('risk' in value) || value['risk'] === undefined) return false;
-    if (!('flags' in value) || value['flags'] === undefined) return false;
     return true;
 }
 
@@ -108,10 +93,10 @@ export function ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchFromJSONType
     }
     return {
         
+        'risk': json['risk'] == null ? undefined : json['risk'],
+        'messages': json['messages'] == null ? undefined : json['messages'],
+        'flags': json['flags'] == null ? undefined : ((json['flags'] as Array<any>).map(FraudFlagFromJSON)),
         'status': json['status'],
-        'messages': json['messages'],
-        'risk': json['risk'],
-        'flags': ((json['flags'] as Array<any>).map(FraudFlagFromJSON)),
     };
 }
 
@@ -126,10 +111,10 @@ export function ApiRadarCheckDetailsValidationsNoKnownFraudsterMatchToJSONTyped(
 
     return {
         
-        'status': value['status'],
-        'messages': value['messages'],
         'risk': value['risk'],
-        'flags': ((value['flags'] as Array<any>).map(FraudFlagToJSON)),
+        'messages': value['messages'],
+        'flags': value['flags'] == null ? undefined : ((value['flags'] as Array<any>).map(FraudFlagToJSON)),
+        'status': value['status'],
     };
 }
 
