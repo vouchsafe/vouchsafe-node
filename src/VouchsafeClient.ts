@@ -3,11 +3,16 @@ import { AuthenticationApi } from "./openapi/apis/AuthenticationApi"
 import { VerificationsApi } from "./openapi/apis/VerificationsApi"
 import { SmartLookupsApi } from "./openapi/apis/SmartLookupsApi"
 import { FlowsApi } from "./openapi/apis/FlowsApi"
+import { ArtefactsApi } from "./openapi/apis/ArtefactsApi"
+import { EVisaVerificationApi } from "./openapi/apis/EVisaVerificationApi"
+import { SupportingDocumentVerificationApi } from "./openapi/apis/SupportingDocumentVerificationApi"
 import {
   AuthenticateInput,
   RequestVerificationInput,
   SmartLookupInput,
   Status,
+  EvisaVerificationInput,
+  SupportingDocumentVerificationResponse,
 } from "./openapi/models"
 // Above are all generated files from openapi-generator
 
@@ -36,6 +41,9 @@ export class VouchsafeClient {
   private verificationsApi: VerificationsApi
   private smartLookupsApi: SmartLookupsApi
   private flowsApi: FlowsApi
+  private artefactsApi: ArtefactsApi
+  private eVisaVerificationApi: EVisaVerificationApi
+  private supportingDocumentVerificationApi: SupportingDocumentVerificationApi
 
   constructor(private options: VouchsafeClientOptions) {
     const basePath = "https://app.vouchsafe.id/api/v1"
@@ -49,6 +57,9 @@ export class VouchsafeClient {
     this.verificationsApi = new VerificationsApi(this.config)
     this.smartLookupsApi = new SmartLookupsApi(this.config)
     this.flowsApi = new FlowsApi(this.config)
+    this.artefactsApi = new ArtefactsApi(this.config)
+    this.eVisaVerificationApi = new EVisaVerificationApi(this.config)
+    this.supportingDocumentVerificationApi = new SupportingDocumentVerificationApi(this.config)
   }
 
   /**
@@ -161,5 +172,68 @@ export class VouchsafeClient {
     )
   }
 
-  // Add more endpoints here...
+  /**
+   * Get a pre-signed download URL for an artefact.
+   * 
+   * Exchange an artefact key (returned from other endpoints) for a time-limited
+   * pre-signed URL that can be used to download the file.
+   * 
+   * @param artefact_key - The artefact key from verification response
+   * @returns Object with download_url, artefact_key, and expires_at
+   */
+  async getArtefact({ artefact_key }: { artefact_key: string }) {
+    return this.withErrorHandling(() =>
+      this.artefactsApi.getArtefacts({ artefactKey: artefact_key })
+    )
+  }
+
+  /**
+   * Verify a person's UK immigration status using their Home Office share code.
+   * 
+   * Supported verification types:
+   * - ImmigrationStatus - Check immigration status (e.g., Settled, Skilled Worker)
+   * - RightToWork - Verify right to work in the UK
+   * - RightToRent - Verify right to rent property in the UK
+   * 
+   * Sandbox testing: Use these share codes in sandbox mode:
+   * - PASS12345 - Returns successful verification with "Pass" outcome
+   * - FAIL12345 - Returns failed verification (e.g. expired status)
+   * - ERROR1234 - Returns error response
+   * 
+   * @param input - eVisa verification input with share_code, date_of_birth, and check_type
+   */
+  async verifyEvisa(input: EvisaVerificationInput) {
+    return this.withErrorHandling(() =>
+      this.eVisaVerificationApi.verifyEvisa({ evisaVerificationInput: input })
+    )
+  }
+
+  /**
+   * Extract and validate a supporting document.
+   * 
+   * Accepts a document file (PDF, JPG, or PNG) and extracts personal identity
+   * information and address details.
+   * 
+   * Supported document types (sub_type):
+   * - Payslip, PensionAnnualStatement, BenefitsLetter
+   * - HMPPSLetter, NHSLetter
+   * - BankStatement, CreditCardStatement, MortgageStatement
+   * - UtilityBill, MobilePhoneBill
+   * 
+   * @param params - Document file, sub_type, and optional minimum_document_length
+   * @returns Verification response with extracted details and validations
+   */
+  async verifySupportingDocument(params: {
+    document: Blob | File
+    sub_type: string
+    minimum_document_length?: number
+  }): Promise<SupportingDocumentVerificationResponse> {
+    return this.withErrorHandling(() =>
+      this.supportingDocumentVerificationApi.verifySupportingDocument({
+        document: params.document,
+        subType: params.sub_type,
+        minimumDocumentLength: params.minimum_document_length?.toString()
+      })
+    )
+  }
 }

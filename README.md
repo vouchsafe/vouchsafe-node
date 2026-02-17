@@ -49,7 +49,91 @@ const res = await client.listVerifications({
 const res = await client.getVerification({
   id: "ID",
 })
+
+console.log(res.checks) // Array of verification checks performed
+console.log(res.enrichments) // Array of background checks
 ```
+
+### Download artefacts (documents, photos)
+
+Verification responses may include artefact keys. Use these to get pre-signed download URLs:
+
+```ts
+const verification = await client.getVerification({ id: "ID" })
+
+// Get artefact keys from checks
+const photoIdCheck = verification.checks.find((c) => c.step === "photo_id")
+if (photoIdCheck?.artefacts?.[0]) {
+  const artefact = await client.getArtefact({
+    artefact_key: photoIdCheck.artefacts[0].key,
+  })
+
+  console.log(artefact.download_url) // Pre-signed URL (time-limited)
+  console.log(artefact.expires_at) // When the URL expires
+}
+```
+
+### Verify UK immigration status (eVisa)
+
+Verify a person's immigration status, right to work, or right to rent using their Home Office share code:
+
+```ts
+const result = await client.verifyEvisa({
+  sub_type: "ImmigrationStatus", // or 'RightToRent', 'ImmigrationStatus'
+  payload: {
+    reason: "Education or training",
+    job_title: "Software Engineer",
+    company_name: "Sandbox Company",
+    date_of_birth: "1996-06-07",
+    share_code: "PASS12345",
+  },
+})
+
+console.log(result.outcome) // 'pass', 'fail', or 'error'
+
+// Access type-specific fields based on sub_type
+if (result.sub_type === 'ImmigrationStatus') {
+  console.log(result.extracted_details.immigration_status) // e.g., 'Settled'
+}
+
+console.log(result.validations.evisa_exists.status) // 'pass' or 'fail'
+```
+
+**Sandbox testing**: Use these share codes in sandbox mode:
+
+- `PASS12345` - Returns successful verification
+- `FAIL12345` - Returns failed verification (expired status)
+- `ERROR1234` - Returns error response
+
+### Verify supporting documents
+
+Extract and validate supporting documents like bank statements, utility bills, payslips:
+
+```ts
+import fs from "fs"
+
+const fileBuffer = fs.readFileSync("./bank-statement.pdf")
+const file = new File([fileBuffer], "bank-statement.pdf", {
+  type: "application/pdf",
+})
+
+const result = await client.verifySupportingDocument({
+  document: file,
+  sub_type: "BankStatement",
+  minimum_document_length: 3, // Optional: minimum age in months
+})
+
+console.log(result.outcome) // 'pass', 'fail', or 'error'
+console.log(result.extracted_details.first_name)
+console.log(result.extracted_details.postcode)
+console.log(result.validations.document_age_valid?.status)
+```
+
+**Supported document types**:
+
+- Financial: `BankStatement`, `CreditCardStatement`, `MortgageStatement`, `Payslip`, `PensionAnnualStatement`
+- Utilities: `UtilityBill`, `MobilePhoneBill`
+- Government: `BenefitsLetter`, `HMPPSLetter`, `NHSLetter`
 
 ### List verification flows
 
