@@ -14,7 +14,7 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ * Extracted details for `ImmigrationStatus` — includes all base fields plus `valid_from`, `nationality` and `immigration_status`.
  * @export
  * @interface ImmigrationStatusExtractedDetails
  */
@@ -50,29 +50,30 @@ export interface ImmigrationStatusExtractedDetails {
      */
     reference_number?: string;
     /**
-     * 
+     * Expiration date in `yyyy-MM-dd` format, or `null` for indefinite statuses (e.g. Settled, ILR).
      * @type {string}
      * @memberof ImmigrationStatusExtractedDetails
      */
     expiration_date?: string | null;
     /**
-     * 
-     * @type {string}
-     * @memberof ImmigrationStatusExtractedDetails
-     */
-    valid_from?: string | null;
-    /**
-     * 
+     * ISO 3166-1 alpha-3 nationality code (e.g. "NGA"). Only present for ImmigrationStatus.
      * @type {string}
      * @memberof ImmigrationStatusExtractedDetails
      */
     nationality?: string;
     /**
-     * 
+     * Immigration status string (e.g. "Settled", "Skilled Worker"). Only present for ImmigrationStatus.
      * @type {string}
      * @memberof ImmigrationStatusExtractedDetails
      */
     immigration_status?: string;
+    /**
+     * Start date in `yyyy-MM-dd` format, or `null` for indefinite statuses (e.g. Settled, ILR).
+     * Only returned for `ImmigrationStatus` and `RightToRent` sub-types — not returned for `RightToWork`.
+     * @type {string}
+     * @memberof ImmigrationStatusExtractedDetails
+     */
+    valid_from?: string | null;
 }
 
 /**
@@ -98,9 +99,9 @@ export function ImmigrationStatusExtractedDetailsFromJSONTyped(json: any, ignore
         'share_code': json['share_code'] == null ? undefined : json['share_code'],
         'reference_number': json['reference_number'] == null ? undefined : json['reference_number'],
         'expiration_date': json['expiration_date'] == null ? undefined : json['expiration_date'],
-        'valid_from': json['valid_from'] == null ? undefined : json['valid_from'],
         'nationality': json['nationality'] == null ? undefined : json['nationality'],
         'immigration_status': json['immigration_status'] == null ? undefined : json['immigration_status'],
+        'valid_from': json['valid_from'] == null ? undefined : json['valid_from'],
     };
 }
 
@@ -121,9 +122,9 @@ export function ImmigrationStatusExtractedDetailsToJSONTyped(value?: Immigration
         'share_code': value['share_code'],
         'reference_number': value['reference_number'],
         'expiration_date': value['expiration_date'],
-        'valid_from': value['valid_from'],
         'nationality': value['nationality'],
         'immigration_status': value['immigration_status'],
+        'valid_from': value['valid_from'],
     };
 }
 

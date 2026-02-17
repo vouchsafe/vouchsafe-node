@@ -22,7 +22,8 @@ import {
 } from './ArtefactRoleType';
 
 /**
- * 
+ * Artefact returned inline in the eVisa verification response.
+ * Download URLs are pre-signed and expire after 30 minutes.
  * @export
  * @interface EvisaArtefact
  */
@@ -34,19 +35,19 @@ export interface EvisaArtefact {
      */
     role: ArtefactRoleType;
     /**
-     * 
+     * Pre-signed download URL. Expires after `expires_in_seconds`.
      * @type {string}
      * @memberof EvisaArtefact
      */
     download_url: string;
     /**
-     * 
+     * ISO 8601 timestamp when the download URL expires.
      * @type {string}
      * @memberof EvisaArtefact
      */
     expires_at: string;
     /**
-     * 
+     * Time in seconds until the download URL expires (1800 seconds / 30 minutes).
      * @type {number}
      * @memberof EvisaArtefact
      */

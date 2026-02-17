@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { EvisaBaseExtractedDetails } from './EvisaBaseExtractedDetails';
+import type { RightToRentExtractedDetails } from './RightToRentExtractedDetails';
 import {
-    EvisaBaseExtractedDetailsFromJSON,
-    EvisaBaseExtractedDetailsFromJSONTyped,
-    EvisaBaseExtractedDetailsToJSON,
-    EvisaBaseExtractedDetailsToJSONTyped,
-} from './EvisaBaseExtractedDetails';
+    RightToRentExtractedDetailsFromJSON,
+    RightToRentExtractedDetailsFromJSONTyped,
+    RightToRentExtractedDetailsToJSON,
+    RightToRentExtractedDetailsToJSONTyped,
+} from './RightToRentExtractedDetails';
 
 /**
  * 
@@ -58,13 +58,14 @@ export interface RightToRentVerificationResponseExtractedDetails {
      */
     reference_number?: string;
     /**
-     * 
+     * Expiration date in `yyyy-MM-dd` format, or `null` for indefinite statuses (e.g. Settled, ILR).
      * @type {string}
      * @memberof RightToRentVerificationResponseExtractedDetails
      */
     expiration_date?: string | null;
     /**
-     * 
+     * Start date in `yyyy-MM-dd` format, or `null` for indefinite statuses (e.g. Settled, ILR).
+     * Only returned for `ImmigrationStatus` and `RightToRent` sub-types — not returned for `RightToWork`.
      * @type {string}
      * @memberof RightToRentVerificationResponseExtractedDetails
      */

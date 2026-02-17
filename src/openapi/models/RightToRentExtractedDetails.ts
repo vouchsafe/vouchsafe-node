@@ -14,63 +14,68 @@
 
 import { mapValues } from '../runtime';
 /**
- * Extracted identity and status details from the eVisa verification.
- * On a `pass` outcome, all fields for the sub-type will be populated.
- * On a `fail` outcome, fields may be partially populated or empty depending on which validation step failed.
+ * Extracted details for `RightToRent` — includes all base fields plus `valid_from`.
  * @export
- * @interface EvisaBaseExtractedDetails
+ * @interface RightToRentExtractedDetails
  */
-export interface EvisaBaseExtractedDetails {
+export interface RightToRentExtractedDetails {
     /**
      * 
      * @type {string}
-     * @memberof EvisaBaseExtractedDetails
+     * @memberof RightToRentExtractedDetails
      */
     first_name?: string;
     /**
      * 
      * @type {string}
-     * @memberof EvisaBaseExtractedDetails
+     * @memberof RightToRentExtractedDetails
      */
     last_name?: string;
     /**
      * 
      * @type {string}
-     * @memberof EvisaBaseExtractedDetails
+     * @memberof RightToRentExtractedDetails
      */
     date_of_birth?: string;
     /**
      * 
      * @type {string}
-     * @memberof EvisaBaseExtractedDetails
+     * @memberof RightToRentExtractedDetails
      */
     share_code?: string;
     /**
      * 
      * @type {string}
-     * @memberof EvisaBaseExtractedDetails
+     * @memberof RightToRentExtractedDetails
      */
     reference_number?: string;
     /**
      * Expiration date in `yyyy-MM-dd` format, or `null` for indefinite statuses (e.g. Settled, ILR).
      * @type {string}
-     * @memberof EvisaBaseExtractedDetails
+     * @memberof RightToRentExtractedDetails
      */
     expiration_date?: string | null;
+    /**
+     * Start date in `yyyy-MM-dd` format, or `null` for indefinite statuses (e.g. Settled, ILR).
+     * Only returned for `ImmigrationStatus` and `RightToRent` sub-types — not returned for `RightToWork`.
+     * @type {string}
+     * @memberof RightToRentExtractedDetails
+     */
+    valid_from?: string | null;
 }
 
 /**
- * Check if a given object implements the EvisaBaseExtractedDetails interface.
+ * Check if a given object implements the RightToRentExtractedDetails interface.
  */
-export function instanceOfEvisaBaseExtractedDetails(value: object): value is EvisaBaseExtractedDetails {
+export function instanceOfRightToRentExtractedDetails(value: object): value is RightToRentExtractedDetails {
     return true;
 }
 
-export function EvisaBaseExtractedDetailsFromJSON(json: any): EvisaBaseExtractedDetails {
-    return EvisaBaseExtractedDetailsFromJSONTyped(json, false);
+export function RightToRentExtractedDetailsFromJSON(json: any): RightToRentExtractedDetails {
+    return RightToRentExtractedDetailsFromJSONTyped(json, false);
 }
 
-export function EvisaBaseExtractedDetailsFromJSONTyped(json: any, ignoreDiscriminator: boolean): EvisaBaseExtractedDetails {
+export function RightToRentExtractedDetailsFromJSONTyped(json: any, ignoreDiscriminator: boolean): RightToRentExtractedDetails {
     if (json == null) {
         return json;
     }
@@ -82,14 +87,15 @@ export function EvisaBaseExtractedDetailsFromJSONTyped(json: any, ignoreDiscrimi
         'share_code': json['share_code'] == null ? undefined : json['share_code'],
         'reference_number': json['reference_number'] == null ? undefined : json['reference_number'],
         'expiration_date': json['expiration_date'] == null ? undefined : json['expiration_date'],
+        'valid_from': json['valid_from'] == null ? undefined : json['valid_from'],
     };
 }
 
-export function EvisaBaseExtractedDetailsToJSON(json: any): EvisaBaseExtractedDetails {
-    return EvisaBaseExtractedDetailsToJSONTyped(json, false);
+export function RightToRentExtractedDetailsToJSON(json: any): RightToRentExtractedDetails {
+    return RightToRentExtractedDetailsToJSONTyped(json, false);
 }
 
-export function EvisaBaseExtractedDetailsToJSONTyped(value?: EvisaBaseExtractedDetails | null, ignoreDiscriminator: boolean = false): any {
+export function RightToRentExtractedDetailsToJSONTyped(value?: RightToRentExtractedDetails | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -102,6 +108,7 @@ export function EvisaBaseExtractedDetailsToJSONTyped(value?: EvisaBaseExtractedD
         'share_code': value['share_code'],
         'reference_number': value['reference_number'],
         'expiration_date': value['expiration_date'],
+        'valid_from': value['valid_from'],
     };
 }
 

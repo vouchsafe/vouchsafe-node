@@ -13,13 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { GetVerificationResponseChecksInner } from './GetVerificationResponseChecksInner';
-import {
-    GetVerificationResponseChecksInnerFromJSON,
-    GetVerificationResponseChecksInnerFromJSONTyped,
-    GetVerificationResponseChecksInnerToJSON,
-    GetVerificationResponseChecksInnerToJSONTyped,
-} from './GetVerificationResponseChecksInner';
 import type { ClaimDetails } from './ClaimDetails';
 import {
     ClaimDetailsFromJSON,
@@ -34,13 +27,20 @@ import {
     CaseStatusToJSON,
     CaseStatusToJSONTyped,
 } from './CaseStatus';
-import type { GetVerificationResponseEnrichmentsInner } from './GetVerificationResponseEnrichmentsInner';
+import type { ApiVerificationCheck } from './ApiVerificationCheck';
 import {
-    GetVerificationResponseEnrichmentsInnerFromJSON,
-    GetVerificationResponseEnrichmentsInnerFromJSONTyped,
-    GetVerificationResponseEnrichmentsInnerToJSON,
-    GetVerificationResponseEnrichmentsInnerToJSONTyped,
-} from './GetVerificationResponseEnrichmentsInner';
+    ApiVerificationCheckFromJSON,
+    ApiVerificationCheckFromJSONTyped,
+    ApiVerificationCheckToJSON,
+    ApiVerificationCheckToJSONTyped,
+} from './ApiVerificationCheck';
+import type { ApiVerificationEnrichment } from './ApiVerificationEnrichment';
+import {
+    ApiVerificationEnrichmentFromJSON,
+    ApiVerificationEnrichmentFromJSONTyped,
+    ApiVerificationEnrichmentToJSON,
+    ApiVerificationEnrichmentToJSONTyped,
+} from './ApiVerificationEnrichment';
 
 /**
  * 
@@ -104,16 +104,16 @@ export interface GetVerificationResponse {
     claim_details: ClaimDetails;
     /**
      * The collected evidence and validations performed
-     * @type {Array<GetVerificationResponseChecksInner>}
+     * @type {Array<ApiVerificationCheck>}
      * @memberof GetVerificationResponse
      */
-    checks: Array<GetVerificationResponseChecksInner>;
+    checks: Array<ApiVerificationCheck>;
     /**
      * 
-     * @type {Array<GetVerificationResponseEnrichmentsInner>}
+     * @type {Array<ApiVerificationEnrichment>}
      * @memberof GetVerificationResponse
      */
-    enrichments: Array<GetVerificationResponseEnrichmentsInner>;
+    enrichments: Array<ApiVerificationEnrichment>;
 }
 
 
@@ -155,8 +155,8 @@ export function GetVerificationResponseFromJSONTyped(json: any, ignoreDiscrimina
         'workflow_id': json['workflow_id'],
         'external_id': json['external_id'],
         'claim_details': ClaimDetailsFromJSON(json['claim_details']),
-        'checks': ((json['checks'] as Array<any>).map(GetVerificationResponseChecksInnerFromJSON)),
-        'enrichments': ((json['enrichments'] as Array<any>).map(GetVerificationResponseEnrichmentsInnerFromJSON)),
+        'checks': ((json['checks'] as Array<any>).map(ApiVerificationCheckFromJSON)),
+        'enrichments': ((json['enrichments'] as Array<any>).map(ApiVerificationEnrichmentFromJSON)),
     };
 }
 
@@ -180,8 +180,8 @@ export function GetVerificationResponseToJSONTyped(value?: GetVerificationRespon
         'workflow_id': value['workflow_id'],
         'external_id': value['external_id'],
         'claim_details': ClaimDetailsToJSON(value['claim_details']),
-        'checks': ((value['checks'] as Array<any>).map(GetVerificationResponseChecksInnerToJSON)),
-        'enrichments': ((value['enrichments'] as Array<any>).map(GetVerificationResponseEnrichmentsInnerToJSON)),
+        'checks': ((value['checks'] as Array<any>).map(ApiVerificationCheckToJSON)),
+        'enrichments': ((value['enrichments'] as Array<any>).map(ApiVerificationEnrichmentToJSON)),
     };
 }
 

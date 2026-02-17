@@ -56,16 +56,28 @@ export interface RightToRentVerificationResponse {
     verification_method: RightToRentVerificationResponseVerificationMethodEnum;
     /**
      * 
-     * @type {boolean}
+     * @type {string}
      * @memberof RightToRentVerificationResponse
      */
-    billable: boolean;
+    evidence_type: RightToRentVerificationResponseEvidenceTypeEnum;
     /**
      * 
      * @type {ApiValidationStatus}
      * @memberof RightToRentVerificationResponse
      */
     outcome: ApiValidationStatus;
+    /**
+     * Always `true` for successful (200) responses. Deprecated — will be removed in a future version.
+     * @type {boolean}
+     * @memberof RightToRentVerificationResponse
+     */
+    billable: boolean;
+    /**
+     * 
+     * @type {RightToRentVerificationResponseExtractedDetails}
+     * @memberof RightToRentVerificationResponse
+     */
+    extracted_details: RightToRentVerificationResponseExtractedDetails;
     /**
      * 
      * @type {Array<EvisaArtefact>}
@@ -78,18 +90,6 @@ export interface RightToRentVerificationResponse {
      * @memberof RightToRentVerificationResponse
      */
     validations: ImmigrationStatusVerificationResponseValidations;
-    /**
-     * 
-     * @type {string}
-     * @memberof RightToRentVerificationResponse
-     */
-    evidence_type: RightToRentVerificationResponseEvidenceTypeEnum;
-    /**
-     * 
-     * @type {RightToRentVerificationResponseExtractedDetails}
-     * @memberof RightToRentVerificationResponse
-     */
-    extracted_details: RightToRentVerificationResponseExtractedDetails;
 }
 
 
@@ -115,12 +115,12 @@ export type RightToRentVerificationResponseEvidenceTypeEnum = typeof RightToRent
  */
 export function instanceOfRightToRentVerificationResponse(value: object): value is RightToRentVerificationResponse {
     if (!('verification_method' in value) || value['verification_method'] === undefined) return false;
-    if (!('billable' in value) || value['billable'] === undefined) return false;
+    if (!('evidence_type' in value) || value['evidence_type'] === undefined) return false;
     if (!('outcome' in value) || value['outcome'] === undefined) return false;
+    if (!('billable' in value) || value['billable'] === undefined) return false;
+    if (!('extracted_details' in value) || value['extracted_details'] === undefined) return false;
     if (!('artefacts' in value) || value['artefacts'] === undefined) return false;
     if (!('validations' in value) || value['validations'] === undefined) return false;
-    if (!('evidence_type' in value) || value['evidence_type'] === undefined) return false;
-    if (!('extracted_details' in value) || value['extracted_details'] === undefined) return false;
     return true;
 }
 
@@ -135,12 +135,12 @@ export function RightToRentVerificationResponseFromJSONTyped(json: any, ignoreDi
     return {
         
         'verification_method': json['verification_method'],
-        'billable': json['billable'],
+        'evidence_type': json['evidence_type'],
         'outcome': ApiValidationStatusFromJSON(json['outcome']),
+        'billable': json['billable'],
+        'extracted_details': RightToRentVerificationResponseExtractedDetailsFromJSON(json['extracted_details']),
         'artefacts': ((json['artefacts'] as Array<any>).map(EvisaArtefactFromJSON)),
         'validations': ImmigrationStatusVerificationResponseValidationsFromJSON(json['validations']),
-        'evidence_type': json['evidence_type'],
-        'extracted_details': RightToRentVerificationResponseExtractedDetailsFromJSON(json['extracted_details']),
     };
 }
 
@@ -156,12 +156,12 @@ export function RightToRentVerificationResponseToJSONTyped(value?: RightToRentVe
     return {
         
         'verification_method': value['verification_method'],
-        'billable': value['billable'],
+        'evidence_type': value['evidence_type'],
         'outcome': ApiValidationStatusToJSON(value['outcome']),
+        'billable': value['billable'],
+        'extracted_details': RightToRentVerificationResponseExtractedDetailsToJSON(value['extracted_details']),
         'artefacts': ((value['artefacts'] as Array<any>).map(EvisaArtefactToJSON)),
         'validations': ImmigrationStatusVerificationResponseValidationsToJSON(value['validations']),
-        'evidence_type': value['evidence_type'],
-        'extracted_details': RightToRentVerificationResponseExtractedDetailsToJSON(value['extracted_details']),
     };
 }
 

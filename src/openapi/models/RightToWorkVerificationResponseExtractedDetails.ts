@@ -58,17 +58,11 @@ export interface RightToWorkVerificationResponseExtractedDetails {
      */
     reference_number?: string;
     /**
-     * 
+     * Expiration date in `yyyy-MM-dd` format, or `null` for indefinite statuses (e.g. Settled, ILR).
      * @type {string}
      * @memberof RightToWorkVerificationResponseExtractedDetails
      */
     expiration_date?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof RightToWorkVerificationResponseExtractedDetails
-     */
-    valid_from?: string | null;
 }
 
 /**
@@ -94,7 +88,6 @@ export function RightToWorkVerificationResponseExtractedDetailsFromJSONTyped(jso
         'share_code': json['share_code'] == null ? undefined : json['share_code'],
         'reference_number': json['reference_number'] == null ? undefined : json['reference_number'],
         'expiration_date': json['expiration_date'] == null ? undefined : json['expiration_date'],
-        'valid_from': json['valid_from'] == null ? undefined : json['valid_from'],
     };
 }
 
@@ -115,7 +108,6 @@ export function RightToWorkVerificationResponseExtractedDetailsToJSONTyped(value
         'share_code': value['share_code'],
         'reference_number': value['reference_number'],
         'expiration_date': value['expiration_date'],
-        'valid_from': value['valid_from'],
     };
 }
 
