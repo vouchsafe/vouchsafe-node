@@ -33,6 +33,17 @@ jobs:
       - name: Generate SDK from OpenAPI spec
         run: npm run generate
 
+      - name: Build TypeScript to JavaScript
+        run: npm run build
+
+      - name: Verify build output
+        run: |
+          if [ ! -f "dist/VouchsafeClient.js" ]; then
+            echo "❌ Build failed - dist/VouchsafeClient.js not found"
+            exit 1
+          fi
+          echo "✅ Build output verified"
+
       - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
