@@ -35,7 +35,7 @@ export interface GetFlowRequest {
 export class FlowsApi extends runtime.BaseAPI {
 
     /**
-     *  Get a specific verification flow.  Use an ID from one of these flows to request verifications with the  [`POST /verifications` endpoint](https://localhost:3000/docs/operations/RequestVerification).  > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     *  Get a specific verification flow.  Use an ID from one of these flows to request verifications with the  [`POST /verifications` endpoint](https://app.vouchsafe.id/docs/operations/RequestVerification).  > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
      */
     async getFlowRaw(requestParameters: GetFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Flow>> {
         if (requestParameters['id'] == null) {
@@ -72,7 +72,7 @@ export class FlowsApi extends runtime.BaseAPI {
     }
 
     /**
-     *  Get a specific verification flow.  Use an ID from one of these flows to request verifications with the  [`POST /verifications` endpoint](https://localhost:3000/docs/operations/RequestVerification).  > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     *  Get a specific verification flow.  Use an ID from one of these flows to request verifications with the  [`POST /verifications` endpoint](https://app.vouchsafe.id/docs/operations/RequestVerification).  > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
      */
     async getFlow(requestParameters: GetFlowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Flow> {
         const response = await this.getFlowRaw(requestParameters, initOverrides);
@@ -80,7 +80,7 @@ export class FlowsApi extends runtime.BaseAPI {
     }
 
     /**
-     *  Get a list of all the currently published verification flows.  Use an ID from one of these flows to request verifications with the  [`POST /verifications` endpoint](https://localhost:3000/docs/operations/RequestVerification).  Referee-specific verification flows cannot be started independently, so are not returned by this endpoint.  > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     *  Get a list of all the currently published verification flows.  Use an ID from one of these flows to request verifications with the  [`POST /verifications` endpoint](https://app.vouchsafe.id/docs/operations/RequestVerification).  Referee-specific verification flows cannot be started independently, so are not returned by this endpoint.  > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
      */
     async listFlowsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Flow>>> {
         const queryParameters: any = {};
@@ -109,7 +109,7 @@ export class FlowsApi extends runtime.BaseAPI {
     }
 
     /**
-     *  Get a list of all the currently published verification flows.  Use an ID from one of these flows to request verifications with the  [`POST /verifications` endpoint](https://localhost:3000/docs/operations/RequestVerification).  Referee-specific verification flows cannot be started independently, so are not returned by this endpoint.  > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+     *  Get a list of all the currently published verification flows.  Use an ID from one of these flows to request verifications with the  [`POST /verifications` endpoint](https://app.vouchsafe.id/docs/operations/RequestVerification).  Referee-specific verification flows cannot be started independently, so are not returned by this endpoint.  > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
      */
     async listFlows(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Flow>> {
         const response = await this.listFlowsRaw(initOverrides);

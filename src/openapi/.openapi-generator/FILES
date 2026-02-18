@@ -1,12 +1,11 @@
 apis/ArtefactsApi.ts
 apis/AuthenticationApi.ts
 apis/DigitalIDApi.ts
-apis/EVisaVerificationApi.ts
 apis/FlowsApi.ts
 apis/SmartLookupsApi.ts
-apis/SupportingDocumentVerificationApi.ts
 apis/TeamApi.ts
 apis/VerificationsApi.ts
+apis/VerifyApi.ts
 apis/index.ts
 index.ts
 models/AmlVerificationReport.ts

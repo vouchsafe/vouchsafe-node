@@ -183,7 +183,7 @@ export class VouchsafeClient {
    */
   async getArtefact({ artefact_key }: { artefact_key: string }) {
     return this.withErrorHandling(() =>
-      this.artefactsApi.getArtefacts({ artefactKey: artefact_key })
+      this.artefactsApi.getArtefact({ artefactKey: artefact_key })
     )
   }
 

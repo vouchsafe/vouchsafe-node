@@ -25,7 +25,7 @@ import {
     GetArtefactsResponseToJSON,
 } from '../models/index';
 
-export interface GetArtefactsRequest {
+export interface GetArtefactRequest {
     artefactKey: string;
 }
 
@@ -37,11 +37,11 @@ export class ArtefactsApi extends runtime.BaseAPI {
     /**
      * Get an artefact download link.  For security reasons, other endpoints (e.g. `GET /verifications/{id}`) may return only an `artefact_key`. Use this endpoint to exchange that key for a **time-limited pre-signed URL** that can be used to download the file.  Vouchsafe will respond with: - the requested `artefact_key` - a `download_url` (pre-signed and time-limited) - an `expires_at` timestamp (ISO 8601, UTC)  **Note:** The `download_url` will stop working after `expires_at`. If it expires, request a new URL using this endpoint.
      */
-    async getArtefactsRaw(requestParameters: GetArtefactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetArtefactsResponse>> {
+    async getArtefactRaw(requestParameters: GetArtefactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetArtefactsResponse>> {
         if (requestParameters['artefactKey'] == null) {
             throw new runtime.RequiredError(
                 'artefactKey',
-                'Required parameter "artefactKey" was null or undefined when calling getArtefacts().'
+                'Required parameter "artefactKey" was null or undefined when calling getArtefact().'
             );
         }
 
@@ -74,8 +74,8 @@ export class ArtefactsApi extends runtime.BaseAPI {
     /**
      * Get an artefact download link.  For security reasons, other endpoints (e.g. `GET /verifications/{id}`) may return only an `artefact_key`. Use this endpoint to exchange that key for a **time-limited pre-signed URL** that can be used to download the file.  Vouchsafe will respond with: - the requested `artefact_key` - a `download_url` (pre-signed and time-limited) - an `expires_at` timestamp (ISO 8601, UTC)  **Note:** The `download_url` will stop working after `expires_at`. If it expires, request a new URL using this endpoint.
      */
-    async getArtefacts(requestParameters: GetArtefactsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetArtefactsResponse> {
-        const response = await this.getArtefactsRaw(requestParameters, initOverrides);
+    async getArtefact(requestParameters: GetArtefactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetArtefactsResponse> {
+        const response = await this.getArtefactRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
