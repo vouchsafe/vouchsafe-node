@@ -13,6 +13,27 @@
  */
 
 import { mapValues } from '../runtime';
+import type { EvisaNotExpiredResult } from './EvisaNotExpiredResult';
+import {
+    EvisaNotExpiredResultFromJSON,
+    EvisaNotExpiredResultFromJSONTyped,
+    EvisaNotExpiredResultToJSON,
+    EvisaNotExpiredResultToJSONTyped,
+} from './EvisaNotExpiredResult';
+import type { EvisaRequiredFieldsExtractedResult } from './EvisaRequiredFieldsExtractedResult';
+import {
+    EvisaRequiredFieldsExtractedResultFromJSON,
+    EvisaRequiredFieldsExtractedResultFromJSONTyped,
+    EvisaRequiredFieldsExtractedResultToJSON,
+    EvisaRequiredFieldsExtractedResultToJSONTyped,
+} from './EvisaRequiredFieldsExtractedResult';
+import type { EvisaStartedResult } from './EvisaStartedResult';
+import {
+    EvisaStartedResultFromJSON,
+    EvisaStartedResultFromJSONTyped,
+    EvisaStartedResultToJSON,
+    EvisaStartedResultToJSONTyped,
+} from './EvisaStartedResult';
 import type { EvisaValidations } from './EvisaValidations';
 import {
     EvisaValidationsFromJSON,
@@ -20,13 +41,13 @@ import {
     EvisaValidationsToJSON,
     EvisaValidationsToJSONTyped,
 } from './EvisaValidations';
-import type { EvisaValidationResult } from './EvisaValidationResult';
+import type { EvisaExistsResult } from './EvisaExistsResult';
 import {
-    EvisaValidationResultFromJSON,
-    EvisaValidationResultFromJSONTyped,
-    EvisaValidationResultToJSON,
-    EvisaValidationResultToJSONTyped,
-} from './EvisaValidationResult';
+    EvisaExistsResultFromJSON,
+    EvisaExistsResultFromJSONTyped,
+    EvisaExistsResultToJSON,
+    EvisaExistsResultToJSONTyped,
+} from './EvisaExistsResult';
 
 /**
  * 
@@ -36,28 +57,28 @@ import {
 export interface ImmigrationStatusVerificationResponseValidations {
     /**
      * 
-     * @type {EvisaValidationResult}
+     * @type {EvisaExistsResult}
      * @memberof ImmigrationStatusVerificationResponseValidations
      */
-    evisa_exists?: EvisaValidationResult;
+    evisa_exists?: EvisaExistsResult;
     /**
      * 
-     * @type {EvisaValidationResult}
+     * @type {EvisaRequiredFieldsExtractedResult}
      * @memberof ImmigrationStatusVerificationResponseValidations
      */
-    required_fields_extracted?: EvisaValidationResult;
+    required_fields_extracted?: EvisaRequiredFieldsExtractedResult;
     /**
      * 
-     * @type {EvisaValidationResult}
+     * @type {EvisaStartedResult}
      * @memberof ImmigrationStatusVerificationResponseValidations
      */
-    evisa_started?: EvisaValidationResult;
+    evisa_started?: EvisaStartedResult;
     /**
      * 
-     * @type {EvisaValidationResult}
+     * @type {EvisaNotExpiredResult}
      * @memberof ImmigrationStatusVerificationResponseValidations
      */
-    evisa_not_expired?: EvisaValidationResult;
+    evisa_not_expired?: EvisaNotExpiredResult;
 }
 
 /**
@@ -77,10 +98,10 @@ export function ImmigrationStatusVerificationResponseValidationsFromJSONTyped(js
     }
     return {
         
-        'evisa_exists': json['evisa_exists'] == null ? undefined : EvisaValidationResultFromJSON(json['evisa_exists']),
-        'required_fields_extracted': json['required_fields_extracted'] == null ? undefined : EvisaValidationResultFromJSON(json['required_fields_extracted']),
-        'evisa_started': json['evisa_started'] == null ? undefined : EvisaValidationResultFromJSON(json['evisa_started']),
-        'evisa_not_expired': json['evisa_not_expired'] == null ? undefined : EvisaValidationResultFromJSON(json['evisa_not_expired']),
+        'evisa_exists': json['evisa_exists'] == null ? undefined : EvisaExistsResultFromJSON(json['evisa_exists']),
+        'required_fields_extracted': json['required_fields_extracted'] == null ? undefined : EvisaRequiredFieldsExtractedResultFromJSON(json['required_fields_extracted']),
+        'evisa_started': json['evisa_started'] == null ? undefined : EvisaStartedResultFromJSON(json['evisa_started']),
+        'evisa_not_expired': json['evisa_not_expired'] == null ? undefined : EvisaNotExpiredResultFromJSON(json['evisa_not_expired']),
     };
 }
 
@@ -95,10 +116,10 @@ export function ImmigrationStatusVerificationResponseValidationsToJSONTyped(valu
 
     return {
         
-        'evisa_exists': EvisaValidationResultToJSON(value['evisa_exists']),
-        'required_fields_extracted': EvisaValidationResultToJSON(value['required_fields_extracted']),
-        'evisa_started': EvisaValidationResultToJSON(value['evisa_started']),
-        'evisa_not_expired': EvisaValidationResultToJSON(value['evisa_not_expired']),
+        'evisa_exists': EvisaExistsResultToJSON(value['evisa_exists']),
+        'required_fields_extracted': EvisaRequiredFieldsExtractedResultToJSON(value['required_fields_extracted']),
+        'evisa_started': EvisaStartedResultToJSON(value['evisa_started']),
+        'evisa_not_expired': EvisaNotExpiredResultToJSON(value['evisa_not_expired']),
     };
 }
 

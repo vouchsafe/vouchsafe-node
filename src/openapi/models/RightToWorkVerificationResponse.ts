@@ -67,7 +67,7 @@ export interface RightToWorkVerificationResponse {
      */
     outcome: ApiValidationStatus;
     /**
-     * Always `true` for successful (200) responses. Deprecated — will be removed in a future version.
+     * Whether this API call is billable. `true` when the eVisa was found on GOV.UK, `false` when the share code or date of birth was invalid.
      * @type {boolean}
      * @memberof RightToWorkVerificationResponse
      */
