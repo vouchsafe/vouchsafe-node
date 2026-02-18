@@ -1,4 +1,4 @@
-name: Test SDK
+name: E2E Setup
 
 on:
   repository_dispatch:
