@@ -1,0 +1,31 @@
+name: Notify on Failure
+
+on:
+  workflow_run:
+    workflows: ["Publish SDK"]
+    types: [completed]
+
+jobs:
+  notify:
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Slack notification
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          payload: |
+            {
+              "text": "❌ Workflow failed: ${{ github.event.workflow_run.name }}",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "❌ *${{ github.event.workflow_run.name }}* failed on `${{ github.event.workflow_run.head_branch }}`\n<${{ github.event.workflow_run.html_url }}|View Run>"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
