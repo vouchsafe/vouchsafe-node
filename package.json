@@ -25,14 +25,15 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "generate": "curl -s https://app.vouchsafe.id/openapi/swagger.json -o swagger-temp.json && node scripts/patch-openapi-discriminators.js swagger-temp.json && npx openapi-generator-cli generate -i swagger-temp.json -g typescript-fetch -o src/openapi --skip-validate-spec --additional-properties=modelPropertyNaming=original && node scripts/post-process-unions.js && rm swagger-temp.json && npm run generate:exports",
+    "generate": "curl -s https://app.vouchsafe.id/openapi/swagger.json -o swagger-temp.json && orval && rm swagger-temp.json && npm run generate:exports",
     "prepare": "npm run build",
     "generate:exports": "npx tsx scripts/generate-model-exports.ts"
   },
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^2.22.0",
     "@types/node": "^25.0.10",
-    "typescript": "^5.9.2"
+    "orval": "^8.4.0",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "fs": "^0.0.1-security",
