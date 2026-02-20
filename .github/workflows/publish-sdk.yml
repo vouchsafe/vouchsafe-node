@@ -46,32 +46,46 @@ jobs:
           fi
           echo "✅ Build output verified"
 
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --exit-code; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
       - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Commit changes
+        if: steps.changes.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
         run: |
           git add .
           git commit -m "chore: regenerate SDK from OpenAPI spec [skip ci]" || echo "No changes to commit"
 
       - name: Bump version and create tag
+        if: steps.changes.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
         run: |
           npm version patch -m "chore: release v%s [skip ci]"
           echo "NEW_VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
 
       - name: Push changes and tags
+        if: steps.changes.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
         run: |
           git push origin main
           git push --tags
 
       - name: Publish to npm
+        if: steps.changes.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
         run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Summary
+        if: steps.changes.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
         run: |
           echo "✅ SDK published successfully!" >> $GITHUB_STEP_SUMMARY
           echo "📦 New version: ${{ env.NEW_VERSION }}" >> $GITHUB_STEP_SUMMARY
