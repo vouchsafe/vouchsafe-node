@@ -27,7 +27,8 @@ export interface SmartLookupInput {
   postcode?: string;
   /** (conditionally required) — Email address. Either email or phone is required when checks includes OnlineFootprint; otherwise optional. */
   email?: string;
-  /** (conditionally required) — Phone number. Either email or phone is required when checks includes OnlineFootprint; otherwise optional. */
+  /** (conditionally required) — Phone number in E.164 format. Either email or phone is required when checks includes OnlineFootprint; otherwise optional.
+For CreditBureau checks, providing a UK phone number can improve match rates by enabling matching against mobile data. */
   phone?: string;
   /** (conditionally required) — Required when checks includes CreditBureau or AML; otherwise optional. Format as YYYY-MM-DD or ISO 8601 */
   date_of_birth?: string;
