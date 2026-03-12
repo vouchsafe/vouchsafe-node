@@ -11,8 +11,8 @@ To use the API, you need a client ID and secret from the Vouchsafe dashboard. [S
 We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_ZNWBPnysvwmdIwboLViE8) showing the basics, as well as [SDKs and libraries](https://help.vouchsafe.id/en/articles/12026847-vouchsafe-sdks-and-libraries) for popular languages.
  * OpenAPI spec version: 0.1.0
  */
-import type { ApiValidationStatus } from './apiValidationStatus';
 import type { EvisaArtefact } from './evisaArtefact';
+import type { ImmigrationStatusApiValidationStatus } from './immigrationStatusApiValidationStatus';
 import type { ImmigrationStatusVerificationResponseEvidenceType } from './immigrationStatusVerificationResponseEvidenceType';
 import type { ImmigrationStatusVerificationResponseExtractedDetails } from './immigrationStatusVerificationResponseExtractedDetails';
 import type { ImmigrationStatusVerificationResponseValidations } from './immigrationStatusVerificationResponseValidations';
@@ -21,7 +21,7 @@ import type { ImmigrationStatusVerificationResponseVerificationMethod } from './
 export interface ImmigrationStatusVerificationResponse {
   verification_method: ImmigrationStatusVerificationResponseVerificationMethod;
   evidence_type: ImmigrationStatusVerificationResponseEvidenceType;
-  outcome: ApiValidationStatus;
+  outcome: ImmigrationStatusApiValidationStatus;
   /** Whether this API call is billable. `true` when the eVisa was found on GOV.UK, `false` when the share code or date of birth was invalid. */
   billable: boolean;
   extracted_details: ImmigrationStatusVerificationResponseExtractedDetails;

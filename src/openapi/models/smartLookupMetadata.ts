@@ -23,4 +23,6 @@ export interface SmartLookupMetadata {
   onlineFootprintVerification?: RecordStringUnknown;
   /** Raw sanctions screening results. Only present when AML check was performed. */
   amlVerification?: RecordStringUnknown;
+  /** Raw CIFAS NFD search results. Only present when NFD check was performed. */
+  nfdVerification?: RecordStringUnknown;
 }

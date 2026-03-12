@@ -177,17 +177,26 @@ the individual from the UK Home Office online service.
 **Response fields by sub-type:**
 The response fields directly reflect the information available on a particular eVisa sub-type.
 On a `pass` outcome, all fields for the sub-type will be populated. On a `fail` outcome, `extracted_details` may be partially populated or empty depending on which validation step failed.
+On an `inconclusive` outcome (see below), all identity fields are populated but date-based validations could not be performed.
+
+**Inconclusive outcome (`ImmigrationStatus` only):**
+Some immigration statuses are indefinite (i.e. they have no expiry date or start date on GOV.UK) but are not yet on our recognised list. In this case the eVisa is successfully retrieved and all identity details are returned, but the date validations (`evisa_started`, `evisa_not_expired`) cannot be performed. The response will have:
+- `outcome: "inconclusive"`
+- `evisa_started` and `evisa_not_expired` both with `status: "inconclusive"` and `failed_reasons: ["UNRECOGNISED_INDEFINITE_STATUS"]`
+- `expiration_date: null` and `valid_from: null` in `extracted_details`
+
+This outcome only applies to `ImmigrationStatus`. `RightToWork` and `RightToRent` always return dates from GOV.UK.
 
 **Response summary:**
 | HTTP Status | Meaning | Action |
 |-------------|---------|--------|
-| `200` | Verification completed | Check the `outcome` field to determine if the verification was successful |
+| `200` | Verification completed | Check the `outcome` field (`pass`, `fail`, or `inconclusive`) |
 | `422` | Share code locked out by GOV.UK | Retry with a new share code |
 | `503` | Service temporarily unavailable | Retry with exponential backoff |
 
 **Billing:**
 An API call is billable when the eVisa was found on GOV.UK, regardless of whether the verification
-outcome is `pass` or `fail`. If the `share_code` or `date_of_birth` is invalid and no eVisa can be
+outcome is `pass`, `fail`, or `inconclusive`. If the `share_code` or `date_of_birth` is invalid and no eVisa can be
 retrieved, the response will have `billable: false` and you will not be charged.
 Error responses (`HTTP 422`, `HTTP 503`) are also not billable and return an Error response body.
 
@@ -200,6 +209,7 @@ You have **30 minutes** to download them before the URLs expire.
 Use these share codes in sandbox mode to test different outcomes:
 - `PASS12345` - Returns a successful verification with "Pass" outcome
 - `FAIL12345` - Returns a failed verification (e.g. expired status)
+- `INC123456` - Returns an inconclusive verification (unrecognised indefinite immigration status)
 - `ERROR1234` - Returns an error response
 - `BADCODE12` - Returns a non-billable failed verification (e.g. invalid share code)
 - `WRONGDOB1` - Returns a non-billable failed verification (e.g. wrong date of birth)
