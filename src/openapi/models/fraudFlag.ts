@@ -12,4 +12,4 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  * OpenAPI spec version: 0.1.0
  */
 
-export type FraudFlag = 'FACE_SCAN_BLOCKED' | 'NAME_SUSPICIOUS' | 'BURNER_EMAIL' | 'BLOCKED_EMAIL' | 'BURNER_PHONE_NUMBER' | 'HIGH_RISK_COUNTRY_PHONE_NUMBER';
+export type FraudFlag = 'FACE_SCAN_BLOCKED' | 'NAME_SUSPICIOUS' | 'BURNER_EMAIL' | 'BLOCKED_EMAIL' | 'BURNER_PHONE_NUMBER' | 'HIGH_RISK_COUNTRY_PHONE_NUMBER' | 'FRAUD_SUSPICION';
