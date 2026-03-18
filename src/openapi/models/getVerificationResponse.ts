@@ -11,22 +11,23 @@ To use the API, you need a client ID and secret from the Vouchsafe dashboard. [S
 We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_ZNWBPnysvwmdIwboLViE8) showing the basics, as well as [SDKs and libraries](https://help.vouchsafe.id/en/articles/12026847-vouchsafe-sdks-and-libraries) for popular languages.
  * OpenAPI spec version: 0.1.0
  */
-import type { ApiVerificationCheck } from './apiVerificationCheck';
-import type { ApiVerificationEnrichment } from './apiVerificationEnrichment';
 import type { CaseStatus } from './caseStatus';
 import type { ClaimDetails } from './claimDetails';
+import type { IdentityProfile } from './identityProfile';
+import type { VerificationCheck } from './verificationCheck';
+import type { VerificationEnrichment } from './verificationEnrichment';
 
 export interface GetVerificationResponse {
-  /** Unique ID for tracking a verification session over time */
+  /** Unique ID for tracking a verification session over time. */
   id: string;
-  /** Current status */
+  /** Current status. */
   status: CaseStatus;
-  /** When it was originally requested or begun */
+  /** When it was originally requested or begun. */
   created_at: string;
-  /** When the user will stop getting reminders */
+  /** When the user will stop getting reminders. */
   expires_at: string;
   /**
-   * The originally supplied email address
+   * The originally supplied email address.
    * @nullable
    */
   email: string | null;
@@ -35,16 +36,19 @@ export interface GetVerificationResponse {
    * @nullable
    */
   redirect_url: string | null;
-  /** The verification flow it belongs to */
+  /** The verification flow it belongs to. */
   workflow_id: string;
   /**
-   * An identifier from your own systems, to avoid needing to store Vouchsafe's own ID. Provided at request time.
+   * An identifier from your own systems, to avoid needing to store Vouchsafe's own ID Provided at request time.
    * @nullable
    */
   external_id: string | null;
-  /** The derived identity and residency details */
+  /** The identity profile to use for this verification if flow is certified against the UK DIATF. */
+  identity_profile?: IdentityProfile;
+  /** The derived identity and residency details. */
   claim_details: ClaimDetails;
-  /** The collected evidence and validations performed */
-  checks: ApiVerificationCheck[];
-  enrichments: ApiVerificationEnrichment[];
+  /** The evidence collected and validated. */
+  checks: VerificationCheck[];
+  /** The enrichments performed on the verification. */
+  enrichments: VerificationEnrichment[];
 }

@@ -12,13 +12,4 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  * OpenAPI spec version: 0.1.0
  */
 
-export interface RequestVerificationResponse {
-  /** A unique URL to redirect the user to or embed in an iframe. */
-  url: string;
-  /** A unique ID for the verification session, for you to track progress. */
-  id: string;
-  /** The flow it belongs to. */
-  workflow_id?: string;
-  /** When the user will stop getting reminders. */
-  expires_at: string;
-}
+export type NecValidationApiDocumentBordersDetectedStatus = 'pass' | 'fail';

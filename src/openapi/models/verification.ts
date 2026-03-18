@@ -12,18 +12,19 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  * OpenAPI spec version: 0.1.0
  */
 import type { CaseStatus } from './caseStatus';
+import type { IdentityProfile } from './identityProfile';
 
 export interface Verification {
-  /** Unique ID for tracking a verification session over time */
+  /** Unique ID for tracking a verification session over time. */
   id: string;
-  /** Current status */
+  /** Current status. */
   status: CaseStatus;
-  /** When it was originally requested or begun */
+  /** When it was originally requested or begun. */
   created_at: string;
-  /** When the user will stop getting reminders */
+  /** When the user will stop getting reminders. */
   expires_at: string;
   /**
-   * The originally supplied email address
+   * The originally supplied email address.
    * @nullable
    */
   email: string | null;
@@ -32,11 +33,13 @@ export interface Verification {
    * @nullable
    */
   redirect_url: string | null;
-  /** The verification flow it belongs to */
+  /** The verification flow it belongs to. */
   workflow_id: string;
   /**
-   * An identifier from your own systems, to avoid needing to store Vouchsafe's own ID. Provided at request time.
+   * An identifier from your own systems, to avoid needing to store Vouchsafe's own ID Provided at request time.
    * @nullable
    */
   external_id: string | null;
+  /** The identity profile to use for this verification if flow is certified against the UK DIATF. */
+  identity_profile?: IdentityProfile;
 }

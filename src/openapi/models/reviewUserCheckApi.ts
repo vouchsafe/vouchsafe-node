@@ -11,14 +11,17 @@ To use the API, you need a client ID and secret from the Vouchsafe dashboard. [S
 We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_ZNWBPnysvwmdIwboLViE8) showing the basics, as well as [SDKs and libraries](https://help.vouchsafe.id/en/articles/12026847-vouchsafe-sdks-and-libraries) for popular languages.
  * OpenAPI spec version: 0.1.0
  */
+import type { ReviewUserCheckApiStep } from './reviewUserCheckApiStep';
+import type { ReviewUserCheckApiValidations } from './reviewUserCheckApiValidations';
+import type { StepStatusApi } from './stepStatusApi';
 
-export interface RequestVerificationResponse {
-  /** A unique URL to redirect the user to or embed in an iframe. */
-  url: string;
-  /** A unique ID for the verification session, for you to track progress. */
-  id: string;
-  /** The flow it belongs to. */
-  workflow_id?: string;
-  /** When the user will stop getting reminders. */
-  expires_at: string;
+export interface ReviewUserCheckApi {
+  /** A referee vouch of the user’s claims (in progress or confirmed). */
+  step: ReviewUserCheckApiStep;
+  /** The overall outcome of the referee verification. */
+  outcome: StepStatusApi;
+  /** Claims being verified by the referee.
+All claims "pass" when they accept and proceed, or "fail" when they reject.
+Otherwise undefined while they have not made a choice yet. */
+  validations: ReviewUserCheckApiValidations;
 }

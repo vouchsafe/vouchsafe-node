@@ -13,15 +13,15 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  */
 
 export interface RequestVerificationInput {
-  /** The user's email address */
+  /** The user's email address. */
   email: string;
-  /** The user's first name, if you have it */
+  /** The user's first name, if you have it. */
   first_name?: string;
-  /** The user's last name, if you have it */
+  /** The user's last name, if you have it. */
   last_name?: string;
-  /** The user's street address, if you have it */
+  /** The user's street address, if you have it. */
   street_address?: string;
-  /** The user's postcode, if you have it */
+  /** The user's postcode, if you have it. */
   postcode?: string;
   /** The user's date of birth, if you have it. Format as YYYY-MM-DD or ISO 8601 */
   date_of_birth?: string;
@@ -33,13 +33,13 @@ For example: `/admin/teams/abc123/builder/[workflow_id]`
 
 If not provided, the last published flow is used instead. */
   workflow_id?: string;
-  /** An identifier from your own systems, to avoid needing to store Vouchsafe's own ID */
+  /** An identifier from your own systems, to avoid needing to store Vouchsafe's own ID. */
   external_id?: string;
   /** A generic or unique URL to send the user back to upon success.
 
 If not provided, the verification flow default will be used. */
   redirect_url?: string;
-  /** When will the verification session expire and the user cease getting reminders?
+  /** When the verification session expires and the user stops getting reminders.
 
 If not provided, the verification flow default will be used. */
   expires_at?: string;

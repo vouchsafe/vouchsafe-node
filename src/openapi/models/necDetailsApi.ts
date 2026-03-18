@@ -12,13 +12,30 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  * OpenAPI spec version: 0.1.0
  */
 
-export interface RequestVerificationResponse {
-  /** A unique URL to redirect the user to or embed in an iframe. */
-  url: string;
-  /** A unique ID for the verification session, for you to track progress. */
-  id: string;
-  /** The flow it belongs to. */
-  workflow_id?: string;
-  /** When the user will stop getting reminders. */
-  expires_at: string;
+export interface NecDetailsApi {
+  /**
+   * First name, if extracted. Otherwise null.
+   * @nullable
+   */
+  first_name: string | null;
+  /**
+   * Last name, if extracted. Otherwise null.
+   * @nullable
+   */
+  last_name: string | null;
+  /**
+   * Date of birth, if extracted. Otherwise null.
+   * @nullable
+   */
+  date_of_birth: string | null;
+  /**
+   * Card number (16 digits), if extracted. Otherwise null.
+   * @nullable
+   */
+  document_number: string | null;
+  /**
+   * ITSO Shell Reference Number (18 digits), if extracted. Otherwise null.
+   * @nullable
+   */
+  smart_card_number: string | null;
 }
