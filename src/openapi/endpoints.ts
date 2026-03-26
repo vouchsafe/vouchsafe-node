@@ -12,6 +12,7 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  * OpenAPI spec version: 0.1.0
  */
 import type {
+  AlertAccountDetailResponse,
   ApiErrorResponse,
   AuthenticateInput,
   AuthenticateResponse,
@@ -23,6 +24,8 @@ import type {
   GetArtefactsResponse,
   GetSmartLookupResponse,
   GetVerificationResponse,
+  ListAccountsParams,
+  ListAlertAccountsResponse,
   ListFlowsResponse,
   ListVerificationsParams,
   ListVerificationsResponse,
@@ -33,6 +36,8 @@ import type {
   SmartLookupInput,
   SupportingDocumentVerificationResponse,
   Team,
+  ToggleAlertsInput,
+  ToggleAlertsResponse,
   VerifySupportingDocumentBody
 } from './models';
 
@@ -1022,6 +1027,207 @@ export const getArtefact = async (artefactKey: string, options?: RequestInit): P
   
   const data: getArtefactResponse['data'] = body ? JSON.parse(body) : {}
   return { data, status: res.status, headers: res.headers } as getArtefactResponse
+}
+
+
+
+/**
+ * List monitored accounts.
+
+Returns accounts that have ongoing AML/sanctions monitoring enabled,
+with summary info including current alert status.
+
+Use cursor-based pagination to iterate through results.
+
+> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+ */
+export type listAccountsResponse200 = {
+  data: ListAlertAccountsResponse
+  status: 200
+}
+
+export type listAccountsResponse401 = {
+  data: ApiErrorResponse
+  status: 401
+}
+
+export type listAccountsResponse403 = {
+  data: ApiErrorResponse
+  status: 403
+}
+
+export type listAccountsResponseSuccess = (listAccountsResponse200) & {
+  headers: Headers;
+};
+export type listAccountsResponseError = (listAccountsResponse401 | listAccountsResponse403) & {
+  headers: Headers;
+};
+
+export type listAccountsResponse = (listAccountsResponseSuccess | listAccountsResponseError)
+
+export const getListAccountsUrl = (params?: ListAccountsParams,) => {
+  const normalizedParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+    
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : value.toString())
+    }
+  });
+
+  const stringifiedParams = normalizedParams.toString();
+
+  return stringifiedParams.length > 0 ? `https://app.vouchsafe.id/api/v1/alerts/accounts?${stringifiedParams}` : `https://app.vouchsafe.id/api/v1/alerts/accounts`
+}
+
+export const listAccounts = async (params?: ListAccountsParams, options?: RequestInit): Promise<listAccountsResponse> => {
+  
+  const res = await fetch(getListAccountsUrl(params),
+  {      
+    ...options,
+    method: 'GET'
+    
+    
+  }
+)
+
+  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
+  
+  const data: listAccountsResponse['data'] = body ? JSON.parse(body) : {}
+  return { data, status: res.status, headers: res.headers } as listAccountsResponse
+}
+
+
+
+/**
+ * Get full account detail.
+
+Returns the account's personal details, all alerts, and matched entities.
+
+> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+ */
+export type getAccountDetailResponse200 = {
+  data: AlertAccountDetailResponse
+  status: 200
+}
+
+export type getAccountDetailResponse401 = {
+  data: ApiErrorResponse
+  status: 401
+}
+
+export type getAccountDetailResponse403 = {
+  data: ApiErrorResponse
+  status: 403
+}
+
+export type getAccountDetailResponse404 = {
+  data: ApiErrorResponse
+  status: 404
+}
+
+export type getAccountDetailResponseSuccess = (getAccountDetailResponse200) & {
+  headers: Headers;
+};
+export type getAccountDetailResponseError = (getAccountDetailResponse401 | getAccountDetailResponse403 | getAccountDetailResponse404) & {
+  headers: Headers;
+};
+
+export type getAccountDetailResponse = (getAccountDetailResponseSuccess | getAccountDetailResponseError)
+
+export const getGetAccountDetailUrl = (id: string,) => {
+
+
+  
+
+  return `https://app.vouchsafe.id/api/v1/alerts/accounts/${id}`
+}
+
+export const getAccountDetail = async (id: string, options?: RequestInit): Promise<getAccountDetailResponse> => {
+  
+  const res = await fetch(getGetAccountDetailUrl(id),
+  {      
+    ...options,
+    method: 'GET'
+    
+    
+  }
+)
+
+  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
+  
+  const data: getAccountDetailResponse['data'] = body ? JSON.parse(body) : {}
+  return { data, status: res.status, headers: res.headers } as getAccountDetailResponse
+}
+
+
+
+/**
+ * Toggle ongoing monitoring for an account.
+
+Enable or disable AML/sanctions screening for an existing account.
+
+> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+ */
+export type toggleAlertsResponse200 = {
+  data: ToggleAlertsResponse
+  status: 200
+}
+
+export type toggleAlertsResponse400 = {
+  data: ApiErrorResponse
+  status: 400
+}
+
+export type toggleAlertsResponse401 = {
+  data: ApiErrorResponse
+  status: 401
+}
+
+export type toggleAlertsResponse403 = {
+  data: ApiErrorResponse
+  status: 403
+}
+
+export type toggleAlertsResponse404 = {
+  data: ApiErrorResponse
+  status: 404
+}
+
+export type toggleAlertsResponseSuccess = (toggleAlertsResponse200) & {
+  headers: Headers;
+};
+export type toggleAlertsResponseError = (toggleAlertsResponse400 | toggleAlertsResponse401 | toggleAlertsResponse403 | toggleAlertsResponse404) & {
+  headers: Headers;
+};
+
+export type toggleAlertsResponse = (toggleAlertsResponseSuccess | toggleAlertsResponseError)
+
+export const getToggleAlertsUrl = (id: string,) => {
+
+
+  
+
+  return `https://app.vouchsafe.id/api/v1/alerts/accounts/${id}`
+}
+
+export const toggleAlerts = async (id: string,
+    toggleAlertsInput: ToggleAlertsInput, options?: RequestInit): Promise<toggleAlertsResponse> => {
+  
+  const res = await fetch(getToggleAlertsUrl(id),
+  {      
+    ...options,
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      toggleAlertsInput,)
+  }
+)
+
+  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
+  
+  const data: toggleAlertsResponse['data'] = body ? JSON.parse(body) : {}
+  return { data, status: res.status, headers: res.headers } as toggleAlertsResponse
 }
 
 

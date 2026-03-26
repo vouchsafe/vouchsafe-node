@@ -34,4 +34,7 @@ For CreditBureau checks, providing a UK phone number can improve match rates by 
   date_of_birth?: string;
   /** (conditionally required) — Used to set a threshold for OnlineFootprint and AML checks, otherwise defaulting to 50 and 96 for OnlineFootprint and AML respectively */
   thresholds?: SmartLookupInputThresholds;
+  /** (optional) When true, enables ongoing AML monitoring for this lookup.
+Requires AML to be included in checks. Requires the Alerts feature entitlement. */
+  alerts_enabled?: boolean;
 }

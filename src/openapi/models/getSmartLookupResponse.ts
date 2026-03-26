@@ -39,5 +39,7 @@ export interface GetSmartLookupResponse {
   aml_verification_report?: AmlVerificationReport;
   nfd_verification_report?: NfdVerificationReport;
   metadata: SmartLookupMetadata;
+  /** @nullable */
+  alerts_enabled_at: string | null;
   created_at: string;
 }
