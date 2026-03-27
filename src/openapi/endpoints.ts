@@ -1032,7 +1032,11 @@ export const getArtefact = async (artefactKey: string, options?: RequestInit): P
 
 
 /**
- * List monitored accounts.
+ * <div style="background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;">
+<strong style="color: #c62828;">Experimental (beta):</strong> This feature is new and currently in beta.
+</div>
+
+List monitored accounts.
 
 Returns accounts that have ongoing AML/sanctions monitoring enabled,
 with summary info including current alert status.
@@ -1100,7 +1104,11 @@ export const listAccounts = async (params?: ListAccountsParams, options?: Reques
 
 
 /**
- * Get full account detail.
+ * <div style="background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;">
+<strong style="color: #c62828;">Experimental (beta):</strong> This feature is new and currently in beta.
+</div>
+
+Get full account detail.
 
 Returns the account's personal details, all alerts, and matched entities.
 
@@ -1163,7 +1171,11 @@ export const getAccountDetail = async (id: string, options?: RequestInit): Promi
 
 
 /**
- * Toggle ongoing monitoring for an account.
+ * <div style="background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;">
+<strong style="color: #c62828;">Experimental (beta):</strong> This feature is new and currently in beta.
+</div>
+
+Toggle ongoing monitoring for an account.
 
 Enable or disable AML/sanctions screening for an existing account.
 

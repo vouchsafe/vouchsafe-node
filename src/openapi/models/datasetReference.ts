@@ -11,13 +11,8 @@ To use the API, you need a client ID and secret from the Vouchsafe dashboard. [S
 We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_ZNWBPnysvwmdIwboLViE8) showing the basics, as well as [SDKs and libraries](https://help.vouchsafe.id/en/articles/12026847-vouchsafe-sdks-and-libraries) for popular languages.
  * OpenAPI spec version: 0.1.0
  */
-import type { DatasetReference } from './datasetReference';
 
-export interface AlertMatchResponse {
+export interface DatasetReference {
   id: string;
-  opensanctions_id: string;
-  caption: string;
-  entity_type: string;
-  datasets: DatasetReference[];
-  score: number;
+  title: string;
 }

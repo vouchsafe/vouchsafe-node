@@ -48,6 +48,7 @@ export * from './createTeamInput';
 export * from './createTeamResponse';
 export * from './createTeamResponseCredentials';
 export * from './creditBureauVerificationReport';
+export * from './datasetReference';
 export * from './documentAgeValidFailedReason';
 export * from './documentAgeValidResult';
 export * from './documentCompleteAndLegibleFailedReason';
