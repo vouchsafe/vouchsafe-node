@@ -11,5 +11,16 @@ To use the API, you need a client ID and secret from the Vouchsafe dashboard. [S
 We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_ZNWBPnysvwmdIwboLViE8) showing the basics, as well as [SDKs and libraries](https://help.vouchsafe.id/en/articles/12026847-vouchsafe-sdks-and-libraries) for popular languages.
  * OpenAPI spec version: 0.1.0
  */
+import type { AdverseMediaArticle } from './adverseMediaArticle';
+import type { AdverseMediaResponseStatus } from './adverseMediaResponseStatus';
 
-export type SmartLookupInputChecksItem = 'CreditBureau' | 'OnlineFootprint' | 'AML';
+export interface AdverseMediaResponse {
+  /** Whether the check passed or failed */
+  status: AdverseMediaResponseStatus;
+  /** The threshold used for this check */
+  threshold: number;
+  /** Articles that scored at or above the threshold */
+  strong_matches: AdverseMediaArticle[];
+  /** All articles found, including weak matches, for audit purposes */
+  all_results: AdverseMediaArticle[];
+}

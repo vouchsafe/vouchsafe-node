@@ -12,4 +12,21 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  * OpenAPI spec version: 0.1.0
  */
 
-export type SmartLookupInputChecksItem = 'CreditBureau' | 'OnlineFootprint' | 'AML';
+export interface AdverseMediaArticle {
+  /** Headline of the news article */
+  title: string;
+  /** URL to the original article */
+  link: string;
+  /** Name of the publication */
+  source: string;
+  /**
+   * Publication date as an ISO 8601 timestamp, or null if the date could not be determined
+   * @nullable
+   */
+  published_at: string | null;
+  /** Short excerpt from the article */
+  snippet: string;
+  /** Adversity score (0–100) assigned by the screening model, adjusted for recency.
+Higher scores indicate more serious adverse content. */
+  score: number;
+}

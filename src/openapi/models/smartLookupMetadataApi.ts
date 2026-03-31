@@ -12,17 +12,17 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  * OpenAPI spec version: 0.1.0
  */
 import type { RecordStringUnknown } from './recordStringUnknown';
-import type { SmartLookupMetadataThresholds } from './smartLookupMetadataThresholds';
+import type { SmartLookupMetadataApiThresholds } from './smartLookupMetadataApiThresholds';
 
-export interface SmartLookupMetadata {
+export interface SmartLookupMetadataApi {
   /** The thresholds used for aml and onlineFootprint checks. Defaults to aml: 96, onlineFootprint: 50 */
-  thresholds: SmartLookupMetadataThresholds;
+  thresholds: SmartLookupMetadataApiThresholds;
+  /** Whether tokens were charged for this lookup. False when served entirely from the 4-hour cache. Defaults to true for lookups predating this field. */
+  billable?: boolean;
   /** Raw credit check data (identityMatches, residencyMatches, etc.). Only present when CreditBureau check was performed. */
   creditBureauVerification?: RecordStringUnknown;
   /** Email/phone validation data with scores and signals. Only present when OnlineFootprint check was performed. */
   onlineFootprintVerification?: RecordStringUnknown;
   /** Raw sanctions screening results. Only present when AML check was performed. */
   amlVerification?: RecordStringUnknown;
-  /** Raw CIFAS NFD search results. Only present when NFD check was performed. */
-  nfdVerification?: RecordStringUnknown;
 }

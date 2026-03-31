@@ -2,6 +2,10 @@
 /* eslint-disable */
 // This file is auto-generated. Do not edit manually.
 export * from './_36EnumsEnvironment';
+export * from './adverseMediaArticle';
+export * from './adverseMediaInput';
+export * from './adverseMediaResponse';
+export * from './adverseMediaResponseStatus';
 export * from './alertAccountDetailResponse';
 export * from './alertAccountResponse';
 export * from './alertAccountStatus';
@@ -125,7 +129,6 @@ export * from './necValidationApiDocumentBordersDetected';
 export * from './necValidationApiDocumentBordersDetectedStatus';
 export * from './necValidationApiFaceMatch';
 export * from './necValidationApiFaceMatchStatus';
-export * from './nfdVerificationReport';
 export * from './ofaCheckApi';
 export * from './ofaCheckApiDetails';
 export * from './ofaCheckApiDetailsSignals';
@@ -159,7 +162,6 @@ export * from './radarCheckKindApi';
 export * from './reason';
 export * from './recordAmlVerificationChecksCheckResult';
 export * from './recordCreditBureauVerificationChecksCheckResult';
-export * from './recordNfdVerificationChecksCheckResult';
 export * from './recordStringNever';
 export * from './recordStringUnknown';
 export * from './refereeEvidenceItemApi';
@@ -198,8 +200,8 @@ export * from './searchPostcodeParams';
 export * from './smartLookupInput';
 export * from './smartLookupInputChecksItem';
 export * from './smartLookupInputThresholds';
-export * from './smartLookupMetadata';
-export * from './smartLookupMetadataThresholds';
+export * from './smartLookupMetadataApi';
+export * from './smartLookupMetadataApiThresholds';
 export * from './stepStatusApi';
 export * from './supportingDocumentDetailsApi';
 export * from './supportingDocumentDetailsApiDocumentCategory';

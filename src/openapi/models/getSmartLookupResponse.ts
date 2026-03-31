@@ -14,9 +14,8 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
 import type { AmlVerificationReport } from './amlVerificationReport';
 import type { CreditBureauVerificationReport } from './creditBureauVerificationReport';
 import type { GetSmartLookupResponseChecksItem } from './getSmartLookupResponseChecksItem';
-import type { NfdVerificationReport } from './nfdVerificationReport';
 import type { OnlineFootprintVerificationReport } from './onlineFootprintVerificationReport';
-import type { SmartLookupMetadata } from './smartLookupMetadata';
+import type { SmartLookupMetadataApi } from './smartLookupMetadataApi';
 
 export interface GetSmartLookupResponse {
   id: string;
@@ -37,9 +36,13 @@ export interface GetSmartLookupResponse {
   credit_bureau_verification_report?: CreditBureauVerificationReport;
   online_footprint_verification_report?: OnlineFootprintVerificationReport;
   aml_verification_report?: AmlVerificationReport;
-  nfd_verification_report?: NfdVerificationReport;
-  metadata: SmartLookupMetadata;
-  /** @nullable */
+  /** Whether tokens were charged for this lookup. False when served entirely from the 4-hour cache. */
+  billable: boolean;
+  metadata: SmartLookupMetadataApi;
+  /**
+   * When ongoing AML monitoring was enabled (ISO 8601), or `null` if not active. See [Alerts API](/docs/tag/Alerts).
+   * @nullable
+   */
   alerts_enabled_at: string | null;
   created_at: string;
 }

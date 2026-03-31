@@ -13,9 +13,6 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  */
 
 /**
- * The thresholds used for aml and onlineFootprint checks. Defaults to aml: 96, onlineFootprint: 50
+ * Whether the check passed or failed
  */
-export type SmartLookupMetadataThresholds = {
-  onlineFootprint: number;
-  aml: number;
-};
+export type AdverseMediaResponseStatus = 'PASS' | 'FAIL';

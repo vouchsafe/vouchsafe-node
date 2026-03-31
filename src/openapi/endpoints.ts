@@ -12,6 +12,8 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  * OpenAPI spec version: 0.1.0
  */
 import type {
+  AdverseMediaInput,
+  AdverseMediaResponse,
   AlertAccountDetailResponse,
   ApiErrorResponse,
   AuthenticateInput,
@@ -298,6 +300,14 @@ If you have enabled "On request creation" emails in your flow, this also sends t
 You can optionally provide more information/claims about the user, like their name, date of birth and address. Any that are provided will be checked against evidence the user gives.
 
 If you do provide additional information about your user, you should let them know the information you are expecting them to verify. This helps prevent users getting stuck when the evidence they have does not match what you have provided.
+
+#### Expiry
+
+Verifications expire after the window configured on your flow (default: **7 days** from creation). Once expired, the verification link stops working and the verification will show as **Expired** in your dashboard.
+
+You can override the expiry for a specific verification using the `expires_at` field. Provide an **ISO 8601 timestamp** (e.g. `2025-08-08T12:00:00Z`). 
+
+**Recommendation:** If you use this field, make sure the window is long enough for the user to receive and complete the verification - we recommend **at least 1 day**. Otherwise, omit `expires_at` and the default flow expiry window will be used.
 
 > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
  */
@@ -642,6 +652,16 @@ The supported checks are:
   - `CreditBureau` checking credit reference agency data, plus public data like the electoral roll
   - `OnlineFootprint` checking against public traces of the user's online activity
   - `AML` checking international sanctions database, watchlists and other lists of high-risk people
+
+### Caching and billing
+
+To avoid unnecessary charges, results are cached on a per-query basis (same person details and same checks):
+
+- **Within 4 hours** — all check data is returned from cache and you are not charged (`billable: false`)
+- **Between 4 hours and 7 days** — all checks run fresh except `CreditBureau`, which is returned from cache; you are charged as normal (`billable: true`)
+- **After 7 days** — all checks run fresh and you are charged as normal (`billable: true`)
+
+The `billable` field in the response body indicates whether tokens were charged for this call.
 
 > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
  */
@@ -1240,6 +1260,71 @@ export const toggleAlerts = async (id: string,
   
   const data: toggleAlertsResponse['data'] = body ? JSON.parse(body) : {}
   return { data, status: res.status, headers: res.headers } as toggleAlertsResponse
+}
+
+
+
+/**
+ * <div style="background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;">
+<strong style="color: #c62828;">Experimental (beta):</strong> This is a new endpoint. The interface or behaviour may change without notice.
+</div>
+
+Screen an individual against recent news coverage for adverse or negative reporting.
+
+Each article returned by the search is scored from 0–100 for the severity of its content by our AI screening model. Articles at or above the threshold are returned as `strong_matches` and cause the overall `status` to be `FAIL`.
+
+All articles found are also returned in `all_results` for audit purposes, including those that scored below the threshold.
+
+Providing a `location` is strongly recommended — it significantly improves search precision and reduces false positives for common names.
+ */
+export type performAdverseMediaCheckResponse200 = {
+  data: AdverseMediaResponse
+  status: 200
+}
+
+export type performAdverseMediaCheckResponse400 = {
+  data: ApiErrorResponse
+  status: 400
+}
+
+export type performAdverseMediaCheckResponse401 = {
+  data: ApiErrorResponse
+  status: 401
+}
+
+export type performAdverseMediaCheckResponseSuccess = (performAdverseMediaCheckResponse200) & {
+  headers: Headers;
+};
+export type performAdverseMediaCheckResponseError = (performAdverseMediaCheckResponse400 | performAdverseMediaCheckResponse401) & {
+  headers: Headers;
+};
+
+export type performAdverseMediaCheckResponse = (performAdverseMediaCheckResponseSuccess | performAdverseMediaCheckResponseError)
+
+export const getPerformAdverseMediaCheckUrl = () => {
+
+
+  
+
+  return `https://app.vouchsafe.id/api/v1/adverse-media`
+}
+
+export const performAdverseMediaCheck = async (adverseMediaInput: AdverseMediaInput, options?: RequestInit): Promise<performAdverseMediaCheckResponse> => {
+  
+  const res = await fetch(getPerformAdverseMediaCheckUrl(),
+  {      
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      adverseMediaInput,)
+  }
+)
+
+  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
+  
+  const data: performAdverseMediaCheckResponse['data'] = body ? JSON.parse(body) : {}
+  return { data, status: res.status, headers: res.headers } as performAdverseMediaCheckResponse
 }
 
 

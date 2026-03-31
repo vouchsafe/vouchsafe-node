@@ -11,11 +11,18 @@ To use the API, you need a client ID and secret from the Vouchsafe dashboard. [S
 We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_ZNWBPnysvwmdIwboLViE8) showing the basics, as well as [SDKs and libraries](https://help.vouchsafe.id/en/articles/12026847-vouchsafe-sdks-and-libraries) for popular languages.
  * OpenAPI spec version: 0.1.0
  */
-import type { CheckResult } from './checkResult';
 
-/**
- * Construct a type with a set of properties K of type T
- */
-export interface RecordNfdVerificationChecksCheckResult {
-  NFD_SEARCH: CheckResult;
+export interface AdverseMediaInput {
+  /** Given name */
+  first_name: string;
+  /** Middle name(s), space-separated. Including middle names improves search precision. */
+  middle_names?: string;
+  /** Family name */
+  last_name: string;
+  /** City, county, or country. Strongly recommended: including a location significantly improves
+search precision and reduces false positives for common names. */
+  location?: string;
+  /** Adversity score threshold (0–100). Articles scoring at or above this value are
+treated as strong matches and will cause the check to fail. Defaults to 70. */
+  threshold?: number;
 }
