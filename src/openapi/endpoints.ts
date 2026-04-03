@@ -31,6 +31,7 @@ import type {
   ListFlowsResponse,
   ListVerificationsParams,
   ListVerificationsResponse,
+  PhotoIdVerificationResponse,
   PostcodeResponse,
   RequestVerificationInput,
   RequestVerificationResponse,
@@ -40,6 +41,7 @@ import type {
   Team,
   ToggleAlertsInput,
   ToggleAlertsResponse,
+  VerifyPhotoIdBody,
   VerifySupportingDocumentBody
 } from './models';
 
@@ -154,6 +156,113 @@ if(verifySupportingDocumentBody.minimum_document_length !== undefined) {
   
   const data: verifySupportingDocumentResponse['data'] = body ? JSON.parse(body) : {}
   return { data, status: res.status, headers: res.headers } as verifySupportingDocumentResponse
+}
+
+
+
+/**
+ * <div style="background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;">
+<strong style="color: #c62828;">Experimental (beta):</strong> This feature is new and currently in beta.
+</div>
+
+This endpoint extracts details from a photo ID, validates the fields, and optionally matches the document photo to a face scan.
+
+You provide:
+- `sub_type` (required) - must be one of:
+   - `Passport`
+   - `NationalId` (MRZ-enabled IDs only)
+   - `DrivingLicence` (GB and EU countries)
+   - `PASSCard` (including Citizencard and Young Scot)
+   - `UnfamiliarPhotoId`
+- `front` (required) - the front of the photo ID document.
+- `back` (`NationalId` only) - the back of the photo ID document.
+- `country_code` (`DrivingLicence` only) - the issuing country as an ISO 3166-1 alpha-2 (e.g. `GB`, `DE`, `FR`).
+- `face_scan` (optional) - a face image to compare with the photo on the document.
+
+> **File requirements:** Max 10MB per file; JPEG or PNG only.
+
+> **Sandbox testing:** In sandbox mode, the endpoint returns a mock “pass” response. It echoes back your reference values. It does not process the document.
+ */
+export type verifyPhotoIdResponse200 = {
+  data: PhotoIdVerificationResponse
+  status: 200
+}
+
+export type verifyPhotoIdResponse400 = {
+  data: ApiErrorResponse
+  status: 400
+}
+
+export type verifyPhotoIdResponse401 = {
+  data: ApiErrorResponse
+  status: 401
+}
+
+export type verifyPhotoIdResponse403 = {
+  data: ApiErrorResponse
+  status: 403
+}
+
+export type verifyPhotoIdResponse422 = {
+  data: ApiErrorResponse
+  status: 422
+}
+
+export type verifyPhotoIdResponse501 = {
+  data: ApiErrorResponse
+  status: 501
+}
+
+export type verifyPhotoIdResponse503 = {
+  data: ApiErrorResponse
+  status: 503
+}
+
+export type verifyPhotoIdResponseSuccess = (verifyPhotoIdResponse200) & {
+  headers: Headers;
+};
+export type verifyPhotoIdResponseError = (verifyPhotoIdResponse400 | verifyPhotoIdResponse401 | verifyPhotoIdResponse403 | verifyPhotoIdResponse422 | verifyPhotoIdResponse501 | verifyPhotoIdResponse503) & {
+  headers: Headers;
+};
+
+export type verifyPhotoIdResponse = (verifyPhotoIdResponseSuccess | verifyPhotoIdResponseError)
+
+export const getVerifyPhotoIdUrl = () => {
+
+
+  
+
+  return `https://app.vouchsafe.id/api/v1/verify/photo-id`
+}
+
+export const verifyPhotoId = async (verifyPhotoIdBody: VerifyPhotoIdBody, options?: RequestInit): Promise<verifyPhotoIdResponse> => {
+    const formData = new FormData();
+formData.append(`sub_type`, verifyPhotoIdBody.sub_type);
+formData.append(`front`, verifyPhotoIdBody.front);
+if(verifyPhotoIdBody.back !== undefined) {
+ formData.append(`back`, verifyPhotoIdBody.back);
+ }
+if(verifyPhotoIdBody.country_code !== undefined) {
+ formData.append(`country_code`, verifyPhotoIdBody.country_code);
+ }
+if(verifyPhotoIdBody.face_scan !== undefined) {
+ formData.append(`face_scan`, verifyPhotoIdBody.face_scan);
+ }
+
+  const res = await fetch(getVerifyPhotoIdUrl(),
+  {      
+    ...options,
+    method: 'POST'
+    ,
+    body: 
+      formData,
+  }
+)
+
+  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
+  
+  const data: verifyPhotoIdResponse['data'] = body ? JSON.parse(body) : {}
+  return { data, status: res.status, headers: res.headers } as verifyPhotoIdResponse
 }
 
 
@@ -655,11 +764,7 @@ The supported checks are:
 
 ### Caching and billing
 
-To avoid unnecessary charges, results are cached on a per-query basis (same person details and same checks):
-
-- **Within 4 hours** — all check data is returned from cache and you are not charged (`billable: false`)
-- **Between 4 hours and 7 days** — all checks run fresh except `CreditBureau`, which is returned from cache; you are charged as normal (`billable: true`)
-- **After 7 days** — all checks run fresh and you are charged as normal (`billable: true`)
+To make it easier to test and demo, if you run the same smart lookup query within four hours, your results will be cached and you will not be charged again.
 
 The `billable` field in the response body indicates whether tokens were charged for this call.
 
@@ -1275,7 +1380,7 @@ Each article returned by the search is scored from 0–100 for the severity of i
 
 All articles found are also returned in `all_results` for audit purposes, including those that scored below the threshold.
 
-Providing a `location` is strongly recommended — it significantly improves search precision and reduces false positives for common names.
+Providing a `location` is strongly recommended: it significantly improves search precision and reduces false positives for common names.
  */
 export type performAdverseMediaCheckResponse200 = {
   data: AdverseMediaResponse
