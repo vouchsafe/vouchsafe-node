@@ -12,20 +12,4 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  * OpenAPI spec version: 0.1.0
  */
 
-/**
- * Extracted identity and status details from the eVisa verification.
-On a `pass` outcome, all fields for the sub-type will be populated.
-On a `fail` outcome, fields may be partially populated or empty depending on which validation step failed.
- */
-export interface EvisaBaseExtractedDetails {
-  first_name?: string;
-  last_name?: string;
-  date_of_birth?: string;
-  share_code?: string;
-  reference_number?: string;
-  /**
-   * Expiration date in `yyyy-MM-dd` format, or `null` for indefinite statuses (e.g. Settled, ILR).
-   * @nullable
-   */
-  expiration_date?: string | null;
-}
+export type PhotoIdVerificationResponseVerificationMethod = 'photo_id';

@@ -15,8 +15,11 @@ import type { PhotoIdExtractedDetails } from './photoIdExtractedDetails';
 import type { PhotoIdMethodResponse } from './photoIdMethodResponse';
 import type { PhotoIdValidation } from './photoIdValidation';
 import type { PhotoIdVerificationResponseOutcome } from './photoIdVerificationResponseOutcome';
+import type { PhotoIdVerificationResponseVerificationMethod } from './photoIdVerificationResponseVerificationMethod';
 
 export interface PhotoIdVerificationResponse {
+  verification_method: PhotoIdVerificationResponseVerificationMethod;
+  billable: boolean;
   evidence_type: PhotoIdMethodResponse;
   outcome: PhotoIdVerificationResponseOutcome;
   extracted_details: PhotoIdExtractedDetails;

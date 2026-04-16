@@ -268,11 +268,7 @@ if(verifyPhotoIdBody.face_scan !== undefined) {
 
 
 /**
- * <div style="background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;">
-<strong style="color: #c62828;">Experimental (beta):</strong> This feature is new and currently in beta.
-</div>
-
-Verify a person's UK eVisa using their Home Office share code.
+ * Verify a person's UK eVisa using their Home Office share code.
 
 This endpoint allows you to verify a person's `immigration status`, `right to work`, or `right to rent` eVisa
 by providing their share code and date of birth. The share code is obtained by
@@ -284,19 +280,6 @@ the individual from the UK Home Office online service.
 - `RightToRent` - Check a person's right to rent property in the UK
 
 > **Request behaviour:** This is a synchronous endpoint. It can take up to 20 seconds.
-
-**Response fields by sub-type:**
-The response fields directly reflect the information available on a particular eVisa sub-type.
-On a `pass` outcome, all fields for the sub-type will be populated. On a `fail` outcome, `extracted_details` may be partially populated or empty depending on which validation step failed.
-On an `inconclusive` outcome (see below), all identity fields are populated but date-based validations could not be performed.
-
-**Inconclusive outcome (`ImmigrationStatus` only):**
-Some immigration statuses are indefinite (i.e. they have no expiry date or start date on GOV.UK) but are not yet on our recognised list. In this case the eVisa is successfully retrieved and all identity details are returned, but the date validations (`evisa_started`, `evisa_not_expired`) cannot be performed. The response will have:
-- `outcome: "inconclusive"`
-- `evisa_started` and `evisa_not_expired` both with `status: "inconclusive"` and `failed_reasons: ["UNRECOGNISED_INDEFINITE_STATUS"]`
-- `expiration_date: null` and `valid_from: null` in `extracted_details`
-
-This outcome only applies to `ImmigrationStatus`. `RightToWork` and `RightToRent` always return dates from GOV.UK.
 
 **Response summary:**
 | HTTP Status | Meaning | Action |
@@ -317,15 +300,41 @@ You have **30 minutes** to download them before the URLs expire.
 
 
 **Sandbox testing:**
-Use these share codes in sandbox mode to test different outcomes:
+Use these share codes in [sandbox mode](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work) to test different outcomes:
 - `PASS12345` - Returns a successful verification with "Pass" outcome
 - `FAIL12345` - Returns a failed verification (e.g. expired status)
 - `INC123456` - Returns an inconclusive verification (unrecognised indefinite immigration status)
 - `ERROR1234` - Returns an error response
 - `BADCODE12` - Returns a non-billable failed verification (e.g. invalid share code)
 - `WRONGDOB1` - Returns a non-billable failed verification (e.g. wrong date of birth)
+**Response fields by outcome:**
+- `pass`: all fields for the sub-type will be populated.
+- `fail`: `extracted_details` may be partially populated or empty depending on which validation step failed.
+- `inconclusive`: all identity fields are populated but date-based validations could not be performed.
 
-> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+**Inconclusive outcome (`ImmigrationStatus` only):**
+Some immigration statuses are indefinite (i.e. they have no expiry date or start date on GOV.UK) but are not yet on our recognised list. In this case the eVisa is successfully retrieved and all identity details are returned, but the date validations (`evisa_started`, `evisa_not_expired`) cannot be performed. The response will have:
+- `outcome: "inconclusive"`
+- `evisa_started` and `evisa_not_expired` both with `status: "inconclusive"` and `failed_reasons: ["UNRECOGNISED_INDEFINITE_STATUS"]`
+- `expiration_date: null` and `valid_from: null` in `extracted_details`
+
+**eVisa conditions:**
+> This feature is experimental and only available for `RightToWork` eVisas.
+The `evisa_conditions` object (within `extracted_details`) contains employment conditions extracted
+verbatim from the eVisa text. Each field is the exact phrase as it appears on GOV.UK, or `null`
+if that condition could not be extracted from the eVisa.
+
+Always check `extraction_success` before using these fields:
+- **`true`**: conditions were successfully extracted — each non-null value is a verbatim quote from the eVisa
+- **`false`**: extraction could not be performed — manually review the conditions on the eVisa
+
+**Available fields:**
+
+- `max_weekly_hours` (string | null): verbatim phrase stating a limit on weekly working hours, or `null` if uncapped.
+  Covers both primary job caps (e.g. student term-time limit) and additional part-time caps (e.g. sponsored workers).
+
+- `no_self_employment` (string | null): verbatim phrase prohibiting running a business or being self-employed,
+  or `null` if no such prohibition is stated.
  */
 export type verifyEvisaResponse200 = {
   data: EvisaVerificationResponse

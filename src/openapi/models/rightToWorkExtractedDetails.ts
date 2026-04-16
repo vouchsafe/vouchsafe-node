@@ -11,9 +11,22 @@ To use the API, you need a client ID and secret from the Vouchsafe dashboard. [S
 We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_ZNWBPnysvwmdIwboLViE8) showing the basics, as well as [SDKs and libraries](https://help.vouchsafe.id/en/articles/12026847-vouchsafe-sdks-and-libraries) for popular languages.
  * OpenAPI spec version: 0.1.0
  */
-import type { EvisaBaseExtractedDetails } from './evisaBaseExtractedDetails';
+import type { EvisaConditionsApiResponse } from './evisaConditionsApiResponse';
 
 /**
- * Extracted details for `RightToWork` — includes all base fields.
+ * Extracted details for `RightToWork` — includes all base fields plus optional `evisa_conditions`.
  */
-export type RightToWorkExtractedDetails = EvisaBaseExtractedDetails;
+export interface RightToWorkExtractedDetails {
+  first_name?: string;
+  last_name?: string;
+  date_of_birth?: string;
+  share_code?: string;
+  reference_number?: string;
+  /**
+   * Expiration date in `yyyy-MM-dd` format, or `null` for indefinite statuses (e.g. Settled, ILR).
+   * @nullable
+   */
+  expiration_date?: string | null;
+  /** Structured employment conditions extracted from the eVisa */
+  evisa_conditions?: EvisaConditionsApiResponse;
+}
