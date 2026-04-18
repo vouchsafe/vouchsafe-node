@@ -15,7 +15,7 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
 export type ImmigrationStatusInputPayload = {
   /** Reason for the verification (max 50 characters) */
   reason: string;
-  /** Job title of the person being verified */
+  /** Job title of the person conducting or responsible for the verification */
   job_title: string;
   /** Name of the company requesting the verification */
   company_name: string;

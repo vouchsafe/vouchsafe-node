@@ -21,14 +21,12 @@ import type { ScoreCheckFaceMatchErrorCode } from './scoreCheckFaceMatchErrorCod
 
 export interface PASSCardValidation {
   /** Whether the card details matched the issuer's database.
-Absent when issuer verification was not performed — e.g. YoungScot cards issued
-by individual councils cannot be verified against a central database. */
+Absent when issuer verification was not performed */
   matches_issuer_database?: CheckPASSCardFailedReason;
   /** Whether all required fields were successfully extracted from the document. */
   required_fields_extracted: CheckPASSCardFailedReason;
   /** Whether all visual identifiers match encoded data.
-Absent when issuer verification was not performed — e.g. YoungScot cards issued
-by individual councils cannot be verified against a central database. */
+Absent when issuer verification was not performed */
   compound_identifiers_match: CompoundIdentifiersCheckPASSCardFailedReason;
   /** Whether the extracted identifier (e.g. card number) matches the expected format. */
   identifier_format_valid: CheckPASSCardFailedReason;

@@ -12,4 +12,4 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  * OpenAPI spec version: 0.1.0
  */
 
-export type SupportingDocumentEvidenceType = 'payslip' | 'pension_annual_statement' | 'benefits_letter' | 'hmpps_letter' | 'nhs_letter' | 'bank_statement' | 'credit_card_statement' | 'mortgage_statement' | 'utility_bill' | 'mobile_phone_bill';
+export type SupportingDocumentEvidenceType = 'payslip' | 'pension_annual_statement' | 'benefits_letter' | 'hmpps_letter' | 'nhs_letter' | 'bank_statement' | 'credit_card_statement' | 'mortgage_statement' | 'utility_bill' | 'mobile_phone_bill' | 'paye_tax_summary';
