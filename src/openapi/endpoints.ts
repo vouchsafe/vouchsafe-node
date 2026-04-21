@@ -320,11 +320,10 @@ Some immigration statuses are indefinite (i.e. they have no expiry date or start
 
 **eVisa conditions:**
 > This feature is experimental and only available for `RightToWork` eVisas.
-The `evisa_conditions` object (within `extracted_details`) contains employment conditions extracted
-verbatim from the eVisa text. Each field is the exact phrase as it appears on GOV.UK, or `null`
-if that condition could not be extracted from the eVisa.
+The `evisa_conditions` object (within the `extracted_details` object) contains certain employment conditions extracted
+verbatim from the eVisa text or `null` if that condition could not be extracted from the eVisa.
 
-Always check `extraction_success` before using these fields:
+Always check `extraction_success` before using the object:
 - **`true`**: conditions were successfully extracted — each non-null value is a verbatim quote from the eVisa
 - **`false`**: extraction could not be performed — manually review the conditions on the eVisa
 
