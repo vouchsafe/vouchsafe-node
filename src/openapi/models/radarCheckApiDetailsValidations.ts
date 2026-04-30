@@ -15,7 +15,10 @@ import type { RadarCheckApiDetailsValidationsNoKnownFraudsterMatch } from './rad
 import type { ValidationOutcomeApi } from './validationOutcomeApi';
 
 export type RadarCheckApiDetailsValidations = {
+  /** Whether the email address is not a disposable address. Only present when an email was provided. */
   not_disposable_email?: ValidationOutcomeApi;
+  /** Whether the identity matches any known fraudster records. */
   no_known_fraudster_match: RadarCheckApiDetailsValidationsNoKnownFraudsterMatch;
+  /** Whether the submission velocity is within normal bounds. */
   normal_velocity_detected: ValidationOutcomeApi;
 };

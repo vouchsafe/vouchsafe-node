@@ -16,7 +16,9 @@ import type { AmlCheckKindApi } from './amlCheckKindApi';
 import type { EnrichmentStatusApi } from './enrichmentStatusApi';
 
 export interface AmlCheckApi {
+  /** The type of AML check performed. */
   check: AmlCheckKindApi;
+  /** Overall outcome of the AML check. */
   outcome: EnrichmentStatusApi;
   details: AmlCheckApiDetails;
 }

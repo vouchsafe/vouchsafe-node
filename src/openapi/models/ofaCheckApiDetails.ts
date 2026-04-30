@@ -15,6 +15,14 @@ import type { OfaCheckApiDetailsSignals } from './ofaCheckApiDetailsSignals';
 
 export type OfaCheckApiDetails = {
   signals: OfaCheckApiDetailsSignals;
-  /** @nullable */
+  /**
+   * Footprint score for the supplied contact detail, or null if unavailable.
+   * @nullable
+   */
   score: number | null;
+  /**
+   * The minimum score required to pass the footprint check.
+   * @nullable
+   */
+  threshold: number | null;
 };

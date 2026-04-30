@@ -13,6 +13,8 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  */
 
 export type OfaCheckApiDetailsSignals = {
+  /** Signals that contributed negatively to the footprint score. */
   negative: string[];
+  /** Signals that contributed positively to the footprint score. */
   positive: string[];
 };

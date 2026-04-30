@@ -20,6 +20,8 @@ export interface ReviewUserCheckApi {
   step: ReviewUserCheckApiStep;
   /** The overall outcome of the referee verification. */
   outcome: StepStatusApi;
+  /** Rejection reason supplied by the referee. Only present in v2 verifications. */
+  reason?: string;
   /** Claims being verified by the referee.
 All claims "pass" when they accept and proceed, or "fail" when they reject.
 Otherwise undefined while they have not made a choice yet. */

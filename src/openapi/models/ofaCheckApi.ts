@@ -16,7 +16,9 @@ import type { OfaCheckApiDetails } from './ofaCheckApiDetails';
 import type { OfaCheckKindApi } from './ofaCheckKindApi';
 
 export interface OfaCheckApi {
+  /** The type of online footprint check performed. */
   check: OfaCheckKindApi;
+  /** Overall outcome of the footprint check. */
   outcome: EnrichmentStatusApi;
   details: OfaCheckApiDetails;
 }

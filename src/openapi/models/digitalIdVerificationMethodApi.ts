@@ -11,14 +11,5 @@ To use the API, you need a client ID and secret from the Vouchsafe dashboard. [S
 We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_ZNWBPnysvwmdIwboLViE8) showing the basics, as well as [SDKs and libraries](https://help.vouchsafe.id/en/articles/12026847-vouchsafe-sdks-and-libraries) for popular languages.
  * OpenAPI spec version: 0.1.0
  */
-import type { EnrichmentStatusApi } from './enrichmentStatusApi';
-import type { RadarCheckApiDetails } from './radarCheckApiDetails';
-import type { RadarCheckKindApi } from './radarCheckKindApi';
 
-export interface RadarCheckApi {
-  /** The type of Radar check performed. */
-  check: RadarCheckKindApi;
-  /** Overall outcome of the Radar check. */
-  outcome: EnrichmentStatusApi;
-  details: RadarCheckApiDetails;
-}
+export type DigitalIdVerificationMethodApi = 'sweden_bank_id' | 'one_id' | 'yoti' | 'nigeria_nin_lookup' | 'uk_immigration_status_evisa' | 'uk_right_to_rent_evisa' | 'uk_right_to_work_evisa';

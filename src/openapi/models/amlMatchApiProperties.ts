@@ -18,10 +18,16 @@ import type { AmlMatchApiPropertiesNotes } from './amlMatchApiPropertiesNotes';
 import type { AmlMatchApiPropertiesPosition } from './amlMatchApiPropertiesPosition';
 
 export type AmlMatchApiProperties = {
+  /** Country of birth of the entity. */
   birth_country: AmlMatchApiPropertiesBirthCountry;
+  /** Place of birth of the entity. */
   birth_place: AmlMatchApiPropertiesBirthPlace;
+  /** Date of birth of the entity. */
   birth_date: string;
+  /** Known positions or roles held by the entity. */
   position: AmlMatchApiPropertiesPosition;
+  /** Countries associated with the entity. */
   country: AmlMatchApiPropertiesCountry;
+  /** Freeform notes associated with the entity. */
   notes: AmlMatchApiPropertiesNotes;
 };

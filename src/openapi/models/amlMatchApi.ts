@@ -14,10 +14,15 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
 import type { AmlMatchApiProperties } from './amlMatchApiProperties';
 
 export interface AmlMatchApi {
+  /** Unique identifier for the matched entity. */
   id: string;
+  /** Display name of the matched entity. */
   caption: string;
+  /** Similarity score for this match. */
   score: number;
+  /** ISO 8601 date when the entity was first seen in the sanctions list. */
   first_seen?: string;
+  /** ISO 8601 date when the entity was last seen in the sanctions list. */
   last_seen?: string;
   properties: AmlMatchApiProperties;
 }

@@ -15,9 +15,15 @@ import type { MatchedFraudsterFlagApi } from './matchedFraudsterFlagApi';
 import type { RadarCheckApiDetailsValidationsNoKnownFraudsterMatchRisk } from './radarCheckApiDetailsValidationsNoKnownFraudsterMatchRisk';
 import type { RadarCheckApiDetailsValidationsNoKnownFraudsterMatchStatus } from './radarCheckApiDetailsValidationsNoKnownFraudsterMatchStatus';
 
+/**
+ * Whether the identity matches any known fraudster records.
+ */
 export type RadarCheckApiDetailsValidationsNoKnownFraudsterMatch = {
+  /** Aggregated risk level derived from matched flags, or null if no flags matched. */
   risk: RadarCheckApiDetailsValidationsNoKnownFraudsterMatchRisk;
+  /** Human-readable descriptions for each matched flag. */
   messages: string[];
+  /** Fraudster flags that were matched. Empty when the check passed. */
   flags: MatchedFraudsterFlagApi[];
   status: RadarCheckApiDetailsValidationsNoKnownFraudsterMatchStatus;
 };

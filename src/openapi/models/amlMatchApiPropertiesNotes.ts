@@ -12,4 +12,7 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  * OpenAPI spec version: 0.1.0
  */
 
+/**
+ * Freeform notes associated with the entity.
+ */
 export type AmlMatchApiPropertiesNotes = string | string[];

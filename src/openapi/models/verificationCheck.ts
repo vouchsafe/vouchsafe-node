@@ -16,9 +16,15 @@ import type { EvisaEvidenceItemApi } from './evisaEvidenceItemApi';
 import type { PhotoIdEvidenceItemApi } from './photoIdEvidenceItemApi';
 import type { RefereeEvidenceItemApi } from './refereeEvidenceItemApi';
 import type { ReviewUserCheckApi } from './reviewUserCheckApi';
+import type { StepAddressCreditReferenceAgencyApi } from './stepAddressCreditReferenceAgencyApi';
+import type { StepAddressDigitalIdApi } from './stepAddressDigitalIdApi';
+import type { StepAddressSupportingDocumentApi } from './stepAddressSupportingDocumentApi';
+import type { StepIdentityDigitalIdApi } from './stepIdentityDigitalIdApi';
+import type { StepIdentityPhotoIdApi } from './stepIdentityPhotoIdApi';
+import type { StepIdentityVouchApi } from './stepIdentityVouchApi';
 import type { SupportingDocumentEvidenceItemApi } from './supportingDocumentEvidenceItemApi';
 import type { VerifyEmailCheckApi } from './verifyEmailCheckApi';
 import type { VerifyPhoneNumberCheckApi } from './verifyPhoneNumberCheckApi';
 import type { VideoSelfieCheckApi } from './videoSelfieCheckApi';
 
-export type VerificationCheck = VideoSelfieCheckApi | VerifyEmailCheckApi | VerifyPhoneNumberCheckApi | ReviewUserCheckApi | PhotoIdEvidenceItemApi | SupportingDocumentEvidenceItemApi | BankAccountEvidenceItemApi | EvisaEvidenceItemApi | RefereeEvidenceItemApi;
+export type VerificationCheck = VideoSelfieCheckApi | VerifyEmailCheckApi | VerifyPhoneNumberCheckApi | ReviewUserCheckApi | PhotoIdEvidenceItemApi | SupportingDocumentEvidenceItemApi | BankAccountEvidenceItemApi | EvisaEvidenceItemApi | RefereeEvidenceItemApi | StepIdentityDigitalIdApi | StepIdentityPhotoIdApi | StepIdentityVouchApi | StepAddressDigitalIdApi | StepAddressCreditReferenceAgencyApi | StepAddressSupportingDocumentApi;

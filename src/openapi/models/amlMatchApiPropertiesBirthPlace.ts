@@ -12,4 +12,7 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  * OpenAPI spec version: 0.1.0
  */
 
+/**
+ * Place of birth of the entity.
+ */
 export type AmlMatchApiPropertiesBirthPlace = string | string[];

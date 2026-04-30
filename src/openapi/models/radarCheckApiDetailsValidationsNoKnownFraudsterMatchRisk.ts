@@ -13,4 +13,7 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  */
 import type { RiskApi } from './riskApi';
 
+/**
+ * Aggregated risk level derived from matched flags, or null if no flags matched.
+ */
 export type RadarCheckApiDetailsValidationsNoKnownFraudsterMatchRisk = RiskApi | null;
