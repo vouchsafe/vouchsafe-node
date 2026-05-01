@@ -32,8 +32,8 @@ export interface PassportValidationApi {
   referee_biometrics_dissimilar?: ValidationOutcomeApi;
   /** Whether key identifiers (for example number + DOB) match consistently. */
   compound_identifiers_match: ValidationOutcomeApi;
-  /** Whether the document is in date. */
-  has_not_expired: ValidationOutcomeApi;
+  /** Whether the document is in date. Omitted when the flow permits expired documents. */
+  has_not_expired?: ValidationOutcomeApi;
   /** Whether the MRZ format is valid (TD3 expected). */
   icao_format_valid: ValidationOutcomeApi;
   /** Whether the issuing country is allowed. */

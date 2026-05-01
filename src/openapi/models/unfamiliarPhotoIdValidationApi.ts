@@ -32,6 +32,6 @@ export interface UnfamiliarPhotoIdValidationApi {
   referee_biometrics_dissimilar?: ValidationOutcomeApi;
   /** Whether expected security features are present. */
   security_features_present: ValidationOutcomeApi;
-  /** Whether the document is in date. */
-  has_not_expired: ValidationOutcomeApi;
+  /** Whether the document is in date. Omitted when the flow permits expired documents. */
+  has_not_expired?: ValidationOutcomeApi;
 }

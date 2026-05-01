@@ -36,8 +36,8 @@ export interface GetVerificationResponse {
    * @nullable
    */
   redirect_url: string | null;
-  /** The verification flow it belongs to. */
-  workflow_id: string;
+  /** The verification flow it belongs to. For v2 referee cases, this is not present. */
+  workflow_id?: string;
   /**
    * An identifier from your own systems, to avoid needing to store Vouchsafe's own ID Provided at request time.
    * @nullable

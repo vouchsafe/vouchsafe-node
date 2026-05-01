@@ -32,6 +32,6 @@ export interface CitizenCardValidationApi {
   referee_biometrics_dissimilar?: ValidationOutcomeApi;
   /** Whether the card details match the issuer database. */
   matches_issuer_database: ValidationOutcomeApi;
-  /** Whether the document is in date. */
-  has_not_expired: ValidationOutcomeApi;
+  /** Whether the document is in date. Omitted when the flow permits expired documents. */
+  has_not_expired?: ValidationOutcomeApi;
 }
