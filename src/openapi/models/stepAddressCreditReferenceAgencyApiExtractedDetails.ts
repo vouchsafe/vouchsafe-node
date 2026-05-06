@@ -29,4 +29,14 @@ export type StepAddressCreditReferenceAgencyApiExtractedDetails = {
    * @nullable
    */
   first_line_of_address: string | null;
+  /**
+   * Last name that was checked against the credit bureau.
+   * @nullable
+   */
+  last_name: string | null;
+  /**
+   * First name that was checked against the credit bureau.
+   * @nullable
+   */
+  first_name: string | null;
 };
