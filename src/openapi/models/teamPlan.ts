@@ -15,4 +15,4 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
 /**
  * Which plan is the team on?
  */
-export type TeamPlan = 'Trial' | 'PAYG' | 'Flex' | 'Enterprise';
+export type TeamPlan = 'Trial' | 'PAYG' | 'Lite' | 'Flex' | 'Enterprise';
