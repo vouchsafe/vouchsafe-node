@@ -14,7 +14,6 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
 import type { AmlVerificationReport } from './amlVerificationReport';
 import type { CreditBureauVerificationReport } from './creditBureauVerificationReport';
 import type { GetSmartLookupResponseChecksItem } from './getSmartLookupResponseChecksItem';
-import type { NfdVerificationReport } from './nfdVerificationReport';
 import type { OnlineFootprintVerificationReport } from './onlineFootprintVerificationReport';
 import type { SmartLookupMetadataApi } from './smartLookupMetadataApi';
 
@@ -45,6 +44,5 @@ export interface GetSmartLookupResponse {
    * @nullable
    */
   alerts_enabled_at: string | null;
-  nfd_verification_report?: NfdVerificationReport;
   created_at: string;
 }

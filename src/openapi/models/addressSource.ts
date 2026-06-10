@@ -13,4 +13,3 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  */
 
 export type AddressSource = 'digital_id' | 'manual_entry' | 'claims_to_verify';
-export type FraudFlag = 'FACE_SCAN_BLOCKED' | 'NAME_SUSPICIOUS' | 'BURNER_EMAIL' | 'BLOCKED_EMAIL' | 'BURNER_PHONE_NUMBER' | 'HIGH_RISK_COUNTRY_PHONE_NUMBER' | 'FRAUD_SUSPICION';
