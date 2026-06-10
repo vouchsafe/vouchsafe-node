@@ -33,7 +33,9 @@ if (swagger.components?.schemas?.Api_VerificationCheck_) {
   // Extract the anyOf array to build mapping
   const anyOf = swagger.components.schemas.Api_VerificationCheck_.anyOf || [];
   const mapping = {};
-  
+  // Track variants grouped by step value to handle v2 types that share a step (e.g. step_identity)
+  const stepGroups = {};
+
   // Build discriminator mapping from each variant's step enum value
   anyOf.forEach((variant, index) => {
     const stepEnum = variant.properties?.step?.enum?.[0];
@@ -41,10 +43,26 @@ if (swagger.components?.schemas?.Api_VerificationCheck_) {
       // Create a named schema for this variant
       const schemaName = `Api_VerificationCheck_${index}`;
       swagger.components.schemas[schemaName] = variant;
-      mapping[stepEnum] = `#/components/schemas/${schemaName}`;
+      if (!stepGroups[stepEnum]) stepGroups[stepEnum] = [];
+      stepGroups[stepEnum].push(`#/components/schemas/${schemaName}`);
     }
   });
-  
+
+  // Build final mapping — group multiple variants sharing the same step value into a combined anyOf schema
+  for (const [stepEnum, refs] of Object.entries(stepGroups)) {
+    if (refs.length === 1) {
+      mapping[stepEnum] = refs[0];
+    } else {
+      // Multiple subtypes share this step value (e.g. step_identity has photo_id / vouch / digital_id)
+      // Create a combined anyOf schema so the secondary discriminator (method) can be resolved downstream
+      const combinedSchemaName = `Api_VerificationCheck_${stepEnum.replace(/_/g, '')}`;
+      swagger.components.schemas[combinedSchemaName] = {
+        anyOf: refs.map(ref => ({ $ref: ref }))
+      };
+      mapping[stepEnum] = `#/components/schemas/${combinedSchemaName}`;
+    }
+  }
+
   // Replace inline anyOf with refs
   swagger.components.schemas.Api_VerificationCheck_.anyOf = Object.keys(mapping).map(key => {
     return { $ref: mapping[key] };
@@ -64,7 +82,8 @@ if (swagger.components?.schemas?.Api_VerificationEnrichment_) {
   // Extract the anyOf array to build mapping
   const anyOf = swagger.components.schemas.Api_VerificationEnrichment_.anyOf || [];
   const mapping = {};
-  
+  const checkGroups = {};
+
   // Build discriminator mapping from each variant's check enum value
   anyOf.forEach((variant, index) => {
     const checkEnum = variant.properties?.check?.enum?.[0];
@@ -72,10 +91,24 @@ if (swagger.components?.schemas?.Api_VerificationEnrichment_) {
       // Create a named schema for this variant
       const schemaName = `Api_VerificationEnrichment_${index}`;
       swagger.components.schemas[schemaName] = variant;
-      mapping[checkEnum] = `#/components/schemas/${schemaName}`;
+      if (!checkGroups[checkEnum]) checkGroups[checkEnum] = [];
+      checkGroups[checkEnum].push(`#/components/schemas/${schemaName}`);
     }
   });
-  
+
+  // Build final mapping — group multiple variants sharing the same check value into a combined anyOf schema
+  for (const [checkEnum, refs] of Object.entries(checkGroups)) {
+    if (refs.length === 1) {
+      mapping[checkEnum] = refs[0];
+    } else {
+      const combinedSchemaName = `Api_VerificationEnrichment_${checkEnum.replace(/_/g, '')}`;
+      swagger.components.schemas[combinedSchemaName] = {
+        anyOf: refs.map(ref => ({ $ref: ref }))
+      };
+      mapping[checkEnum] = `#/components/schemas/${combinedSchemaName}`;
+    }
+  }
+
   // Replace inline anyOf with refs
   swagger.components.schemas.Api_VerificationEnrichment_.anyOf = Object.keys(mapping).map(key => {
     return { $ref: mapping[key] };

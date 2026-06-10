@@ -281,6 +281,19 @@ the individual from the UK Home Office online service.
 
 > **Request behaviour:** This is a synchronous endpoint. It can take up to 20 seconds.
 
+**Response fields by sub-type:**
+The response fields directly reflect the information available on a particular eVisa sub-type.
+On a `pass` outcome, all fields for the sub-type will be populated. On a `fail` outcome, `extracted_details` may be partially populated or empty depending on which validation step failed.
+On an `inconclusive` outcome (see below), all identity fields are populated but date-based validations could not be performed.
+
+**Inconclusive outcome (`ImmigrationStatus` only):**
+Some immigration statuses are indefinite (i.e. they have no expiry date or start date on GOV.UK) but are not yet on our recognised list. In this case the eVisa is successfully retrieved and all identity details are returned, but the date validations (`evisa_started`, `evisa_not_expired`) cannot be performed. The response will have:
+- `outcome: "inconclusive"`
+- `evisa_started` and `evisa_not_expired` both with `status: "inconclusive"` and `failed_reasons: ["UNRECOGNISED_INDEFINITE_STATUS"]`
+- `expiration_date: null` and `valid_from: null` in `extracted_details`
+
+This outcome only applies to `ImmigrationStatus`. `RightToWork` and `RightToRent` always return dates from GOV.UK.
+
 **Response summary:**
 | HTTP Status | Meaning | Action |
 |-------------|---------|--------|
