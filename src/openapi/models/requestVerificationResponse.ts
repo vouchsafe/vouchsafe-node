@@ -18,6 +18,8 @@ export interface RequestVerificationResponse {
   /** A unique ID for the verification session, for you to track progress. */
   id: string;
   /** The flow it belongs to. */
+  flow_id: string;
+  /** To be deprecated - use flow_id instead. */
   workflow_id?: string;
   /** When the user will stop getting reminders. */
   expires_at: string;

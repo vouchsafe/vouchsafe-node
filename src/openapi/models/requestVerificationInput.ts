@@ -27,11 +27,13 @@ export interface RequestVerificationInput {
   date_of_birth?: string;
   /** Which verification flow to use.
 
-Get the flow ID from the URL of the builder page.
+Get the flow ID from the URL of the flows page.
 
-For example: `/admin/teams/abc123/builder/[workflow_id]`
+For example: `/admin/teams/abc123/flows/[flow_id]`
 
 If not provided, the last published flow is used instead. */
+  flow_id?: string;
+  /** To be deprecated - Use flow_id instead. */
   workflow_id?: string;
   /** An identifier from your own systems, to avoid needing to store Vouchsafe's own ID. */
   external_id?: string;

@@ -11,6 +11,7 @@ To use the API, you need a client ID and secret from the Vouchsafe dashboard. [S
 We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_ZNWBPnysvwmdIwboLViE8) showing the basics, as well as [SDKs and libraries](https://help.vouchsafe.id/en/articles/12026847-vouchsafe-sdks-and-libraries) for popular languages.
  * OpenAPI spec version: 0.1.0
  */
+import type { EvisaConditionsApi } from './evisaConditionsApi';
 
 export interface DigitalIdExtractedDetailsApi {
   /**
@@ -54,4 +55,6 @@ export interface DigitalIdExtractedDetailsApi {
   issuing_country?: string;
   /** Immigration status, if provided by the provider (eVisa flows). */
   immigration_status?: string;
+  /** Employment conditions extracted from the eVisa. Only present for RightToWork. */
+  evisa_conditions?: EvisaConditionsApi;
 }
