@@ -55,6 +55,12 @@ export interface DigitalIdExtractedDetailsApi {
   issuing_country?: string;
   /** Immigration status, if provided by the provider (eVisa flows). */
   immigration_status?: string;
+  /** UK Home Office share code. Only present for eVisa flows. */
+  share_code?: string;
+  /** GOV.UK reference number for the check. Only present for eVisa flows. */
+  reference_number?: string;
+  /** Start date (YYYY-MM-DD) of the immigration permission. Only present for ImmigrationStatus and RightToRent eVisa flows. */
+  valid_from?: string;
   /** Employment conditions extracted from the eVisa. Only present for RightToWork. */
   evisa_conditions?: EvisaConditionsApi;
 }
