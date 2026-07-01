@@ -21,6 +21,13 @@ export interface Verification {
   status: CaseStatus;
   /** When it was originally requested or begun. */
   created_at: string;
+  /**
+   * When the personal data for this verification was erased to fulfil a GDPR erasure request, or `null`
+if it has not been erased. The status and timestamps are retained, but personal data fields
+(`claim_details`, check `extracted_details`, artefacts and enrichments) will be empty once erased.
+   * @nullable
+   */
+  erased_at?: string | null;
   /** When the user will stop getting reminders. */
   expires_at: string;
   /**

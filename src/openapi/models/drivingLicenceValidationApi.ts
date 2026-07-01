@@ -30,6 +30,8 @@ export interface DrivingLicenceValidationApi {
   referee_over_18?: ValidationOutcomeApi;
   /** Whether the referee biometrics differ from the user. */
   referee_biometrics_dissimilar?: ValidationOutcomeApi;
+  /** Whether tampering signals were found. */
+  tampering_signals_check?: ValidationOutcomeApi;
   /** Whether expected security features are present. */
   security_features_present: ValidationOutcomeApi;
   /** Whether the licence identifier format is valid. */

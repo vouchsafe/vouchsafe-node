@@ -30,6 +30,8 @@ export interface PassportValidationApi {
   referee_over_18?: ValidationOutcomeApi;
   /** Whether the referee biometrics differ from the user. */
   referee_biometrics_dissimilar?: ValidationOutcomeApi;
+  /** Whether tampering signals were found. */
+  tampering_signals_check?: ValidationOutcomeApi;
   /** Whether key identifiers (for example number + DOB) match consistently. */
   compound_identifiers_match: ValidationOutcomeApi;
   /** Whether the document is in date. Omitted when the flow permits expired documents. */
