@@ -573,13 +573,14 @@ To download an artefact, use:
 
 This returns a **time-limited pre-signed URL** which can be used to download the file.
 
-#### Erased verifications (GDPR)
+#### Erased verifications
 
 If the data subject has exercised their right to erasure, the verification's `erased_at`
-timestamp will be set. The verification's `status` and timestamps are retained so you keep an
-audit trail, but all personal data (claim details, extracted document details, artefacts and
-enrichments) will be empty. Check `erased_at` to distinguish an erased verification from one
-that simply never collected that data.
+timestamp will be set, and `erased_by` records the operator who ran the erasure. The
+verification's `status` and timestamps are retained so you keep an audit trail, but all
+personal data (claim details, extracted document details, artefacts and enrichments) will be
+empty. Check `erased_at` to distinguish an erased verification from one that simply never
+collected that data.
 
 > This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
  */
