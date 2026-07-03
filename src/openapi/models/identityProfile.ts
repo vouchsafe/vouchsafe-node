@@ -12,4 +12,4 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  * OpenAPI spec version: 0.1.0
  */
 
-export type IdentityProfile = 'M1A' | 'M2C' | 'M3A';
+export type IdentityProfile = 'M1A' | 'M2C';
