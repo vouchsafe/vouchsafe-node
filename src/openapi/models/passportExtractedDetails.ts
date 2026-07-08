@@ -39,6 +39,11 @@ export interface PassportExtractedDetails {
    */
   expiration_date: string | null;
   /**
+   * Date the passport was issued (YYYY-MM-DD), or null if unavailable. Sourced from the VIZ, not the MRZ.
+   * @nullable
+   */
+  date_of_issue: string | null;
+  /**
    * Issuing country as an ISO 3166-1 alpha-3 code (e.g. "GBR"), or null if unavailable.
    * @nullable
    */

@@ -39,6 +39,11 @@ export interface PassportDetailsApi {
    */
   expiration_date: string | null;
   /**
+   * Issue date, if present and extracted. Otherwise null.
+   * @nullable
+   */
+  issue_date?: string | null;
+  /**
    * Issuing country code, if extracted. Otherwise null.
    * @nullable
    */
