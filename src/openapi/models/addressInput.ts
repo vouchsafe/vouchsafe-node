@@ -11,11 +11,20 @@ To use the API, you need a client ID and secret from the Vouchsafe dashboard. [S
 We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_ZNWBPnysvwmdIwboLViE8) showing the basics, as well as [SDKs and libraries](https://help.vouchsafe.id/en/articles/12026847-vouchsafe-sdks-and-libraries) for popular languages.
  * OpenAPI spec version: 0.1.0
  */
-import type { PostcodeFormattedAddress } from './postcodeFormattedAddress';
 
-export interface PostcodeResponse {
-  /** Single-line addresses. */
-  addresses: string[];
-  /** Structured addresses. Feed straight into POST /smart-lookups. */
-  addresses_formatted: PostcodeFormattedAddress[];
+export interface AddressInput {
+  /** Residence/building number, e.g. "10" or "Flat 1". Required (or `building_name`) for CreditBureau. */
+  residence_number?: string;
+  /** Building name, e.g. "Rose Cottage". Required (or `residence_number`) for CreditBureau. */
+  building_name?: string;
+  /** Street / road name. Required for CreditBureau. */
+  street?: string;
+  /** City / town. Required for CreditBureau. */
+  city?: string;
+  /** Postcode. Required for CreditBureau. */
+  postcode?: string;
+  /** State, province, or county. Optional. */
+  region?: string;
+  /** ISO 3166-1 alpha-2 country code, e.g. "GB". Required for CreditBureau. */
+  country_code?: string;
 }

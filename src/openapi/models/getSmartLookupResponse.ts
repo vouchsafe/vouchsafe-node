@@ -13,6 +13,7 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  */
 import type { AmlVerificationReport } from './amlVerificationReport';
 import type { CreditBureauVerificationReport } from './creditBureauVerificationReport';
+import type { GetSmartLookupResponseAddress } from './getSmartLookupResponseAddress';
 import type { GetSmartLookupResponseChecksItem } from './getSmartLookupResponseChecksItem';
 import type { OnlineFootprintVerificationReport } from './onlineFootprintVerificationReport';
 import type { SmartLookupMetadataApi } from './smartLookupMetadataApi';
@@ -25,10 +26,18 @@ export interface GetSmartLookupResponse {
   first_name: string | null;
   /** @nullable */
   last_name: string | null;
-  /** @nullable */
+  /**
+   * To be deprecated. Use `address` instead.
+   * @nullable
+   */
   first_line_of_address: string | null;
-  /** @nullable */
+  /**
+   * To be deprecated. Use `address` instead.
+   * @nullable
+   */
   postcode: string | null;
+  /** Structured address. */
+  address: GetSmartLookupResponseAddress;
   date_of_birth?: string;
   email?: string;
   phone?: string;

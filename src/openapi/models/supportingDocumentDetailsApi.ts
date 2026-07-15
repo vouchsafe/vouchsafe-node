@@ -11,6 +11,7 @@ To use the API, you need a client ID and secret from the Vouchsafe dashboard. [S
 We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_ZNWBPnysvwmdIwboLViE8) showing the basics, as well as [SDKs and libraries](https://help.vouchsafe.id/en/articles/12026847-vouchsafe-sdks-and-libraries) for popular languages.
  * OpenAPI spec version: 0.1.0
  */
+import type { SupportingDocumentDetailsApiAddress } from './supportingDocumentDetailsApiAddress';
 import type { SupportingDocumentDetailsApiDocumentCategory } from './supportingDocumentDetailsApiDocumentCategory';
 
 export interface SupportingDocumentDetailsApi {
@@ -39,6 +40,8 @@ export interface SupportingDocumentDetailsApi {
    * @nullable
    */
   postcode?: string | null;
+  /** Structured address, or null when only inline fields are available. */
+  address?: SupportingDocumentDetailsApiAddress;
   /** What the uploaded document was categorised as. */
   document_category: SupportingDocumentDetailsApiDocumentCategory;
   /**

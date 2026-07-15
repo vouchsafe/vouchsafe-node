@@ -11,6 +11,7 @@ To use the API, you need a client ID and secret from the Vouchsafe dashboard. [S
 We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_ZNWBPnysvwmdIwboLViE8) showing the basics, as well as [SDKs and libraries](https://help.vouchsafe.id/en/articles/12026847-vouchsafe-sdks-and-libraries) for popular languages.
  * OpenAPI spec version: 0.1.0
  */
+import type { StepAddressCreditReferenceAgencyApiExtractedDetailsAddress } from './stepAddressCreditReferenceAgencyApiExtractedDetailsAddress';
 import type { StepAddressCreditReferenceAgencyApiExtractedDetailsAddressSource } from './stepAddressCreditReferenceAgencyApiExtractedDetailsAddressSource';
 
 /**
@@ -19,6 +20,8 @@ import type { StepAddressCreditReferenceAgencyApiExtractedDetailsAddressSource }
 export type StepAddressCreditReferenceAgencyApiExtractedDetails = {
   /** Source of the address information. */
   address_source?: StepAddressCreditReferenceAgencyApiExtractedDetailsAddressSource;
+  /** Structured address, or null for legacy records with only inline fields. */
+  address: StepAddressCreditReferenceAgencyApiExtractedDetailsAddress;
   /**
    * Postcode of the address.
    * @nullable

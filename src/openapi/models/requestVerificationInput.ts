@@ -11,6 +11,7 @@ To use the API, you need a client ID and secret from the Vouchsafe dashboard. [S
 We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_ZNWBPnysvwmdIwboLViE8) showing the basics, as well as [SDKs and libraries](https://help.vouchsafe.id/en/articles/12026847-vouchsafe-sdks-and-libraries) for popular languages.
  * OpenAPI spec version: 0.1.0
  */
+import type { AddressClaimInput } from './addressClaimInput';
 
 export interface RequestVerificationInput {
   /** The user's email address. */
@@ -19,9 +20,11 @@ export interface RequestVerificationInput {
   first_name?: string;
   /** The user's last name, if you have it. */
   last_name?: string;
-  /** The user's street address, if you have it. */
+  /** The user's address, if you have it. Takes precedence over the deprecated `street_address` and `postcode` fields. */
+  address?: AddressClaimInput;
+  /** To be deprecated. Use `address` instead. */
   street_address?: string;
-  /** The user's postcode, if you have it. */
+  /** To be deprecated. Use `address` instead. */
   postcode?: string;
   /** The user's date of birth, if you have it. Format as YYYY-MM-DD or ISO 8601 */
   date_of_birth?: string;

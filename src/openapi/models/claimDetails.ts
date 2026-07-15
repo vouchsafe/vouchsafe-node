@@ -11,6 +11,7 @@ To use the API, you need a client ID and secret from the Vouchsafe dashboard. [S
 We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_ZNWBPnysvwmdIwboLViE8) showing the basics, as well as [SDKs and libraries](https://help.vouchsafe.id/en/articles/12026847-vouchsafe-sdks-and-libraries) for popular languages.
  * OpenAPI spec version: 0.1.0
  */
+import type { ClaimDetailsAddress } from './claimDetailsAddress';
 
 export interface ClaimDetails {
   /** @nullable */
@@ -23,8 +24,16 @@ export interface ClaimDetails {
   last_name: string | null;
   /** @nullable */
   date_of_birth: string | null;
-  /** @nullable */
+  /** Structured address, or `null` for verifications with only the flat address fields. */
+  address?: ClaimDetailsAddress;
+  /**
+   * To be deprecated. Use `address` instead.
+   * @nullable
+   */
   first_line_of_address: string | null;
-  /** @nullable */
+  /**
+   * To be deprecated. Use `address` instead.
+   * @nullable
+   */
   postcode: string | null;
 }

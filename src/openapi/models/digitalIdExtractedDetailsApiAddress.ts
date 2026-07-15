@@ -11,11 +11,9 @@ To use the API, you need a client ID and secret from the Vouchsafe dashboard. [S
 We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_ZNWBPnysvwmdIwboLViE8) showing the basics, as well as [SDKs and libraries](https://help.vouchsafe.id/en/articles/12026847-vouchsafe-sdks-and-libraries) for popular languages.
  * OpenAPI spec version: 0.1.0
  */
-import type { PostcodeFormattedAddress } from './postcodeFormattedAddress';
+import type { AddressDetailsApi } from './addressDetailsApi';
 
-export interface PostcodeResponse {
-  /** Single-line addresses. */
-  addresses: string[];
-  /** Structured addresses. Feed straight into POST /smart-lookups. */
-  addresses_formatted: PostcodeFormattedAddress[];
-}
+/**
+ * Structured address, if available.
+ */
+export type DigitalIdExtractedDetailsApiAddress = AddressDetailsApi | null;

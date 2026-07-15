@@ -11,6 +11,7 @@ To use the API, you need a client ID and secret from the Vouchsafe dashboard. [S
 We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_ZNWBPnysvwmdIwboLViE8) showing the basics, as well as [SDKs and libraries](https://help.vouchsafe.id/en/articles/12026847-vouchsafe-sdks-and-libraries) for popular languages.
  * OpenAPI spec version: 0.1.0
  */
+import type { AddressInput } from './addressInput';
 import type { SmartLookupInputChecksItem } from './smartLookupInputChecksItem';
 import type { SmartLookupInputThresholds } from './smartLookupInputThresholds';
 
@@ -21,9 +22,11 @@ export interface SmartLookupInput {
   last_name: string;
   /** (required) */
   checks: SmartLookupInputChecksItem[];
-  /** (conditionally required) - Required when checks includes CreditBureau; otherwise optional. Should be taken from GET /postcode endpoint */
+  /** Structured address. Required for CreditBureau. */
+  address?: AddressInput;
+  /** To be deprecated. Use `address` instead. */
   first_line_of_address?: string;
-  /** (conditionally required) - Postcode used in GET /postcode. Required when checks includes CreditBureau; otherwise optional. */
+  /** To be deprecated. Use `address` instead. */
   postcode?: string;
   /** (conditionally required) — Email address. Either email or phone is required when checks includes OnlineFootprint; otherwise optional. */
   email?: string;
