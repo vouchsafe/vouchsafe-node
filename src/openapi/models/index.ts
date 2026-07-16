@@ -150,6 +150,7 @@ export * from './failTamperingErrorCode';
 export * from './failTamperingErrorCodeStatus';
 export * from './failUnfamiliarPhotoIdFailedReason';
 export * from './failUnfamiliarPhotoIdFailedReasonStatus';
+export * from './failedReason';
 export * from './failedReasonCONTAINSUNWANTEDPHRASES';
 export * from './failedReasonDOCUMENTCOLORPROFILECHANGED';
 export * from './failedReasonDOCUMENTFEATUREMISSING';
