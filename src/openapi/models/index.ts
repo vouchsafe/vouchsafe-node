@@ -367,6 +367,7 @@ export * from './supportingDocumentEvidenceItemApi';
 export * from './supportingDocumentEvidenceItemApiOutcome';
 export * from './supportingDocumentEvidenceItemApiStep';
 export * from './supportingDocumentEvidenceType';
+export * from './supportingDocumentExtractedAddress';
 export * from './supportingDocumentExtractedDetails';
 export * from './supportingDocumentValidations';
 export * from './supportingDocumentValidationsApi';

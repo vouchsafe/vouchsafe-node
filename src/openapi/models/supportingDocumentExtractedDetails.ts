@@ -11,6 +11,7 @@ To use the API, you need a client ID and secret from the Vouchsafe dashboard. [S
 We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_ZNWBPnysvwmdIwboLViE8) showing the basics, as well as [SDKs and libraries](https://help.vouchsafe.id/en/articles/12026847-vouchsafe-sdks-and-libraries) for popular languages.
  * OpenAPI spec version: 0.1.0
  */
+import type { SupportingDocumentExtractedAddress } from './supportingDocumentExtractedAddress';
 
 /**
  * Extracted details from the supporting document
@@ -24,6 +25,10 @@ export interface SupportingDocumentExtractedDetails {
   first_line_of_address: string | null;
   /** @nullable */
   postcode: string | null;
+  /** Structured addresses, named and shaped as in GET /smart-lookups/postcode.
+Extraction produces at most one address; empty when no address fields
+were extracted. */
+  addresses_formatted: SupportingDocumentExtractedAddress[];
   /** @nullable */
   document_date: string | null;
   /** @nullable */

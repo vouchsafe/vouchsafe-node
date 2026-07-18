@@ -55,6 +55,11 @@ Extract and validate a supporting document.
 
 This endpoint accepts a document file (PDF, JPG, or PNG) and extracts personal identity information and address details.
 
+Extracted addresses are returned both as a flat `first_line_of_address`/`postcode` pair and as structured
+`addresses_formatted` (`residence_number`, `building_name`, `street`, `city`, `postcode`, `region`) — the same
+name and shape as in the postcode search endpoint. Extraction produces at most one address;
+`addresses_formatted` is empty when no address fields were extracted.
+
 **Request format:** This endpoint accepts `multipart/form-data` with:
 - `document` - The document file (PDF, JPG, or PNG, max 10MB)
 - `sub_type` (required) - The type of document (e.g., `BankStatement`, `UtilityBill`). See "Supported document types" below.
