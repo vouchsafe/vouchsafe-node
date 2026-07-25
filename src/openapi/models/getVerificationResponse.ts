@@ -13,7 +13,6 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  */
 import type { CaseStatus } from './caseStatus';
 import type { ClaimDetails } from './claimDetails';
-import type { GetVerificationResponseRefusalReason } from './getVerificationResponseRefusalReason';
 import type { IdentityProfile } from './identityProfile';
 import type { VerificationCheck } from './verificationCheck';
 import type { VerificationEnrichment } from './verificationEnrichment';
@@ -72,6 +71,4 @@ if it has not been erased. The status and timestamps are retained, but personal 
   checks: VerificationCheck[];
   /** The enrichments performed on the verification. */
   enrichments: VerificationEnrichment[];
-  /** Customer-facing reason the verification was auto-refused, or null when there is none. */
-  refusal_reason?: GetVerificationResponseRefusalReason;
 }
