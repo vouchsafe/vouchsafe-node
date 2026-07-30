@@ -47,9 +47,7 @@ import type {
 
 
 /**
- * <div style="background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;">
-<strong style="color: #c62828;">Experimental (beta):</strong> This feature is new and currently in beta.
-</div>
+ * **Experimental (beta):** This feature is new and currently in beta.
 
 Extract and validate a supporting document.
 
@@ -166,9 +164,7 @@ if(verifySupportingDocumentBody.minimum_document_length !== undefined) {
 
 
 /**
- * <div style="background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;">
-<strong style="color: #c62828;">Experimental (beta):</strong> This feature is new and currently in beta.
-</div>
+ * **Experimental (beta):** This feature is new and currently in beta.
 
 This endpoint extracts details from a photo ID, validates the fields, and optionally matches the document photo to a face scan.
 
@@ -1189,9 +1185,7 @@ export const getArtefact = async (artefactKey: string, options?: RequestInit): P
 
 
 /**
- * <div style="background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;">
-<strong style="color: #c62828;">Experimental (beta):</strong> This feature is new and currently in beta.
-</div>
+ * **Experimental (beta):** This feature is new and currently in beta.
 
 List monitored accounts.
 
@@ -1261,9 +1255,7 @@ export const listAccounts = async (params?: ListAccountsParams, options?: Reques
 
 
 /**
- * <div style="background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;">
-<strong style="color: #c62828;">Experimental (beta):</strong> This feature is new and currently in beta.
-</div>
+ * **Experimental (beta):** This feature is new and currently in beta.
 
 Get full account detail.
 
@@ -1328,9 +1320,7 @@ export const getAccountDetail = async (id: string, options?: RequestInit): Promi
 
 
 /**
- * <div style="background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;">
-<strong style="color: #c62828;">Experimental (beta):</strong> This feature is new and currently in beta.
-</div>
+ * **Experimental (beta):** This feature is new and currently in beta.
 
 Toggle ongoing monitoring for an account.
 
@@ -1402,9 +1392,7 @@ export const toggleAlerts = async (id: string,
 
 
 /**
- * <div style="background-color: #ffebee; border-left: 4px solid #c62828; padding: 12px 16px; margin: 10px 0;">
-<strong style="color: #c62828;">Experimental (beta):</strong> This is a new endpoint. The interface or behaviour may change without notice.
-</div>
+ * **Experimental (beta):** This is a new endpoint. The interface or behaviour may change without notice.
 
 Screen an individual against recent news coverage for adverse or negative reporting.
 
