@@ -135,6 +135,38 @@ console.log(result.validations.document_age_valid?.status)
 - Utilities: `UtilityBill`, `MobilePhoneBill`
 - Government: `BenefitsLetter`, `HMPPSLetter`, `NHSLetter`
 
+### Verify a photo ID
+
+Extract and validate a photo ID (passport, national ID, driving licence, PASS card, or unfamiliar photo ID), optionally face-matching it against a selfie:
+
+```ts
+import fs from "fs"
+
+const front = new File([fs.readFileSync("./licence-front.jpg")], "licence-front.jpg", {
+  type: "image/jpeg",
+})
+
+const result = await client.verifyPhotoId({
+  sub_type: "DrivingLicence", // Passport | NationalId | DrivingLicence | PASSCard | UnfamiliarPhotoId
+  front,
+  country_code: "GB", // DrivingLicence only
+  // back,           // NationalId only
+  // face_scan,      // Optional selfie to face-match
+})
+
+console.log(result.outcome) // 'pass' or 'fail'
+console.log(result.extracted_details.first_name)
+console.log(result.validations.has_not_expired?.status)
+```
+
+**Sub types**:
+
+- `Passport` — MRZ-enabled passports
+- `NationalId` — MRZ-enabled national IDs (requires `back`)
+- `DrivingLicence` — GB and EU licences (requires `country_code`)
+- `PASSCard` — PASS-accredited cards (Citizencard, Young Scot)
+- `UnfamiliarPhotoId` — any other photo ID
+
 ### List verification flows
 
 ```ts

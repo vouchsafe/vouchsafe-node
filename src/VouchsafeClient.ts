@@ -10,6 +10,7 @@ import {
   getArtefact,
   verifyEvisa,
   verifySupportingDocument,
+  verifyPhotoId,
 } from "./openapi/endpoints" // adjust to your orval output path
 
 import type {
@@ -19,6 +20,7 @@ import type {
   ListVerificationsParams,
   EvisaVerificationInput,
   VerifySupportingDocumentBody,
+  VerifyPhotoIdBody,
 } from "./openapi/models"
 
 interface VouchsafeClientOptions {
@@ -173,5 +175,14 @@ export class VouchsafeClient {
    */
   async verifySupportingDocument(input: VerifySupportingDocumentBody) {
     return this.withErrorHandling((opts) => verifySupportingDocument(input, opts))
+  }
+
+  /**
+   * Extract and validate a photo ID (passport, national ID, driving licence, PASS card,
+   * or unfamiliar photo ID), optionally face-matching against a supplied face scan.
+   * sub_types: Passport, NationalId, DrivingLicence, PASSCard, UnfamiliarPhotoId
+   */
+  async verifyPhotoId(input: VerifyPhotoIdBody) {
+    return this.withErrorHandling((opts) => verifyPhotoId(input, opts))
   }
 }
