@@ -1120,6 +1120,11 @@ For security reasons, other endpoints (e.g. `GET /verifications/{id}`) may retur
 Use this endpoint to exchange that key for a **time-limited pre-signed URL** that can be used
 to download the file.
 
+You may also pass a **verification ID** in place of an artefact key. In that case
+Vouchsafe returns a pre-signed URL to that verification's downloadable **PDF report**. 
+Reports are only available for fully-decided verifications (`Verified`, `ManuallyReviewed`, or `Refused`); any other state returns
+`409 Report not available`.
+
 Vouchsafe will respond with:
 - the requested `artefact_key`
 - a `download_url` (pre-signed and time-limited)
@@ -1148,10 +1153,15 @@ export type getArtefactResponse404 = {
   status: 404
 }
 
+export type getArtefactResponse409 = {
+  data: ApiErrorResponse
+  status: 409
+}
+
 export type getArtefactResponseSuccess = (getArtefactResponse200) & {
   headers: Headers;
 };
-export type getArtefactResponseError = (getArtefactResponse400 | getArtefactResponse401 | getArtefactResponse404) & {
+export type getArtefactResponseError = (getArtefactResponse400 | getArtefactResponse401 | getArtefactResponse404 | getArtefactResponse409) & {
   headers: Headers;
 };
 
