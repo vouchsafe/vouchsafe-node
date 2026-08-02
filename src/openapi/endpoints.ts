@@ -28,6 +28,8 @@ import type {
   GetVerificationResponse,
   ListAccountsParams,
   ListAlertAccountsResponse,
+  ListCoverageParams,
+  ListCoverageResponse,
   ListFlowsResponse,
   ListVerificationsParams,
   ListVerificationsResponse,
@@ -1044,6 +1046,71 @@ export const getFlow = async (id: string, options?: RequestInit): Promise<getFlo
   
   const data: getFlowResponse['data'] = body ? JSON.parse(body) : {}
   return { data, status: res.status, headers: res.headers } as getFlowResponse
+}
+
+
+
+/**
+ * Get the digital ID schemes, photo IDs, supporting documents and trusted data sources Vouchsafe covers, optionally filtered by country and/or type.
+
+Each item is listed once, with every jurisdiction it applies to in `country_codes`. Items that apply everywhere (e.g. passports, or supporting documents which aren't restricted by country) have an empty `country_codes` array.
+
+DIGITAL_ID includes Trinsic's full provider catalog, not just the providers Vouchsafe has a working verification flow for — `id` is `null` for anything that can't be submitted anywhere today.
+ */
+export type listCoverageResponse200 = {
+  data: ListCoverageResponse
+  status: 200
+}
+
+export type listCoverageResponse400 = {
+  data: ApiErrorResponse
+  status: 400
+}
+
+export type listCoverageResponse401 = {
+  data: ApiErrorResponse
+  status: 401
+}
+
+export type listCoverageResponseSuccess = (listCoverageResponse200) & {
+  headers: Headers;
+};
+export type listCoverageResponseError = (listCoverageResponse400 | listCoverageResponse401) & {
+  headers: Headers;
+};
+
+export type listCoverageResponse = (listCoverageResponseSuccess | listCoverageResponseError)
+
+export const getListCoverageUrl = (params?: ListCoverageParams,) => {
+  const normalizedParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+    
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : value.toString())
+    }
+  });
+
+  const stringifiedParams = normalizedParams.toString();
+
+  return stringifiedParams.length > 0 ? `https://app.vouchsafe.id/api/v1/coverage?${stringifiedParams}` : `https://app.vouchsafe.id/api/v1/coverage`
+}
+
+export const listCoverage = async (params?: ListCoverageParams, options?: RequestInit): Promise<listCoverageResponse> => {
+  
+  const res = await fetch(getListCoverageUrl(params),
+  {      
+    ...options,
+    method: 'GET'
+    
+    
+  }
+)
+
+  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
+  
+  const data: listCoverageResponse['data'] = body ? JSON.parse(body) : {}
+  return { data, status: res.status, headers: res.headers } as listCoverageResponse
 }
 
 
