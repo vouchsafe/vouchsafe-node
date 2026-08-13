@@ -461,10 +461,15 @@ export type requestVerificationResponse403 = {
   status: 403
 }
 
+export type requestVerificationResponse422 = {
+  data: ApiErrorResponse
+  status: 422
+}
+
 export type requestVerificationResponseSuccess = (requestVerificationResponse201) & {
   headers: Headers;
 };
-export type requestVerificationResponseError = (requestVerificationResponse400 | requestVerificationResponse401 | requestVerificationResponse403) & {
+export type requestVerificationResponseError = (requestVerificationResponse400 | requestVerificationResponse401 | requestVerificationResponse403 | requestVerificationResponse422) & {
   headers: Headers;
 };
 
