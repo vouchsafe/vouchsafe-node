@@ -16,4 +16,6 @@ import type { ArtefactApiRole } from './artefactApiRole';
 export interface ArtefactApi {
   role: ArtefactApiRole;
   key: string;
+  /** The file's media type, for artefacts uploaded as a document. */
+  mime_type?: string;
 }
