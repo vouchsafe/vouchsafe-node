@@ -90,7 +90,7 @@ In sandbox mode, the endpoint returns a mock "pass" response with sandbox values
 > **Request behaviour:** This is a synchronous endpoint. Processing typically takes 5-15 seconds
 > depending on document complexity.
 
-> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
  */
 export type verifySupportingDocumentResponse200 = {
   data: SupportingDocumentVerificationResponse
@@ -439,7 +439,7 @@ You can override the expiry for a specific verification using the `expires_at` f
 
 **Recommendation:** If you use this field, make sure the window is long enough for the user to receive and complete the verification - we recommend **at least 1 day**. Otherwise, omit `expires_at` and the default flow expiry window will be used.
 
-> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
  */
 export type requestVerificationResponse201 = {
   data: RequestVerificationResponse
@@ -508,7 +508,7 @@ export const requestVerification = async (requestVerificationInput: RequestVerif
 
 This can be a long list, so filtering by status is recommended.
 
-> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
  */
 export type listVerificationsResponse200 = {
   data: ListVerificationsResponse
@@ -600,7 +600,7 @@ personal data (claim details, extracted document details, artefacts and enrichme
 empty. Check `erased_at` to distinguish an erased verification from one that simply never
 collected that data.
 
-> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
  */
 export type getVerificationResponse200 = {
   data: GetVerificationResponse
@@ -732,7 +732,7 @@ Get the currently authenticated team.
 
 Helpful for testing, especially when managing multiple client IDs and secrets.
 
-> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
  */
 export type getTeamResponse200 = {
   data: Team
@@ -866,6 +866,8 @@ export const performSmartLookup = async (smartLookupInput: SmartLookupInput, opt
  * Look up all addresses for a given UK postcode.
 
 Useful for guaranteeing that a user's address is recognised before onboarding.
+
+> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
  */
 export type searchPostcodeResponse200 = {
   data: PostcodeResponse
@@ -938,7 +940,7 @@ Use an ID from one of these flows to request verifications with the  [`POST /ver
 
 Referee-specific verification flows cannot be started independently, so are not returned by this endpoint.
 
-> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
  */
 export type listFlowsResponse200 = {
   data: ListFlowsResponse
@@ -997,7 +999,7 @@ Get a specific verification flow.
 
 Use an ID from one of these flows to request verifications with the  [`POST /verifications` endpoint](https://app.vouchsafe.id/docs/operations/RequestVerification).
 
-> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
  */
 export type getFlowResponse200 = {
   data: Flow
@@ -1131,7 +1133,7 @@ Once you have an access token, pass it in future requests as a [Bearer token](ht
 
 Use an [SDK or library](https://help.vouchsafe.id/en/articles/12026847-vouchsafe-sdks-and-libraries) to simplify handling tokens
 
-> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
  */
 export type authenticateResponse201 = {
   data: AuthenticateResponse
@@ -1276,7 +1278,7 @@ with summary info including current alert status.
 
 Use cursor-based pagination to iterate through results.
 
-> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
  */
 export type listAccountsResponse200 = {
   data: ListAlertAccountsResponse
@@ -1343,7 +1345,7 @@ Get full account detail.
 
 Returns the account's personal details, all alerts, and matched entities.
 
-> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
  */
 export type getAccountDetailResponse200 = {
   data: AlertAccountDetailResponse
@@ -1408,7 +1410,7 @@ Toggle ongoing monitoring for an account.
 
 Enable or disable AML/sanctions screening for an existing account.
 
-> This endpoint supports sandbox mode. [See how sandbox mode works](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work).
+> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
  */
 export type toggleAlertsResponse200 = {
   data: ToggleAlertsResponse
