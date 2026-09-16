@@ -2,6 +2,7 @@
 /* eslint-disable */
 // This file is auto-generated. Do not edit manually.
 export * from './_36EnumsEnvironment';
+export * from './acknowledgeAlertResponse';
 export * from './address';
 export * from './addressClaimInput';
 export * from './addressDetailsApi';

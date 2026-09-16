@@ -12,6 +12,7 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  * OpenAPI spec version: 0.1.0
  */
 import type {
+  AcknowledgeAlertResponse,
   AdverseMediaInput,
   AdverseMediaResponse,
   AlertAccountDetailResponse,
@@ -1471,6 +1472,76 @@ export const toggleAlerts = async (id: string,
   
   const data: toggleAlertsResponse['data'] = body ? JSON.parse(body) : {}
   return { data, status: res.status, headers: res.headers } as toggleAlertsResponse
+}
+
+
+
+/**
+ * Marks an alert as acknowledged.
+
+The acknowledgement will be attributed to the name of the API key used to make the request.
+
+This action is idempotent. Calling it on an already-acknowledged alert
+returns the original acknowledgement timestamp.
+
+The alert ID can be found in the webhook notification payload (`alertId`),
+or by calling `GET /v1/alerts/accounts/{id}` and reading the `id` field
+on an alert in the response.
+
+> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
+ */
+export type acknowledgeAlertResponse200 = {
+  data: AcknowledgeAlertResponse
+  status: 200
+}
+
+export type acknowledgeAlertResponse401 = {
+  data: ApiErrorResponse
+  status: 401
+}
+
+export type acknowledgeAlertResponse403 = {
+  data: ApiErrorResponse
+  status: 403
+}
+
+export type acknowledgeAlertResponse404 = {
+  data: ApiErrorResponse
+  status: 404
+}
+
+export type acknowledgeAlertResponseSuccess = (acknowledgeAlertResponse200) & {
+  headers: Headers;
+};
+export type acknowledgeAlertResponseError = (acknowledgeAlertResponse401 | acknowledgeAlertResponse403 | acknowledgeAlertResponse404) & {
+  headers: Headers;
+};
+
+export type acknowledgeAlertResponse = (acknowledgeAlertResponseSuccess | acknowledgeAlertResponseError)
+
+export const getAcknowledgeAlertUrl = (alertId: string,) => {
+
+
+  
+
+  return `https://app.vouchsafe.id/api/v1/alerts/${alertId}`
+}
+
+export const acknowledgeAlert = async (alertId: string, options?: RequestInit): Promise<acknowledgeAlertResponse> => {
+  
+  const res = await fetch(getAcknowledgeAlertUrl(alertId),
+  {      
+    ...options,
+    method: 'PATCH'
+    
+    
+  }
+)
+
+  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
+  
+  const data: acknowledgeAlertResponse['data'] = body ? JSON.parse(body) : {}
+  return { data, status: res.status, headers: res.headers } as acknowledgeAlertResponse
 }
 
 
