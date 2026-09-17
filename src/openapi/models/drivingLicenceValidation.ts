@@ -21,7 +21,7 @@ import type { ScoreCheckFaceMatchErrorCode } from './scoreCheckFaceMatchErrorCod
 export interface DrivingLicenceValidation {
   /** Whether all required fields were successfully extracted from the document. */
   required_fields_extracted: CheckDrivingLicenceFailedReason;
-  /** Whether the licence has not passed its expiry date. */
+  /** Whether the licence has not passed its expiry date (or the accepted grace window). */
   has_not_expired: CheckDrivingLicenceFailedReason;
   /** Whether the document appears to be a specimen or sample rather than a real issued document. */
   not_specimen: CheckSpecimenErrorCode;

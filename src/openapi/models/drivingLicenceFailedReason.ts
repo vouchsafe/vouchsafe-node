@@ -13,10 +13,11 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  */
 import type { FailedReasonCONTAINSUNWANTEDPHRASES } from './failedReasonCONTAINSUNWANTEDPHRASES';
 import type { FailedReasonDOCUMENTFEATUREMISSING } from './failedReasonDOCUMENTFEATUREMISSING';
+import type { FailedReasonDOCUMENTPASTEXPIRYWINDOW } from './failedReasonDOCUMENTPASTEXPIRYWINDOW';
 import type { FailedReasonEXPIRYDATEPASSED } from './failedReasonEXPIRYDATEPASSED';
 import type { FailedReasonINVALIDDOCUMENTDATEFORMAT } from './failedReasonINVALIDDOCUMENTDATEFORMAT';
 import type { FailedReasonINVALIDIDFORMAT } from './failedReasonINVALIDIDFORMAT';
 import type { FailedReasonINVALIDISSUINGAUTHORITY } from './failedReasonINVALIDISSUINGAUTHORITY';
 import type { FailedReasonPARTIALEXTRACTION } from './failedReasonPARTIALEXTRACTION';
 
-export type DrivingLicenceFailedReason = FailedReasonPARTIALEXTRACTION | FailedReasonEXPIRYDATEPASSED | FailedReasonINVALIDDOCUMENTDATEFORMAT | FailedReasonDOCUMENTFEATUREMISSING | FailedReasonINVALIDIDFORMAT | FailedReasonCONTAINSUNWANTEDPHRASES | FailedReasonINVALIDISSUINGAUTHORITY;
+export type DrivingLicenceFailedReason = FailedReasonPARTIALEXTRACTION | FailedReasonEXPIRYDATEPASSED | FailedReasonDOCUMENTPASTEXPIRYWINDOW | FailedReasonINVALIDDOCUMENTDATEFORMAT | FailedReasonDOCUMENTFEATUREMISSING | FailedReasonINVALIDIDFORMAT | FailedReasonCONTAINSUNWANTEDPHRASES | FailedReasonINVALIDISSUINGAUTHORITY;

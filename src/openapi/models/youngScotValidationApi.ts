@@ -36,6 +36,6 @@ export interface YoungScotValidationApi {
   security_features_present: ValidationOutcomeApi;
   /** Whether the card identifier format is valid. */
   identifier_format_valid: ValidationOutcomeApi;
-  /** Whether the document is in date. Omitted when the flow permits expired documents. */
+  /** Whether the document has not passed its expiry date (or the accepted grace window). */
   has_not_expired?: ValidationOutcomeApi;
 }

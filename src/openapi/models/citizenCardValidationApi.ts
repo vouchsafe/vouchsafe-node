@@ -34,6 +34,6 @@ export interface CitizenCardValidationApi {
   tampering_signals_check?: ValidationOutcomeApi;
   /** Whether the card details match the issuer database. */
   matches_issuer_database: ValidationOutcomeApi;
-  /** Whether the document is in date. Omitted when the flow permits expired documents. */
+  /** Whether the document has not passed its expiry date (or the accepted grace window). */
   has_not_expired?: ValidationOutcomeApi;
 }

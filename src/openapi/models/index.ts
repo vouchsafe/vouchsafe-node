@@ -159,6 +159,7 @@ export * from './failedReasonDOCUMENTCOLORPROFILECHANGED';
 export * from './failedReasonDOCUMENTFEATUREMISSING';
 export * from './failedReasonDOCUMENTLOOKSLIKEPRINTCOPY';
 export * from './failedReasonDOCUMENTLOOKSLIKESCREENSHOT';
+export * from './failedReasonDOCUMENTPASTEXPIRYWINDOW';
 export * from './failedReasonDOCUMENTTAMPEREDINCONCLUSIVE';
 export * from './failedReasonDOCUMENTTEXTTAMPERED';
 export * from './failedReasonEXPIRYDATEPASSED';

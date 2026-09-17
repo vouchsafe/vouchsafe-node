@@ -34,7 +34,7 @@ export interface NationalIdValidationApi {
   tampering_signals_check?: ValidationOutcomeApi;
   /** Whether key identifiers (for example number + DOB) match consistently. */
   compound_identifiers_match: ValidationOutcomeApi;
-  /** Whether the document is in date. Omitted when the flow permits expired documents. */
+  /** Whether the document has not passed its expiry date (or the accepted grace window). */
   has_not_expired?: ValidationOutcomeApi;
   /** Whether the MRZ format is valid (TD1 expected). */
   icao_format_valid: ValidationOutcomeApi;

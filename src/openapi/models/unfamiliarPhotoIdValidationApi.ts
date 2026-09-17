@@ -34,6 +34,6 @@ export interface UnfamiliarPhotoIdValidationApi {
   tampering_signals_check?: ValidationOutcomeApi;
   /** Whether expected security features are present. */
   security_features_present: ValidationOutcomeApi;
-  /** Whether the document is in date. Omitted when the flow permits expired documents. */
+  /** Whether the document has not passed its expiry date (or the accepted grace window). */
   has_not_expired?: ValidationOutcomeApi;
 }

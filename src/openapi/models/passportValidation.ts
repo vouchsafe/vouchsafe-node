@@ -25,7 +25,7 @@ export interface PassportValidation {
   required_fields_extracted: CheckMrzPhotoIdFailedReason;
   /** Whether all visual identifiers match encoded data. */
   compound_identifiers_match: CompoundIdentifiersCheckMrzPhotoIdFailedReason;
-  /** Whether the card has not passed its expiry date. */
+  /** Whether the card has not passed its expiry date (or the accepted grace window). */
   has_not_expired: CheckMrzPhotoIdFailedReason;
   /** Whether the document appears to be a specimen or sample card rather than a real issued document. */
   not_specimen: CheckSpecimenErrorCode;
