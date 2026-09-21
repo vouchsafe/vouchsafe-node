@@ -187,14 +187,7 @@ If a request fails with a 401 Unauthorised error, it will fetch a new access tok
 
 For best performance, you should instantiate the client once and share it across your app as a [singleton](https://www.patterns.dev/vanilla/singleton-pattern/).
 
-Each time a new access token is requested using the same client credentials, it invalidates the old one.
-
-Instantiating multiple clients can lead to:
-
-- over-writing each other's tokens
-- unnecessary retries and re-authentications.
-
-For high-concurrency use cases, you should store the access token in a shared key-value store instead.
+If you run multiple instances of your app, each instance can authenticate on its own and cache its own access token.
 
 ### Handling errors
 
