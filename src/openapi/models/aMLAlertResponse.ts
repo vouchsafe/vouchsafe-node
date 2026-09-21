@@ -11,7 +11,14 @@ To use the API, you need a client ID and secret from the Vouchsafe dashboard. [S
 We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_ZNWBPnysvwmdIwboLViE8) showing the basics, as well as [SDKs and libraries](https://help.vouchsafe.id/en/articles/12026847-vouchsafe-sdks-and-libraries) for popular languages.
  * OpenAPI spec version: 0.1.0
  */
-import type { AMLAlertResponse } from './aMLAlertResponse';
-import type { FraudBlocklistAlertResponse } from './fraudBlocklistAlertResponse';
+import type { AlertMatchResponse } from './alertMatchResponse';
+import type { AMLAlertResponseSource } from './aMLAlertResponseSource';
 
-export type AlertResponse = AMLAlertResponse | FraudBlocklistAlertResponse;
+export interface AMLAlertResponse {
+  id: string;
+  created_at: string;
+  /** @nullable */
+  acknowledged_at: string | null;
+  source: AMLAlertResponseSource;
+  matches: AlertMatchResponse[];
+}

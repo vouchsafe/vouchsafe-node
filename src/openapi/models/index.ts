@@ -2,6 +2,8 @@
 /* eslint-disable */
 // This file is auto-generated. Do not edit manually.
 export * from './_36EnumsEnvironment';
+export * from './aMLAlertResponse';
+export * from './aMLAlertResponseSource';
 export * from './acknowledgeAlertResponse';
 export * from './address';
 export * from './addressClaimInput';
@@ -187,6 +189,9 @@ export * from './failedReasonVIZMRZMISMATCH';
 export * from './failedReasonWATERMARKTEXTDETECTED';
 export * from './flow';
 export * from './flowTemplate';
+export * from './fraudBlocklistAlertResponse';
+export * from './fraudBlocklistAlertResponseMatchedOnItem';
+export * from './fraudBlocklistAlertResponseSource';
 export * from './getArtefactsResponse';
 export * from './getFlowResponse';
 export * from './getSmartLookupResponse';
