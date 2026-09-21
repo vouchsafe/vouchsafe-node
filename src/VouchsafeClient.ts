@@ -23,6 +23,9 @@ import type {
   VerifyPhotoIdBody,
 } from "./openapi/models"
 
+import { checkRisk } from "./openapi-v2/endpoints"
+import type { CheckRiskBody } from "./openapi-v2/models"
+
 interface VouchsafeClientOptions {
   client_id: string
   client_secret: string
@@ -184,5 +187,14 @@ export class VouchsafeClient {
    */
   async verifyPhotoId(input: VerifyPhotoIdBody) {
     return this.withErrorHandling((opts) => verifyPhotoId(input, opts))
+  }
+
+  /**
+   * Vouchsafe's headline Risk API — an instant identity-fraud risk assessment
+   * returning a risk_score (0–100) and a CLEAR/REVIEW/REJECT recommendation.
+   * Sandbox last_name selects the example: Webb → CLEAR, Doe → REVIEW, Roberts → REJECT.
+   */
+  async checkRisk(input: CheckRiskBody) {
+    return this.withErrorHandling((opts) => checkRisk(input, opts))
   }
 }

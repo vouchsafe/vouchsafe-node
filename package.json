@@ -25,7 +25,7 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "generate": "curl -s https://app.vouchsafe.id/openapi/swagger.json -o swagger-temp.json && orval && rm swagger-temp.json && npm run generate:exports",
+    "generate": "curl -s https://app.vouchsafe.id/openapi/swagger.json -o swagger-temp.json && curl -s https://app.vouchsafe.id/openapi/swagger-v2.json -o swagger-v2-temp.json && orval && rm swagger-temp.json swagger-v2-temp.json && npm run generate:exports",
     "prepare": "npm run build",
     "generate:exports": "npx tsx scripts/generate-model-exports.ts"
   },
