@@ -49,15 +49,23 @@ When the credit bureau enrichment is turned on, a structured `address` is requir
 
 ### Sandbox
 
-In sandbox mode, `last_name` picks the example you get back. Anything else returns a `400`.
+In sandbox mode, `email` picks the recommendation you get back.
 
-| `last_name` | Recommendation |
+| `email` | Recommendation |
 |---|---|
-| `Webb` | `CLEAR` |
-| `Doe` | `REVIEW` |
-| `Roberts` | `REJECT` |
+| contains `+reject` | `REJECT` |
+| contains `+review` | `REVIEW` |
+| anything else | `CLEAR` |
 
-The response carries the example's own identity and `id`, which opens the same record in your sandbox dashboard.
+The response echoes your input and includes only the enrichments you requested.
+
+Requested enrichments are shaped to match the outcome:
+
+- CLEAR: all pass
+- REVIEW: only the last requested enrichment fails
+- REJECT: all fail
+
+To return a record you can open in the sandbox dashboard, use `dwebb@email.com` (`CLEAR`), `jdoe@email.com` (`REVIEW`), or `eroberts@email.com` (`REJECT`).
  */
 export type checkRiskResponse201 = {
   data: GetRiskResponse
