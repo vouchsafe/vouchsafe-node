@@ -17,7 +17,7 @@ export interface AddressInput {
   residence_number?: string;
   /** Building name, e.g. "Rose Cottage". Required (or `residence_number`) for CreditBureau. */
   building_name?: string;
-  /** Street / road name. Required for CreditBureau. */
+  /** Street or road name. Optional, but omitting it may reduce match rates. */
   street?: string;
   /** City / town. Required for CreditBureau. */
   city?: string;

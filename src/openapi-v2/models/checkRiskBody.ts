@@ -18,9 +18,9 @@ export type CheckRiskBody = {
   /** JSON-encoded array of optional enrichment checks to run.
 Accepted values: `"CREDIT_BUREAU"`, `"ONLINE_FOOTPRINT"`, `"AML"`. */
   enrichments?: string;
-  /** JSON-encoded address object. Required when `enrichments` includes `"CREDIT_BUREAU"`. You can get this from `/v1/postcode`
+  /** JSON-encoded address. Required when `enrichments` includes `"CREDIT_BUREAU"`.
 
-At least one of `residence_number` or `building_name` must be present.
+The address must include `residence_number` (or `building_name`), `postcode`, `city`, and `country_code`. Providing `street` is optional, but omitting it may reduce match rates.
 
 Expected shape:
 ```json
