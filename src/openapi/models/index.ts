@@ -159,6 +159,7 @@ export * from './failedReason';
 export * from './failedReasonCONTAINSUNWANTEDPHRASES';
 export * from './failedReasonDOCUMENTCOLORPROFILECHANGED';
 export * from './failedReasonDOCUMENTFEATUREMISSING';
+export * from './failedReasonDOCUMENTISGRAYSCALE';
 export * from './failedReasonDOCUMENTLOOKSLIKEPRINTCOPY';
 export * from './failedReasonDOCUMENTLOOKSLIKESCREENSHOT';
 export * from './failedReasonDOCUMENTPASTEXPIRYWINDOW';
