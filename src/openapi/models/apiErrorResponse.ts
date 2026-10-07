@@ -18,4 +18,6 @@ export interface ApiErrorResponse {
   message: string;
   error_detail?: unknown;
   failedReason?: FailedReason;
+  error_code?: string;
+  retry_after_seconds?: number;
 }

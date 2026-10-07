@@ -432,16 +432,25 @@ You can optionally provide more information/claims about the user, like their na
 
 If you do provide additional information about your user, you should let them know the information you are expecting them to verify. This helps prevent users getting stuck when the evidence they have does not match what you have provided.
 
+#### Existing verifications
+
+If a user already has an in progress verification for the same email address and flow, a new verification is not created. To start a new verification for that user in the same flow, first cancel their existing verification using the [CancelVerification](https://docs.vouchsafe.id/api/v1/cancel-verification) endpoint.
+
 #### Expiry
 
 Verifications expire after the window configured on your flow (default: **7 days** from creation). Once expired, the verification link stops working and the verification will show as **Expired** in your dashboard.
-
+v
 You can override the expiry for a specific verification using the `expires_at` field. Provide an **ISO 8601 timestamp** (e.g. `2025-08-08T12:00:00Z`). 
 
 **Recommendation:** If you use this field, make sure the window is long enough for the user to receive and complete the verification - we recommend **at least 1 day**. Otherwise, omit `expires_at` and the default flow expiry window will be used.
 
 > This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
  */
+export type requestVerificationResponse200 = {
+  data: RequestVerificationResponse
+  status: 200
+}
+
 export type requestVerificationResponse201 = {
   data: RequestVerificationResponse
   status: 201
@@ -467,7 +476,7 @@ export type requestVerificationResponse422 = {
   status: 422
 }
 
-export type requestVerificationResponseSuccess = (requestVerificationResponse201) & {
+export type requestVerificationResponseSuccess = (requestVerificationResponse200 | requestVerificationResponse201) & {
   headers: Headers;
 };
 export type requestVerificationResponseError = (requestVerificationResponse400 | requestVerificationResponse401 | requestVerificationResponse403 | requestVerificationResponse422) & {
@@ -655,6 +664,73 @@ export const getVerification = async (id: string, options?: RequestInit): Promis
   
   const data: getVerificationResponse['data'] = body ? JSON.parse(body) : {}
   return { data, status: res.status, headers: res.headers } as getVerificationResponse
+}
+
+
+
+/**
+ * Cancel an in progress verification.
+
+Only verifications with a status of `InProgress` can be cancelled. Any other status returns a `409`.
+
+Once cancelled, requesting a verification for the same email and flow creates a new verification.
+
+In sandbox mode, you can call this endpoint to see the response for each sandbox verification account. The request does not persist any changes, so the sample verification retains its original status.
+
+> This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
+ */
+export type cancelVerificationResponse200 = {
+  data: GetVerificationResponse
+  status: 200
+}
+
+export type cancelVerificationResponse401 = {
+  data: ApiErrorResponse
+  status: 401
+}
+
+export type cancelVerificationResponse404 = {
+  data: ApiErrorResponse
+  status: 404
+}
+
+export type cancelVerificationResponse409 = {
+  data: ApiErrorResponse
+  status: 409
+}
+
+export type cancelVerificationResponseSuccess = (cancelVerificationResponse200) & {
+  headers: Headers;
+};
+export type cancelVerificationResponseError = (cancelVerificationResponse401 | cancelVerificationResponse404 | cancelVerificationResponse409) & {
+  headers: Headers;
+};
+
+export type cancelVerificationResponse = (cancelVerificationResponseSuccess | cancelVerificationResponseError)
+
+export const getCancelVerificationUrl = (id: string,) => {
+
+
+  
+
+  return `https://app.vouchsafe.id/api/v1/verifications/${id}/cancel`
+}
+
+export const cancelVerification = async (id: string, options?: RequestInit): Promise<cancelVerificationResponse> => {
+  
+  const res = await fetch(getCancelVerificationUrl(id),
+  {      
+    ...options,
+    method: 'POST'
+    
+    
+  }
+)
+
+  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
+  
+  const data: cancelVerificationResponse['data'] = body ? JSON.parse(body) : {}
+  return { data, status: res.status, headers: res.headers } as cancelVerificationResponse
 }
 
 
