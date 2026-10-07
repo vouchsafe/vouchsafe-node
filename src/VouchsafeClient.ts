@@ -3,6 +3,7 @@ import {
   listVerifications,
   getVerification,
   requestVerification,
+  cancelVerification,
   performSmartLookup,
   searchPostcode,
   listFlows,
@@ -139,6 +140,13 @@ export class VouchsafeClient {
 
   async requestVerification(input: RequestVerificationInput) {
     return this.withErrorHandling((opts) => requestVerification(input, opts))
+  }
+
+  /**
+   * Cancel an in progress verification. Any other status returns a 409.
+   */
+  async cancelVerification({ id }: { id: string }) {
+    return this.withErrorHandling((opts) => cancelVerification(id, opts))
   }
 
   async performSmartLookup(input: SmartLookupInput) {
