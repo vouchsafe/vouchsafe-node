@@ -18,16 +18,31 @@ export type CheckRiskBody = {
   /** JSON-encoded array of optional enrichment checks to run.
 Accepted values: `"CREDIT_BUREAU"`, `"ONLINE_FOOTPRINT"`, `"AML"`. */
   enrichments?: string;
-  /** JSON-encoded address. Required when `enrichments` includes `"CREDIT_BUREAU"`.
+  /** Required when `enrichments` includes `"CREDIT_BUREAU"`.
 
-The address must include `residence_number` (or `building_name`), `postcode`, `city`, and `country_code`. Providing `street` is optional, but omitting it may reduce match rates.
+Must include `residence_number` (or `building_name`), `postcode`, `city` and `country_code`. `street` is optional, but omitting it may affect match rates.
 
-Expected shape:
+The easiest way to get a valid address is to pass a result from `GET /postcode`.
+
+Example: a house, `10 Downing Street, London, SW1A 2AA`:
 ```json
 {
   "residence_number": "10",
   "building_name": null,
-  "street": "Downing St",
+  "street": "Downing Street",
+  "city": "London",
+  "postcode": "SW1A 2AA",
+  "region": null,
+  "country_code": "GB"
+}
+```
+
+Example: a flat in a named building, `Flat 2, Rose Court, 10 Downing Street, London, SW1A 2AA`:
+```json
+{
+  "residence_number": "Flat 2, 10",
+  "building_name": "Rose Court",
+  "street": "Downing Street",
   "city": "London",
   "postcode": "SW1A 2AA",
   "region": null,
@@ -35,10 +50,11 @@ Expected shape:
 }
 ``` */
   address?: string;
-  /** Phone number in E.164 format. Optional.
+  /** The person's phone number, in E.164 format (e.g. `+447700900123`). Numbers without a country code are treated as UK numbers.
 
-Recommended when `enrichments` includes `ONLINE_FOOTPRINT` as it improves match rates.
-For `CREDIT_BUREAU` checks, providing a UK phone number can improve match rates by enabling matching against mobile data. */
+Improves match rates for `ONLINE_FOOTPRINT` and, for UK numbers, `CREDIT_BUREAU`.
+
+If we can't read the number, the request still succeeds, but `PHONE_SCORE` returns `NOT_PERFORMED` with reason `INVALID_PHONE_FORMAT`. */
   phone?: string;
   /** JSON-encoded thresholds object. Used to set the pass/fail threshold for `ONLINE_FOOTPRINT` and `AML` checks, otherwise defaulting to 50 and 96 respectively. */
   thresholds?: string;

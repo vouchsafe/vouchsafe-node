@@ -13,9 +13,13 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  */
 
 export interface AddressClaimInput {
-  /** Residence/building number, e.g. "10" or "Flat 1". Required unless `building_name` is provided. */
+  /** The street number, with any flat or unit number in front, e.g. `"10"` or `"Flat 2, 10"`.
+
+Required unless `building_name` is provided. */
   residence_number?: string;
-  /** Building name, e.g. "Rose Cottage". Required unless `residence_number` is provided. */
+  /** The name of the building, e.g. `"Rose Cottage"` or `"Rose Court"`.
+
+Required unless `residence_number` is provided. */
   building_name?: string;
   /** Street / road name. Optional — some addresses have no street. */
   street?: string;

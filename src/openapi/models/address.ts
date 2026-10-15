@@ -13,9 +13,9 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  */
 
 export interface Address {
-  /** House or flat number, e.g. "10" or "Flat 1". */
+  /** The street number, with any flat or unit number in front, e.g. `"10"` or `"Flat 2, 10"`. */
   residence_number?: string;
-  /** House or building name, e.g. "Rose Cottage". */
+  /** The name of the building, e.g. `"Rose Cottage"` or `"Rose Court"`. */
   building_name?: string;
   street?: string;
   city?: string;

@@ -41,17 +41,21 @@ export interface GetSmartLookupResponse {
   date_of_birth?: string;
   email?: string;
   phone?: string;
-  /** Whether the overall check and its sub-checks passed, failed or somethng else. */
+  /** The result of the `CreditBureau` check, and of each of its sub-checks. Only present if the check was run. */
   credit_bureau_verification_report?: CreditBureauVerificationReport;
+  /** The result of the `OnlineFootprint` check, and of each of its sub-checks. Only present if the check was run. */
   online_footprint_verification_report?: OnlineFootprintVerificationReport;
+  /** The result of the `AML` check, and of each of its sub-checks. Only present if the check was run. */
   aml_verification_report?: AmlVerificationReport;
-  /** Whether tokens were charged for this lookup. False when served entirely from the 4-hour cache. */
+  /** Whether tokens were charged for this lookup. `false` when the result was served from the four-hour cache. */
   billable: boolean;
+  /** The detailed data behind each check's result. */
   metadata: SmartLookupMetadataApi;
   /**
-   * When ongoing AML monitoring was enabled (ISO 8601), or `null` if not active. See [Alerts API](/docs/tag/Alerts).
+   * When ongoing AML monitoring was turned on for this person (ISO 8601), or `null` if monitoring isn't active. See the [Alerts API](https://docs.vouchsafe.id/api/v1/toggle-alerts).
    * @nullable
    */
   alerts_enabled_at: string | null;
+  /** When the lookup was run (ISO 8601). */
   created_at: string;
 }

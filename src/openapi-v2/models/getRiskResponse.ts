@@ -47,7 +47,7 @@ Derived from the weighted sum of trust and fraud signals detected. */
   /** Whether the check consumed billable credits. */
   billable: boolean;
   /**
-   * When ongoing AML monitoring was enabled (ISO 8601), or `null` if not active. See [Alerts API](/docs/tag/Alerts).
+   * When ongoing AML monitoring was enabled (ISO 8601), or `null` if not active. See [Alerts API](https://docs.vouchsafe.id/api/v1/toggle-alerts).
    * @nullable
    */
   alerts_enabled_at: string | null;

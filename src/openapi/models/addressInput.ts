@@ -13,18 +13,22 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  */
 
 export interface AddressInput {
-  /** Residence/building number, e.g. "10" or "Flat 1". Required (or `building_name`) for CreditBureau. */
+  /** The street number, with any flat or unit number in front, e.g. `"10"` or `"Flat 2, 10"`.
+
+Required for the credit bureau check, unless `building_name` is provided. */
   residence_number?: string;
-  /** Building name, e.g. "Rose Cottage". Required (or `residence_number`) for CreditBureau. */
+  /** The name of the building, e.g. `"Rose Cottage"` or `"Rose Court"`.
+
+Required for the credit bureau check, unless `residence_number` is provided. */
   building_name?: string;
-  /** Street or road name. Optional, but omitting it may reduce match rates. */
+  /** The street or road name. Optional, but leaving it out may lower match rates. */
   street?: string;
-  /** City / town. Required for CreditBureau. */
+  /** The city or town. Required for CreditBureau. */
   city?: string;
-  /** Postcode. Required for CreditBureau. */
+  /** The postcode. Required for CreditBureau. */
   postcode?: string;
-  /** State, province, or county. Optional. */
+  /** The state, province or county. Optional. */
   region?: string;
-  /** ISO 3166-1 alpha-2 country code, e.g. "GB". Required for CreditBureau. */
+  /** The two-letter ISO 3166-1 alpha-2 country code, e.g. `"GB"`. Required for CreditBureau. */
   country_code?: string;
 }

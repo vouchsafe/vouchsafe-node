@@ -13,16 +13,20 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  */
 
 export interface PublicAddress {
-  /** House or flat number, e.g. "10" or "Flat 1". */
+  /** The street number, with any flat or unit number in front, e.g. `"10"` or `"Flat 2, 10"`. */
   residence_number?: string;
-  /** House or building name, e.g. "Rose Cottage". */
+  /** The name of the building, e.g. `"Rose Cottage"` or `"Rose Court"`. */
   building_name?: string;
+  /** The street or road name. */
   street?: string;
+  /** The city or town. */
   city?: string;
+  /** The postcode. */
   postcode?: string;
+  /** The country name, e.g. `"United Kingdom"`. */
   country?: string;
-  /** State, province, or county. */
+  /** The state, province or county. */
   region?: string;
-  /** ISO 3166-1 alpha-2 country code. */
+  /** The two-letter ISO 3166-1 alpha-2 country code, e.g. `"GB"`. */
   country_code?: string;
 }

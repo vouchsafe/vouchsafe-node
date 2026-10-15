@@ -45,7 +45,7 @@ Without it, that check returns `NOT_PERFORMED`.
 
 ### Address
 
-When the credit bureau enrichment is turned on, a structured `address` is required. This should be taken from the results returned by the [`GET /postcode` endpoint](https://app.vouchsafe.id/docs/operations/SearchPostcode).
+When the credit bureau enrichment is turned on, a structured `address` is required. This should be taken from the results returned by the [`GET /postcode` endpoint](https://docs.vouchsafe.id/api/v1/search-postcode). See the `address` field below for how to split a flat, building name and street number.
 
 ### Sandbox
 

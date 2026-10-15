@@ -158,6 +158,7 @@ export * from './failUnfamiliarPhotoIdFailedReasonStatus';
 export * from './failedReason';
 export * from './failedReasonCONTAINSUNWANTEDPHRASES';
 export * from './failedReasonDOCUMENTCOLORPROFILECHANGED';
+export * from './failedReasonDOCUMENTCORNERSNOTDETECTED';
 export * from './failedReasonDOCUMENTFEATUREMISSING';
 export * from './failedReasonDOCUMENTISGRAYSCALE';
 export * from './failedReasonDOCUMENTLOOKSLIKEPRINTCOPY';
