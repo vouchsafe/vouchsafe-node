@@ -29,6 +29,7 @@ export * from './amlMatchApiPropertiesBirthPlace';
 export * from './amlMatchApiPropertiesCountry';
 export * from './amlMatchApiPropertiesNotes';
 export * from './amlMatchApiPropertiesPosition';
+export * from './amlMatchApiStrength';
 export * from './amlVerificationReport';
 export * from './apiErrorResponse';
 export * from './apiValidationStatus';
