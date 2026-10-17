@@ -14,7 +14,7 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
 import type { AmlMatchApi } from './amlMatchApi';
 
 export type AmlCheckApiDetails = {
-  /** Sanctions list matches found. A passing check can list matches below the threshold. */
+  /** Sanctions list matches found. Empty when the check passed. */
   matches: AmlMatchApi[];
   /**
    * The score threshold above which a match is considered a hit.

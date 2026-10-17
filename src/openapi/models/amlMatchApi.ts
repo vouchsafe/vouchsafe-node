@@ -12,7 +12,6 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  * OpenAPI spec version: 0.1.0
  */
 import type { AmlMatchApiProperties } from './amlMatchApiProperties';
-import type { AmlMatchApiStrength } from './amlMatchApiStrength';
 
 export interface AmlMatchApi {
   /** Unique identifier for the matched entity. */
@@ -26,6 +25,4 @@ export interface AmlMatchApi {
   /** ISO 8601 date when the entity was last seen in the sanctions list. */
   last_seen?: string;
   properties: AmlMatchApiProperties;
-  /** `strong` when the score meets the threshold, otherwise `weak`. */
-  strength?: AmlMatchApiStrength;
 }
