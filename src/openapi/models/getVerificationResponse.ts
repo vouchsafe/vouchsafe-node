@@ -44,10 +44,20 @@ if it has not been erased. The status and timestamps are retained, but personal 
    */
   email: string | null;
   /**
-   * Where to send the user upon success. If null, the verification flow default will be used.
+   * Where to send the user once verified. If null, the verification flow default will be used.
    * @nullable
    */
   redirect_url: string | null;
+  /**
+   * Where to send the user once they've submitted but aren't verified yet. If null, the verification flow default will be used.
+   * @nullable
+   */
+  pending_redirect_url: string | null;
+  /**
+   * Where to send the user if they're refused or blocked. If null, the verification flow default will be used.
+   * @nullable
+   */
+  failure_redirect_url: string | null;
   /**
    * The verification flow it belongs to.
    * @nullable

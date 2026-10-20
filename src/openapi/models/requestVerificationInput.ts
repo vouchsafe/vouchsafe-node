@@ -40,10 +40,18 @@ If not provided, the last published flow is used instead. */
   workflow_id?: string;
   /** An identifier from your own systems, to avoid needing to store Vouchsafe's own ID. */
   external_id?: string;
-  /** A generic or unique URL to send the user back to upon success.
+  /** A generic or unique URL to send the user back to once they're verified.
 
 If not provided, the verification flow default will be used. */
   redirect_url?: string;
+  /** A generic or unique URL to send the user back to once they've submitted but aren't verified yet, e.g. awaiting review.
+
+If not provided, the verification flow default will be used. */
+  pending_redirect_url?: string;
+  /** A generic or unique URL to send the user back to if they're refused.
+
+If not provided, the verification flow default will be used. */
+  failure_redirect_url?: string;
   /** When the verification session expires and the user stops getting reminders.
 
 If provided, this overrides the verification flow default. Format as ISO 8601 */
