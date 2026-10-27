@@ -16,7 +16,7 @@ export type CheckRiskBody = {
   /** Date of birth in YYYY-MM-DD format. Required. */
   date_of_birth: string;
   /** JSON-encoded array of optional enrichment checks to run.
-Accepted values: `"CREDIT_BUREAU"`, `"ONLINE_FOOTPRINT"`, `"AML"`. */
+Accepted values: `"CREDIT_BUREAU"`, `"ONLINE_FOOTPRINT"`, `"AML"`, `"ADVERSE_MEDIA"`. */
   enrichments?: string;
   /** Required when `enrichments` includes `"CREDIT_BUREAU"`.
 

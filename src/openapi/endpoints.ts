@@ -1625,7 +1625,7 @@ export const acknowledgeAlert = async (alertId: string, options?: RequestInit): 
 
 Screen an individual against recent news coverage for adverse or negative reporting.
 
-Each article returned by the search is scored from 0–100 for the severity of its content by our AI screening model. Articles at or above the threshold are returned as `strong_matches` and cause the overall `status` to be `FAIL`.
+Each article returned by the search is scored from 0–100 by our AI screening model. Articles at or above the threshold are returned as `strong_matches` and cause the overall `status` to be `FAIL`.
 
 All articles found are also returned in `all_results` for audit purposes, including those that scored below the threshold.
 

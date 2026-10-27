@@ -24,6 +24,7 @@ You can also run premium `enrichments`:
 - `CREDIT_BUREAU` will look for authoritative evidence of a claimed idenity and address in official and semi-official databases from around the world, which you can use as an FCA-compliant eKYC onboarding process.
 - `ONLINE_FOOTPRINT` will analyse the identity's digital and online history, to determine if it is likely to be legitimate or recently made-up.
 - `AML` will search over [280 global databases](https://vouchsafe.id/coverage/) of high-risk entities connected to financial or economic crime, including sanctions, watchlists and politically exposed people. It also enrols the person in ongoing monitoring, reported as `alerts_enabled_at`.
+- `ADVERSE_MEDIA` will search news coverage for reported wrongdoing by the person that signals fraud risk, such as fraud, financial crime or a regulatory ban. Its report lists every article the search found. An article is `FAIL` when it accuses the person of one of these, `REVIEW` when a person needs to check it, and otherwise `PASS`. An article needs checking when it might be about someone else with the same name, the person was acquitted, or the wrongdoing is not a sign of fraud, such as violence. `state` is `FAIL` when any article is `FAIL`, `REVIEW` when any needs review, and `NOT_PERFORMED` when the search couldn't run. Adding `address.city` narrows the search.
 - `NFD` will search the Cifas National Fraud Database to see if the identity is known to be associated with fraud
 
 The more checks you turn on, the more complete the data you send needs to be.

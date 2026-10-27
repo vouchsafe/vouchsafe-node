@@ -6,4 +6,4 @@
  * OpenAPI spec version: 2.0.0
  */
 
-export type GetRiskResponseEnrichmentsItem = 'CREDIT_BUREAU' | 'ONLINE_FOOTPRINT' | 'AML';
+export type GetRiskResponseEnrichmentsItem = 'CREDIT_BUREAU' | 'ONLINE_FOOTPRINT' | 'AML' | 'ADVERSE_MEDIA';

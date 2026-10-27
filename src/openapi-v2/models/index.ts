@@ -1,6 +1,10 @@
 /* tslint:disable */
 /* eslint-disable */
 // This file is auto-generated. Do not edit manually.
+export * from './adverseMediaOutcome';
+export * from './adverseMediaRiskArticle';
+export * from './adverseMediaRiskReport';
+export * from './adverseMediaRiskReportState';
 export * from './amlVerificationReport';
 export * from './apiErrorResponse';
 export * from './checkResult';

@@ -5,6 +5,7 @@
  * Vouchsafe V2 API — experimental endpoints.
  * OpenAPI spec version: 2.0.0
  */
+import type { AdverseMediaRiskReport } from './adverseMediaRiskReport';
 import type { AmlVerificationReport } from './amlVerificationReport';
 import type { CreditBureauVerificationReport } from './creditBureauVerificationReport';
 import type { OnlineFootprintVerificationReport } from './onlineFootprintVerificationReport';
@@ -16,4 +17,6 @@ export interface EnrichmentReports {
   online_footprint?: OnlineFootprintVerificationReport;
   /** AML / sanctions check report. Present when `"AML"` was requested. */
   aml?: AmlVerificationReport;
+  /** Adverse media report. Present when `"ADVERSE_MEDIA"` was requested. */
+  adverse_media?: AdverseMediaRiskReport;
 }

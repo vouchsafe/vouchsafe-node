@@ -73,7 +73,7 @@ if it has not been erased. The status and timestamps are retained, but personal 
    * @nullable
    */
   external_id: string | null;
-  /** The identity profile to use for this verification if flow is certified against the UK DIATF. */
+  /** The identity profile to use for this verification if flow is certified against the UK DVSTF. */
   identity_profile?: IdentityProfile;
   /** The derived identity and residency details. */
   claim_details: ClaimDetails;

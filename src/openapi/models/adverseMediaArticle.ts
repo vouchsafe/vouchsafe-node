@@ -26,7 +26,7 @@ export interface AdverseMediaArticle {
   published_at: string | null;
   /** Short excerpt from the article */
   snippet: string;
-  /** Adversity score (0–100) assigned by the screening model, adjusted for recency.
+  /** Score (0–100) assigned by the screening model.
 Higher scores indicate more serious adverse content. */
   score: number;
 }
