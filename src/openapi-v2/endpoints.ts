@@ -21,11 +21,10 @@ Pass the information you have about a customer, and Vouchsafe will scan our netw
 
 You can also run premium `enrichments`:
 
-- `CREDIT_BUREAU` will look for authoritative evidence of a claimed idenity and address in official and semi-official databases from around the world, which you can use as an FCA-compliant eKYC onboarding process.
+- `CREDIT_BUREAU` will look for authoritative evidence of a claimed identity and address in official and semi-official databases from around the world, which you can use as an FCA-compliant eKYC onboarding process.
 - `ONLINE_FOOTPRINT` will analyse the identity's digital and online history, to determine if it is likely to be legitimate or recently made-up.
 - `AML` will search over [280 global databases](https://vouchsafe.id/coverage/) of high-risk entities connected to financial or economic crime, including sanctions, watchlists and politically exposed people. It also enrols the person in ongoing monitoring, reported as `alerts_enabled_at`.
-- `ADVERSE_MEDIA` will search news coverage for reported wrongdoing by the person that signals fraud risk, such as fraud, financial crime or a regulatory ban. Its report lists every article the search found. An article is `FAIL` when it accuses the person of one of these, `REVIEW` when a person needs to check it, and otherwise `PASS`. An article needs checking when it might be about someone else with the same name, the person was acquitted, or the wrongdoing is not a sign of fraud, such as violence. `state` is `FAIL` when any article is `FAIL`, `REVIEW` when any needs review, and `NOT_PERFORMED` when the search couldn't run. Adding `address.city` narrows the search.
-- `NFD` will search the Cifas National Fraud Database to see if the identity is known to be associated with fraud
+- `ADVERSE_MEDIA` searches news coverage for reported wrongdoing linked to fraud or financial crime.
 
 The more checks you turn on, the more complete the data you send needs to be.
 
@@ -39,10 +38,7 @@ Our Risk API returns one of three recommendations: `CLEAR`, `REVIEW`, and `REJEC
 
 ### Face scan
 
-The endpoint accepts an optional `face_scan` — a live selfie or liveness image
-(JPEG or PNG, max 10 MB). When provided, Radar runs `face_linked_to_multiple_identities`
-— checking whether this face has been submitted under different names in the network.
-Without it, that check returns `NOT_PERFORMED`.
+Optionally send a `face_scan`: a live selfie or liveness image (JPEG or PNG, up to 10 MB). We'll check it against our fraud intelligence network to see whether the same face has been used under different identities. Without it, face-based checks are skipped.
 
 ### Address
 

@@ -16,8 +16,18 @@ import type { YoungScotValidationApiDocumentBordersDetected } from './youngScotV
 import type { YoungScotValidationApiFaceMatch } from './youngScotValidationApiFaceMatch';
 
 export interface YoungScotValidationApi {
-  /** Whether the required fields were extracted. */
-  required_fields_extracted: ValidationOutcomeApi;
+  /** Whether the required fields were extracted. Absent when a scan failed an earlier check for another reason. */
+  required_fields_extracted?: ValidationOutcomeApi;
+  /** Whether the flow accepts this type of photo ID. */
+  photo_id_type_accepted?: ValidationOutcomeApi;
+  /** Whether the document's issuing country is accepted, or for a licence, supported. */
+  issuing_country_allowed?: ValidationOutcomeApi;
+  /** Whether a face was found on the document. */
+  document_contains_face?: ValidationOutcomeApi;
+  /** Whether the document's dates are real dates. */
+  date_fields_valid?: ValidationOutcomeApi;
+  /** Whether the document isn't a specimen. */
+  not_sample_or_internal_use?: ValidationOutcomeApi;
   /** Whether the correct document dimensions were detected (with score). */
   document_borders_detected: YoungScotValidationApiDocumentBordersDetected;
   /** Whether the photo ID face matches the video selfie (with score). */

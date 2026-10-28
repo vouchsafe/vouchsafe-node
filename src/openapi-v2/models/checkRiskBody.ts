@@ -56,7 +56,16 @@ Improves match rates for `ONLINE_FOOTPRINT` and, for UK numbers, `CREDIT_BUREAU`
 
 If we can't read the number, the request still succeeds, but `PHONE_SCORE` returns `NOT_PERFORMED` with reason `INVALID_PHONE_FORMAT`. */
   phone?: string;
-  /** JSON-encoded thresholds object. Used to set the pass/fail threshold for `ONLINE_FOOTPRINT` and `AML` checks, otherwise defaulting to 50 and 96 respectively. */
+  /** JSON-encoded object setting the pass/fail thresholds for enrichment checks. Both keys are optional.
+
+| Key | Accepts | Default |
+|---|---|---|
+| `online_footprint` | Number from 0 to 100. Pass/fail threshold for `ONLINE_FOOTPRINT`. | 50 |
+| `aml` | Number from 0 to 100. Pass/fail threshold for `AML`. | 96 |
+
+```json
+{ "online_footprint": 50, "aml": 96 }
+``` */
   thresholds?: string;
   /** Face scan image (JPEG or PNG, max 10 MB). Optional binary file field. */
   face_scan?: Blob;

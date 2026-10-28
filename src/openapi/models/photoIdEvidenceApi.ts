@@ -12,4 +12,4 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  * OpenAPI spec version: 0.1.0
  */
 
-export type PhotoIdEvidenceApi = 'unfamiliar_photo_id' | 'passport' | 'driving_licence' | 'young_scot' | 'national_entitlement_card' | 'national_id' | 'citizen_card';
+export type PhotoIdEvidenceApi = 'unfamiliar_photo_id' | 'id_card' | 'passport' | 'driving_licence' | 'young_scot' | 'national_entitlement_card' | 'national_id' | 'citizen_card';

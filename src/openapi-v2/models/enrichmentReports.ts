@@ -17,6 +17,10 @@ export interface EnrichmentReports {
   online_footprint?: OnlineFootprintVerificationReport;
   /** AML / sanctions check report. Present when `"AML"` was requested. */
   aml?: AmlVerificationReport;
-  /** Adverse media report. Present when `"ADVERSE_MEDIA"` was requested. */
+  /** Adverse media report. Present when `"ADVERSE_MEDIA"` was requested.
+
+Lists every article the search found. An article is `FAIL` when it accuses the person of wrongdoing that signals fraud, such as fraud, financial crime or a regulatory ban, `REVIEW` when a person needs to check it, and otherwise `PASS`. An article needs checking when it might be about someone else with the same name, the person was acquitted, or the wrongdoing is not a sign of fraud, such as violence.
+
+`state` is `FAIL` when any article is `FAIL`, `REVIEW` when any needs review, and `NOT_PERFORMED` when the search couldn't run. Adding `address.city` narrows the search. */
   adverse_media?: AdverseMediaRiskReport;
 }

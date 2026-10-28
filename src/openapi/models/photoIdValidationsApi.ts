@@ -13,10 +13,11 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  */
 import type { CitizenCardValidationApi } from './citizenCardValidationApi';
 import type { DrivingLicenceValidationApi } from './drivingLicenceValidationApi';
+import type { IdCardValidationApi } from './idCardValidationApi';
 import type { NationalIdValidationApi } from './nationalIdValidationApi';
 import type { NecValidationApi } from './necValidationApi';
 import type { PassportValidationApi } from './passportValidationApi';
 import type { UnfamiliarPhotoIdValidationApi } from './unfamiliarPhotoIdValidationApi';
 import type { YoungScotValidationApi } from './youngScotValidationApi';
 
-export type PhotoIdValidationsApi = PassportValidationApi | DrivingLicenceValidationApi | NationalIdValidationApi | CitizenCardValidationApi | YoungScotValidationApi | NecValidationApi | UnfamiliarPhotoIdValidationApi;
+export type PhotoIdValidationsApi = PassportValidationApi | DrivingLicenceValidationApi | NationalIdValidationApi | CitizenCardValidationApi | YoungScotValidationApi | NecValidationApi | IdCardValidationApi | UnfamiliarPhotoIdValidationApi;

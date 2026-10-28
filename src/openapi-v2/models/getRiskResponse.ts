@@ -34,7 +34,7 @@ Derived from the weighted sum of trust and fraud signals detected. */
 
 - `"CLEAR"` — score 60–100: low risk, proceed with confidence
 - `"REVIEW"` — score 34–59: elevated risk, consider further checks
-- `"REJECT"` — score 0–33: high risk, additional verification required */
+- `"REJECT"` — score 0–33: high risk, the identity is likely fraudulent */
   recommendation: Recommendation;
   /** Signals that contributed positively to the risk score. */
   trust_signals: string[];
