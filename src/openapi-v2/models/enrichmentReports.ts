@@ -7,12 +7,17 @@
  */
 import type { AdverseMediaRiskReport } from './adverseMediaRiskReport';
 import type { AmlVerificationReport } from './amlVerificationReport';
-import type { CreditBureauVerificationReport } from './creditBureauVerificationReport';
+import type { OfficialRecordsReport } from './officialRecordsReport';
 import type { OnlineFootprintVerificationReport } from './onlineFootprintVerificationReport';
 
 export interface EnrichmentReports {
-  /** Credit bureau check report. Present when `"CREDIT_BUREAU"` was requested. */
-  credit_bureau?: CreditBureauVerificationReport;
+  /** Official records check report. Present when `"OFFICIAL_RECORDS"` was requested. */
+  official_records?: OfficialRecordsReport;
+  /**
+   * Official records check report. Present when the deprecated `"CREDIT_BUREAU"` was requested.
+   * @deprecated
+   */
+  credit_bureau?: OfficialRecordsReport;
   /** Online footprint check report. Present when `"ONLINE_FOOTPRINT"` was requested. */
   online_footprint?: OnlineFootprintVerificationReport;
   /** AML / sanctions check report. Present when `"AML"` was requested. */

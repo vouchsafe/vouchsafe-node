@@ -21,7 +21,7 @@ Pass the information you have about a customer, and Vouchsafe will scan our netw
 
 You can also run premium `enrichments`:
 
-- `CREDIT_BUREAU` will look for authoritative evidence of a claimed identity and address in official and semi-official databases from around the world, which you can use as an FCA-compliant eKYC onboarding process.
+- `OFFICIAL_RECORDS` will look for authoritative evidence of a claimed identity and address in official and semi-official databases from around the world, which you can use as an FCA-compliant eKYC onboarding process.
 - `ONLINE_FOOTPRINT` will analyse the identity's digital and online history, to determine if it is likely to be legitimate or recently made-up.
 - `AML` will search over [280 global databases](https://vouchsafe.id/coverage/) of high-risk entities connected to financial or economic crime, including sanctions, watchlists and politically exposed people. It also enrols the person in ongoing monitoring, reported as `alerts_enabled_at`.
 - `ADVERSE_MEDIA` searches news coverage for reported wrongdoing linked to fraud or financial crime.
@@ -42,7 +42,7 @@ Optionally send a `face_scan`: a live selfie or liveness image (JPEG or PNG, up 
 
 ### Address
 
-When the credit bureau enrichment is turned on, a structured `address` is required. This should be taken from the results returned by the [`GET /postcode` endpoint](https://docs.vouchsafe.id/api/v1/search-postcode). See the `address` field below for how to split a flat, building name and street number.
+When the official records enrichment is turned on, a structured `address` is required. This should be taken from the results returned by the [`GET /postcode` endpoint](https://docs.vouchsafe.id/api/v1/search-postcode). See the `address` field below for how to split a flat, building name and street number.
 
 ### Sandbox
 

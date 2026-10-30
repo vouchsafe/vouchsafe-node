@@ -12,6 +12,7 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  * OpenAPI spec version: 0.1.0
  */
 import type { CaseStatus } from './caseStatus';
+import type { CertifiedDetails } from './certifiedDetails';
 import type { ClaimDetails } from './claimDetails';
 import type { IdentityProfile } from './identityProfile';
 import type { VerificationCheck } from './verificationCheck';
@@ -81,4 +82,6 @@ if it has not been erased. The status and timestamps are retained, but personal 
   checks: VerificationCheck[];
   /** The enrichments performed on the verification. */
   enrichments: VerificationEnrichment[];
+  /** UK DVS trust framework certified check details. Only present for certified (Right to Work, Right to Rent, DBS) verifications. */
+  certified_details?: CertifiedDetails;
 }

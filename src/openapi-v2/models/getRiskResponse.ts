@@ -16,7 +16,7 @@ export interface GetRiskResponse {
   id: string;
   /** The team that performed this assessment. */
   team_id: string;
-  /** The optional enrichment checks that were requested alongside Radar. */
+  /** The optional enrichment checks that were requested alongside Radar, as sent. `"CREDIT_BUREAU"` is deprecated. */
   enrichments: GetRiskResponseEnrichmentsItem[];
   first_name: string;
   last_name: string;

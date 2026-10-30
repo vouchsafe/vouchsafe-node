@@ -7,10 +7,7 @@
  */
 import type { CheckResult } from './checkResult';
 
-/**
- * Construct a type with a set of properties K of type T
- */
-export interface RecordCreditBureauVerificationChecksCheckResult {
-  IDENTITY_MATCH: CheckResult;
+export type OfficialRecordsReportChecks = {
   RESIDENCY_MATCH: CheckResult;
-}
+  IDENTITY_MATCH: CheckResult;
+};

@@ -6,9 +6,9 @@
  * OpenAPI spec version: 2.0.0
  */
 import type { CheckState } from './checkState';
-import type { RecordCreditBureauVerificationChecksCheckResult } from './recordCreditBureauVerificationChecksCheckResult';
+import type { OfficialRecordsReportChecks } from './officialRecordsReportChecks';
 
-export interface CreditBureauVerificationReport {
+export interface OfficialRecordsReport {
   state: CheckState;
-  checks: RecordCreditBureauVerificationChecksCheckResult;
+  checks: OfficialRecordsReportChecks;
 }

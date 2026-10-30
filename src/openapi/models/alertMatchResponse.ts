@@ -15,7 +15,11 @@ import type { DatasetReference } from './datasetReference';
 
 export interface AlertMatchResponse {
   id: string;
-  opensanctions_id: string;
+  /**
+   * @deprecated
+   * @nullable
+   */
+  opensanctions_id: string | null;
   caption: string;
   entity_type: string;
   datasets: DatasetReference[];

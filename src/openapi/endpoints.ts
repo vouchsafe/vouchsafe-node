@@ -1139,7 +1139,7 @@ export const getFlow = async (id: string, options?: RequestInit): Promise<getFlo
 
 Each item is listed once, with every jurisdiction it applies to in `country_codes`. Items that apply everywhere (e.g. passports, or supporting documents which aren't restricted by country) have an empty `country_codes` array.
 
-DIGITAL_ID includes Trinsic's full provider catalog, not just the providers Vouchsafe has a working verification flow for — `id` is `null` for anything that can't be submitted anywhere today.
+DIGITAL_ID includes our full digital ID provider catalog, not just the providers Vouchsafe has a working verification flow for — `id` is `null` for anything that can't be submitted anywhere today.
  */
 export type listCoverageResponse200 = {
   data: ListCoverageResponse

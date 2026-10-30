@@ -16,9 +16,11 @@ export type CheckRiskBody = {
   /** Date of birth in YYYY-MM-DD format. Required. */
   date_of_birth: string;
   /** JSON-encoded array of optional enrichment checks to run.
-Accepted values: `"CREDIT_BUREAU"`, `"ONLINE_FOOTPRINT"`, `"AML"`, `"ADVERSE_MEDIA"`. */
+Accepted values: `"OFFICIAL_RECORDS"`, `"ONLINE_FOOTPRINT"`, `"AML"`, `"ADVERSE_MEDIA"`.
+
+`"CREDIT_BUREAU"` is deprecated. */
   enrichments?: string;
-  /** Required when `enrichments` includes `"CREDIT_BUREAU"`.
+  /** Required when `enrichments` includes `"OFFICIAL_RECORDS"`.
 
 Must include `residence_number` (or `building_name`), `postcode`, `city` and `country_code`. `street` is optional, but omitting it may affect match rates.
 
@@ -52,7 +54,7 @@ Example: a flat in a named building, `Flat 2, Rose Court, 10 Downing Street, Lon
   address?: string;
   /** The person's phone number, in E.164 format (e.g. `+447700900123`). Numbers without a country code are treated as UK numbers.
 
-Improves match rates for `ONLINE_FOOTPRINT` and, for UK numbers, `CREDIT_BUREAU`.
+Improves match rates for `ONLINE_FOOTPRINT` and, for UK numbers, `OFFICIAL_RECORDS`.
 
 If we can't read the number, the request still succeeds, but `PHONE_SCORE` returns `NOT_PERFORMED` with reason `INVALID_PHONE_FORMAT`. */
   phone?: string;
