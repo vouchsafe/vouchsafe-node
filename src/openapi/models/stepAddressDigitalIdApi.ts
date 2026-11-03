@@ -18,16 +18,16 @@ import type { StepAddressDigitalIdApiOutcome } from './stepAddressDigitalIdApiOu
 import type { StepAddressDigitalIdApiStep } from './stepAddressDigitalIdApiStep';
 
 export interface StepAddressDigitalIdApi {
-  /** Proof of address step — only present for v2 verifications. */
+  /** Proof of address. */
   step: StepAddressDigitalIdApiStep;
   /** Overall outcome of the address verification. */
   outcome: StepAddressDigitalIdApiOutcome;
-  /** ISO 8601 timestamp for when this evidence attempt was started. */
+  /** When the user provided this evidence, in ISO 8601 format. */
   created_at: string;
-  /** The method used to verify address. */
+  /** How the user proved their address. */
   method: StepAddressDigitalIdApiMethod;
-  /** The digital ID provider used. */
+  /** The digital ID provider. */
   evidence_type: DigitalIdVerificationMethodApi;
-  /** Extracted address details. */
+  /** The address returned by the provider. */
   extracted_details: StepAddressDigitalIdApiExtractedDetails;
 }

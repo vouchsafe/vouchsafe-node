@@ -373,6 +373,7 @@ export * from './stepIdentityPhotoIdApi';
 export * from './stepIdentityPhotoIdApiMethod';
 export * from './stepIdentityPhotoIdApiOutcome';
 export * from './stepIdentityPhotoIdApiStep';
+export * from './stepIdentityPhotoIdApiValidations';
 export * from './stepIdentityVouchApi';
 export * from './stepIdentityVouchApiMethod';
 export * from './stepIdentityVouchApiOutcome';

@@ -17,14 +17,14 @@ import type { StepAddressCreditReferenceAgencyApiOutcome } from './stepAddressCr
 import type { StepAddressCreditReferenceAgencyApiStep } from './stepAddressCreditReferenceAgencyApiStep';
 
 export interface StepAddressCreditReferenceAgencyApi {
-  /** Proof of address step — only present for v2 verifications. */
+  /** Proof of address. */
   step: StepAddressCreditReferenceAgencyApiStep;
   /** Overall outcome of the address verification. */
   outcome: StepAddressCreditReferenceAgencyApiOutcome;
-  /** ISO 8601 timestamp for when this evidence attempt was started. */
+  /** When the user provided this evidence, in ISO 8601 format. */
   created_at: string;
-  /** The method used to verify address. */
+  /** How the user proved their address. */
   method: StepAddressCreditReferenceAgencyApiMethod;
-  /** Extracted address details. */
+  /** The name and address checked with the official records. */
   extracted_details: StepAddressCreditReferenceAgencyApiExtractedDetails;
 }

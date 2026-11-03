@@ -15,4 +15,6 @@ import type { ValidationOutcomeApiStatus } from './validationOutcomeApiStatus';
 
 export interface ValidationOutcomeApi {
   status: ValidationOutcomeApiStatus;
+  /** A short, machine-readable code for why the check failed, such as `EXPIRY_DATE_PASSED`. */
+  failed_reason?: string;
 }

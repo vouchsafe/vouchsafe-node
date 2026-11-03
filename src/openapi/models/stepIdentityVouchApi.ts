@@ -19,18 +19,18 @@ import type { VouchEvidenceApi } from './vouchEvidenceApi';
 import type { VouchValidationsApi } from './vouchValidationsApi';
 
 export interface StepIdentityVouchApi {
-  /** Proof of identity step — only present for v2 verifications. */
+  /** Proof of identity. */
   step: StepIdentityVouchApiStep;
+  /** When the user provided this evidence, in ISO 8601 format. */
+  created_at: string;
   /** Overall outcome of the evidence submission. */
   outcome: StepIdentityVouchApiOutcome;
-  /** ISO 8601 timestamp for when this evidence attempt was started. */
-  created_at: string;
-  /** The method used to verify identity. */
+  /** How the user proved their identity. */
   method: StepIdentityVouchApiMethod;
-  /** The specific type of evidence submitted. */
+  /** The type of referee. */
   evidence_type: VouchEvidenceApi;
-  /** Extracted details from the evidence. Shape depends on evidence type. */
+  /** Details of the referee and how they know the user. */
   extracted_details: VouchDetailsApi;
-  /** Validations performed on the evidence. Shape depends on evidence type. */
+  /** Each check run on the referee, and whether it passed. */
   validations: VouchValidationsApi;
 }

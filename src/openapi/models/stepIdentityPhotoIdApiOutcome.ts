@@ -15,4 +15,4 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
 /**
  * Overall outcome of the evidence submission.
  */
-export type StepIdentityPhotoIdApiOutcome = 'pass' | 'fail';
+export type StepIdentityPhotoIdApiOutcome = 'pass' | 'fail' | 'in_progress';

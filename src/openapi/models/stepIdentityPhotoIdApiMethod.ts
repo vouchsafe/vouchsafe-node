@@ -13,6 +13,6 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  */
 
 /**
- * The method used to verify identity.
+ * How the user proved their identity.
  */
 export type StepIdentityPhotoIdApiMethod = 'photo_id';

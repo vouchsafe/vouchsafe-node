@@ -15,7 +15,7 @@ import type { StepAddressCreditReferenceAgencyApiExtractedDetailsAddress } from 
 import type { StepAddressCreditReferenceAgencyApiExtractedDetailsAddressSource } from './stepAddressCreditReferenceAgencyApiExtractedDetailsAddressSource';
 
 /**
- * Extracted address details.
+ * The name and address checked with the official records.
  */
 export type StepAddressCreditReferenceAgencyApiExtractedDetails = {
   /** Source of the address information. */
@@ -33,12 +33,12 @@ export type StepAddressCreditReferenceAgencyApiExtractedDetails = {
    */
   first_line_of_address: string | null;
   /**
-   * Last name that was checked against the credit bureau.
+   * Last name that was checked against the official records.
    * @nullable
    */
   last_name: string | null;
   /**
-   * First name that was checked against the credit bureau.
+   * First name that was checked against the official records.
    * @nullable
    */
   first_name: string | null;

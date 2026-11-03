@@ -14,7 +14,7 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
 import type { StepAddressDigitalIdApiExtractedDetailsAddress } from './stepAddressDigitalIdApiExtractedDetailsAddress';
 
 /**
- * Extracted address details.
+ * The address returned by the provider.
  */
 export type StepAddressDigitalIdApiExtractedDetails = {
   /** Structured address, or null for legacy records with only inline fields. */

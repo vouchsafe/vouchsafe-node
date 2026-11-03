@@ -20,20 +20,20 @@ import type { SupportingDocumentEvidenceApi } from './supportingDocumentEvidence
 import type { SupportingDocumentValidationsApi } from './supportingDocumentValidationsApi';
 
 export interface StepAddressSupportingDocumentApi {
-  /** Proof of address step — only present for v2 verifications. */
+  /** Proof of address. */
   step: StepAddressSupportingDocumentApiStep;
   /** Overall outcome of the address verification. */
   outcome: StepAddressSupportingDocumentApiOutcome;
-  /** ISO 8601 timestamp for when this evidence attempt was started. */
+  /** When the user provided this evidence, in ISO 8601 format. */
   created_at: string;
-  /** The method used to verify address. */
+  /** How the user proved their address. */
   method: StepAddressSupportingDocumentApiMethod;
-  /** The type of supporting document submitted. */
+  /** The type of document. */
   evidence_type: SupportingDocumentEvidenceApi;
-  /** Files captured or uploaded for this evidence item. */
+  /** The files collected, such as document images. Download each one using its `key`. */
   artefacts: ArtefactApi[];
-  /** Extracted details from the document. */
+  /** The details read from the document, such as the name, address and date. */
   extracted_details: SupportingDocumentDetailsApi;
-  /** Validations performed on the document. */
+  /** Each check run on the document, and whether it passed. */
   validations: SupportingDocumentValidationsApi;
 }

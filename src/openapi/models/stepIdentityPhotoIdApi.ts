@@ -14,26 +14,26 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
 import type { ArtefactApi } from './artefactApi';
 import type { PhotoIdEvidenceApi } from './photoIdEvidenceApi';
 import type { PhotoIdExtractedDetailsApi } from './photoIdExtractedDetailsApi';
-import type { PhotoIdValidationsApi } from './photoIdValidationsApi';
 import type { StepIdentityPhotoIdApiMethod } from './stepIdentityPhotoIdApiMethod';
 import type { StepIdentityPhotoIdApiOutcome } from './stepIdentityPhotoIdApiOutcome';
 import type { StepIdentityPhotoIdApiStep } from './stepIdentityPhotoIdApiStep';
+import type { StepIdentityPhotoIdApiValidations } from './stepIdentityPhotoIdApiValidations';
 
 export interface StepIdentityPhotoIdApi {
-  /** Proof of identity step — only present for v2 verifications. */
+  /** Proof of identity. */
   step: StepIdentityPhotoIdApiStep;
+  /** When the user provided this evidence, in ISO 8601 format. */
+  created_at: string;
   /** Overall outcome of the evidence submission. */
   outcome: StepIdentityPhotoIdApiOutcome;
-  /** ISO 8601 timestamp for when this evidence attempt was started. */
-  created_at: string;
-  /** The method used to verify identity. */
+  /** How the user proved their identity. */
   method: StepIdentityPhotoIdApiMethod;
-  /** The specific type of evidence submitted. */
+  /** The type of photo ID. */
   evidence_type: PhotoIdEvidenceApi;
-  /** Files captured or uploaded for this evidence item. */
+  /** The files collected, such as document images. Download each one using its `key`. */
   artefacts: ArtefactApi[];
-  /** Extracted details from the evidence. Shape depends on evidence type. */
+  /** The details read from the document, such as names, dates and the document number. */
   extracted_details: PhotoIdExtractedDetailsApi;
-  /** Validations performed on the evidence. Shape depends on evidence type. */
-  validations: PhotoIdValidationsApi;
+  /** Each check run on the document, and whether it passed. Empty while `outcome` is `in_progress`. */
+  validations: StepIdentityPhotoIdApiValidations;
 }

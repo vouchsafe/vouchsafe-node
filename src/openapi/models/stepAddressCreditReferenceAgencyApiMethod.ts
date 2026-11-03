@@ -13,6 +13,6 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  */
 
 /**
- * The method used to verify address.
+ * How the user proved their address.
  */
 export type StepAddressCreditReferenceAgencyApiMethod = 'credit_reference_agency';

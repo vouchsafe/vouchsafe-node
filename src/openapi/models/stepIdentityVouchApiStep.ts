@@ -13,6 +13,6 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
  */
 
 /**
- * Proof of identity step — only present for v2 verifications.
+ * Proof of identity.
  */
 export type StepIdentityVouchApiStep = 'step_identity';

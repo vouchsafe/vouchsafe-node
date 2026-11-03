@@ -20,20 +20,20 @@ import type { StepIdentityDigitalIdApiOutcome } from './stepIdentityDigitalIdApi
 import type { StepIdentityDigitalIdApiStep } from './stepIdentityDigitalIdApiStep';
 
 export interface StepIdentityDigitalIdApi {
-  /** Proof of identity step — only present for v2 verifications. */
+  /** Proof of identity. */
   step: StepIdentityDigitalIdApiStep;
+  /** When the user provided this evidence, in ISO 8601 format. */
+  created_at: string;
   /** Overall outcome of the evidence submission. */
   outcome: StepIdentityDigitalIdApiOutcome;
-  /** ISO 8601 timestamp for when this evidence attempt was started. */
-  created_at: string;
-  /** The method used to verify identity. */
+  /** How the user proved their identity. */
   method: StepIdentityDigitalIdApiMethod;
-  /** The specific type of evidence submitted. */
+  /** The digital ID provider. */
   evidence_type: DigitalIdVerificationMethodApi;
-  /** Files captured or uploaded for this evidence item. */
+  /** The files collected, such as document images. Download each one using its `key`. */
   artefacts: ArtefactApi[];
-  /** Extracted details from the evidence. Shape depends on evidence type. */
+  /** The details returned by the provider. */
   extracted_details: DigitalIdExtractedDetailsApi;
-  /** Validations performed on the evidence. Shape depends on evidence type. */
+  /** Each check run on the details, and whether it passed. */
   validations: DigitalIdValidationsApi;
 }
