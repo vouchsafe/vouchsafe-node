@@ -14,6 +14,11 @@ import type { RiskEnrichment } from './riskEnrichment';
 export interface GetRisk2Response {
   /** Unique identifier for this risk assessment. */
   id: string;
+  /**
+   * The `acc_` ID of the account the check ran on, or `null` for checks made without one.
+   * @nullable
+   */
+  account: string | null;
   /** The team that performed this assessment. */
   team_id: string;
   /** The optional enrichment checks that were requested alongside Radar. */
