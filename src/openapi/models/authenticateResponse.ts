@@ -15,4 +15,6 @@ We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_
 export interface AuthenticateResponse {
   access_token: string;
   expires_at: string;
+  /** Seconds until the token expires. */
+  expires_in: number;
 }
