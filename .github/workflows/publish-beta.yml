@@ -1,0 +1,38 @@
+name: Publish beta
+
+on:
+  push:
+    branches: [beta]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+
+      - run: pnpm install --frozen-lockfile
+
+      # Fern doesn't emit a repository field, and --provenance needs it.
+      - run: npm pkg set repository.url=git+https://github.com/vouchsafe/vouchsafe-node.git
+
+      # Releases happen by bumping sdkVersion in the monorepo; regenerations at the same version are skipped.
+      - name: Publish to the beta tag
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          if npm view "@vouchsafe/node@$VERSION" version >/dev/null 2>&1; then
+            echo "$VERSION already published"
+            exit 0
+          fi
+          npm publish --tag beta --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
