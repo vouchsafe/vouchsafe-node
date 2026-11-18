@@ -101,6 +101,7 @@ Referee-specific verification flows cannot be started independently, so are not 
         contentType: ContentType.Json,
         status: 200,
       })
+      .setDeclaredErrorStatuses([400, 401])
       .build();
     return this.client.callWithRawResponse<VouchsafeApi.ListFlowsResponse>(_request);
   }
@@ -156,6 +157,7 @@ Use an ID from one of these flows to request verifications with the  [`POST /ver
         contentType: ContentType.Json,
         status: 200,
       })
+      .setDeclaredErrorStatuses([400, 401, 404])
       .addPathParam({
         key: 'id',
         value: request.id,

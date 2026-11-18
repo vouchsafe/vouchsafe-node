@@ -97,6 +97,7 @@ Providing a `location` is strongly recommended: it significantly improves search
         contentType: ContentType.Json,
         status: 200,
       })
+      .setDeclaredErrorStatuses([400, 401])
       .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
       .addBody(request)
       .build();

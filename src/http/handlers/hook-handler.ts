@@ -64,25 +64,32 @@ export class HookHandler implements RequestHandler {
     const statusCode = response.metadata.status;
     const body = decodeErrorBody(arrayBuffer, response.metadata.headers['content-type']);
 
-    switch (statusCode) {
-      case 400:
-        throw new BadRequestError(body, response.rawResponse!);
-      case 401:
-        throw new UnauthorizedError(body, response.rawResponse!);
-      case 403:
-        throw new ForbiddenError(body, response.rawResponse!);
-      case 404:
-        throw new NotFoundError(body as ApiErrorResponse, response.rawResponse!);
-      case 405:
-        throw new MethodNotAllowedError(body as ApiErrorResponseV2, response.rawResponse!);
-      case 409:
-        throw new ConflictError(body as ApiErrorResponse, response.rawResponse!);
-      case 422:
-        throw new UnprocessableEntityError(body, response.rawResponse!);
-      case 501:
-        throw new NotImplementedError(body as ApiErrorResponse, response.rawResponse!);
-      case 503:
-        throw new ServiceUnavailableError(body as ApiErrorResponse, response.rawResponse!);
+    // An operation that declares its error statuses throws a typed error only for those; any other
+    // error status throws the base error below, as Fern's clients do.
+    if (
+      request.declaredErrorStatuses === undefined ||
+      request.declaredErrorStatuses.includes(statusCode)
+    ) {
+      switch (statusCode) {
+        case 400:
+          throw new BadRequestError(body, response.rawResponse!);
+        case 401:
+          throw new UnauthorizedError(body, response.rawResponse!);
+        case 403:
+          throw new ForbiddenError(body, response.rawResponse!);
+        case 404:
+          throw new NotFoundError(body as ApiErrorResponse, response.rawResponse!);
+        case 405:
+          throw new MethodNotAllowedError(body as ApiErrorResponseV2, response.rawResponse!);
+        case 409:
+          throw new ConflictError(body as ApiErrorResponse, response.rawResponse!);
+        case 422:
+          throw new UnprocessableEntityError(body, response.rawResponse!);
+        case 501:
+          throw new NotImplementedError(body as ApiErrorResponse, response.rawResponse!);
+        case 503:
+          throw new ServiceUnavailableError(body as ApiErrorResponse, response.rawResponse!);
+      }
     }
 
     if (resolveUndeclaredError) {

@@ -6,6 +6,7 @@ The Vouchsafe TypeScript library provides convenient access to the Vouchsafe API
 
 ## Table of Contents
 
+- [Installation](#installation)
 - [Reference](#reference)
 - [Usage](#usage)
 - [Environments](#environments)
@@ -24,6 +25,12 @@ The Vouchsafe TypeScript library provides convenient access to the Vouchsafe API
   - [Custom Fetcher](#custom-fetcher)
   - [Runtime Compatibility](#runtime-compatibility)
 - [Contributing](#contributing)
+
+## Installation
+
+```sh
+npm i -s @vouchsafe/node
+```
 
 ## Reference
 

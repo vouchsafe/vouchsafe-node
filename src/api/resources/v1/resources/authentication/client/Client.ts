@@ -99,6 +99,7 @@ Use an [SDK or library](https://help.vouchsafe.id/en/articles/12026847-vouchsafe
         contentType: ContentType.Json,
         status: 201,
       })
+      .setDeclaredErrorStatuses([400, 401])
       .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
       .addBody(request)
       .build();

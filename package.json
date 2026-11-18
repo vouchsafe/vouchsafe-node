@@ -1,6 +1,6 @@
 {
   "name": "@vouchsafe/node",
-  "version": "1.0.0-beta.0",
+  "version": "1.0.0-beta.1",
   "description": "Vouchsafe offers a REST API to conduct operations programmatically.  You can request and manage verifications, as well as perform smart lookups.  To use the API, you need a client ID and secret from the Vouchsafe dashboard. [Sign up here](https://app.vouchsafe.id/) if you haven't already.  We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_ZNWBPnysvwmdIwboLViE8) showing the basics, as well as [SDKs and libraries](https://help.vouchsafe.id/en/articles/12026847-vouchsafe-sdks-and-libraries) for popular languages.",
   "source": "./src/index.ts",
   "type": "commonjs",
@@ -43,13 +43,14 @@
   ],
   "author": "Vouchsafe",
   "devDependencies": {
-    "@biomejs/biome": "2.4.10",
-    "@types/node": "^22.14.0",
-    "ts-loader": "^9.5.4",
     "typescript": "~5.9.3",
+    "@types/node": "^22.14.0",
     "vitest": "^3.2.4",
-    "webpack": "^5.105.4"
+    "@biomejs/biome": "2.4.10",
+    "webpack": "^5.105.4",
+    "ts-loader": "^9.5.4"
   },
+  "dependencies": {},
   "engines": {
     "node": ">=18.0.0"
   },

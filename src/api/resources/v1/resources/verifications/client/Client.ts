@@ -140,6 +140,7 @@ This can be a long list, so filtering by status is recommended.
         contentType: ContentType.Json,
         status: 200,
       })
+      .setDeclaredErrorStatuses([400, 401])
       .addQueryParam({
         key: 'status',
         value: request.status,
@@ -178,7 +179,7 @@ You can override the expiry for a specific verification using the `expires_at` f
 > This endpoint supports sandbox mode. [See how sandbox mode works](https://docs.vouchsafe.id/sandbox).
  * @param {VouchsafeApi.v1.RequestVerificationInput} request
  * @param {VerificationsClient.RequestOptions} [requestOptions] - Request-specific configuration.
- * @returns {HttpResponsePromise<VouchsafeApi.v1.RequestVerificationResponse>} - An in progress verification already exists and is returned
+ * @returns {HttpResponsePromise<VouchsafeApi.v1.RequestVerificationResponse>} - Verification created
  *
  * @throws {@link VouchsafeApi.BadRequestError}
  * @throws {@link VouchsafeApi.UnauthorizedError}
@@ -222,6 +223,7 @@ You can override the expiry for a specific verification using the `expires_at` f
         contentType: ContentType.Json,
         status: 201,
       })
+      .setDeclaredErrorStatuses([400, 401, 403, 422])
       .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
       .addBody(request)
       .build();
@@ -305,6 +307,7 @@ collected that data.
         contentType: ContentType.Json,
         status: 200,
       })
+      .setDeclaredErrorStatuses([400, 401, 404])
       .addPathParam({
         key: 'id',
         value: request.id,
@@ -367,6 +370,7 @@ In sandbox mode, you can call this endpoint to see the response for each sandbox
         contentType: ContentType.Json,
         status: 200,
       })
+      .setDeclaredErrorStatuses([401, 404, 409])
       .addPathParam({
         key: 'id',
         value: request.id,

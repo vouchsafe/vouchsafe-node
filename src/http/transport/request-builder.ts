@@ -281,6 +281,12 @@ export class RequestBuilder<Page extends unknown[] = unknown[]> {
     return this;
   }
 
+  /** The error statuses the operation declares; see `Request.declaredErrorStatuses`. */
+  setDeclaredErrorStatuses(statuses: number[]): RequestBuilder<Page> {
+    this.params.declaredErrorStatuses = statuses;
+    return this;
+  }
+
   addBody(body?: any): RequestBuilder<Page> {
     if (body !== undefined) {
       this.params.body = body;

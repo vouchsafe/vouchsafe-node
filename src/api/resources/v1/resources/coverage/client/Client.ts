@@ -74,6 +74,7 @@ DIGITAL_ID includes our full digital ID provider catalog, not just the providers
       contentType: ContentType.Json,
       status: 200,
     })
+  .setDeclaredErrorStatuses([400, 401])
       .addQueryParam({
 key: 'country_code',
 value: request.country_code,

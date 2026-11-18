@@ -140,6 +140,7 @@ To return a record you can open in the sandbox dashboard, use `dwebb@email.com` 
         contentType: ContentType.Json,
         status: 201,
       })
+      .setDeclaredErrorStatuses([400, 401, 403, 405, 422])
       .addBody(request)
       .build();
     return this.client.callWithRawResponse<VouchsafeApi.v2.GetRiskResponse>(_request);

@@ -122,6 +122,7 @@ The `billable` field in the response body indicates whether tokens were charged 
         contentType: ContentType.Json,
         status: 201,
       })
+      .setDeclaredErrorStatuses([400, 401, 403])
       .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
       .addBody(request)
       .build();
@@ -178,6 +179,7 @@ Useful for guaranteeing that a user's address is recognised before onboarding.
         contentType: ContentType.Json,
         status: 200,
       })
+      .setDeclaredErrorStatuses([400, 401, 403])
       .addQueryParam({
         key: 'postcode',
         value: request.postcode,

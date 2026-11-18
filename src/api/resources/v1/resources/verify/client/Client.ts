@@ -173,6 +173,7 @@ In sandbox mode, the endpoint returns a mock "pass" response with sandbox values
         contentType: ContentType.Json,
         status: 200,
       })
+      .setDeclaredErrorStatuses([400, 401, 403, 422, 503])
       .addBody(request)
       .build();
     return this.client.callWithRawResponse<VouchsafeApi.v1.SupportingDocumentVerificationResponse>(
@@ -248,6 +249,7 @@ You provide:
         contentType: ContentType.Json,
         status: 200,
       })
+      .setDeclaredErrorStatuses([400, 401, 403, 422, 501, 503])
       .addBody(request)
       .build();
     return this.client.callWithRawResponse<VouchsafeApi.v1.PhotoIdVerificationResponse>(_request);
@@ -383,6 +385,7 @@ Always check `extraction_success` before using the object:
         contentType: ContentType.Json,
         status: 200,
       })
+      .setDeclaredErrorStatuses([400, 401, 403, 422, 503])
       .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
       .addBody(request)
       .build();

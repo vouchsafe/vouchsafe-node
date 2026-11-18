@@ -147,6 +147,7 @@ Use cursor-based pagination to iterate through results.
         contentType: ContentType.Json,
         status: 200,
       })
+      .setDeclaredErrorStatuses([401, 403])
       .addQueryParam({
         key: 'status',
         value: request.status,
@@ -213,6 +214,7 @@ Each alert has a `source` field that determines its shape:
         contentType: ContentType.Json,
         status: 200,
       })
+      .setDeclaredErrorStatuses([401, 403, 404])
       .addPathParam({
         key: 'id',
         value: request.id,
@@ -273,6 +275,7 @@ Enable or disable AML/sanctions screening for an existing account.
         contentType: ContentType.Json,
         status: 200,
       })
+      .setDeclaredErrorStatuses([400, 401, 403, 404])
       .addPathParam({
         key: 'id',
         value: request.id,
@@ -340,6 +343,7 @@ on an alert in the response.
         contentType: ContentType.Json,
         status: 200,
       })
+      .setDeclaredErrorStatuses([401, 403, 404])
       .addPathParam({
         key: 'alertId',
         value: request.alertId,

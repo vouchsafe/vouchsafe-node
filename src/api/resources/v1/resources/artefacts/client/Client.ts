@@ -107,6 +107,7 @@ If it expires, request a new URL using this endpoint.
         contentType: ContentType.Json,
         status: 200,
       })
+      .setDeclaredErrorStatuses([400, 401, 404, 409])
       .addPathParam({
         key: 'artefact_key',
         value: request.artefact_key,

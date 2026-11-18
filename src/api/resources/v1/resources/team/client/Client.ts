@@ -99,6 +99,7 @@ Helpful for testing, especially when managing multiple client IDs and secrets.
         contentType: ContentType.Json,
         status: 200,
       })
+      .setDeclaredErrorStatuses([400, 401])
       .build();
     return this.client.callWithRawResponse<VouchsafeApi.v1.GetTeamResponse>(_request);
   }
@@ -163,6 +164,7 @@ The provided admin emails will be granted administrative access to manage the te
         contentType: ContentType.Json,
         status: 200,
       })
+      .setDeclaredErrorStatuses([400, 401])
       .addHeaderParam({
         key: 'X-Partner-Token',
         value: request['X-Partner-Token'],

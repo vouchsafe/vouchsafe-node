@@ -63,7 +63,7 @@ export class RequestValidationHandler implements RequestHandler {
       request.requestContentType === ContentType.Image ||
       request.requestContentType === ContentType.Binary
     ) {
-      request.body = request.body;
+      // Sent as the caller built it: there is nothing to validate or serialize.
     } else if (request.requestContentType === ContentType.FormUrlEncoded) {
       request.body = this.toFormUrlEncoded(request, requestValidationEnabled);
     } else if (request.requestContentType === ContentType.MultipartFormData) {
