@@ -23,7 +23,7 @@
       "sdkName": "vouchsafe",
       "apiName": "api",
       "organizationName": "vouchsafe",
-      "sdkVersion": "1.0.0-beta.1"
+      "sdkVersion": "1.0.0-beta.2"
     },
     "api": {
       "baseUrl": "",
@@ -81,7 +81,8 @@
       "additionalConstructorParameters": []
     },
     "package": {
-      "packageName": "@vouchsafe/node"
+      "packageName": "@vouchsafe/node",
+      "repository": "https://github.com/vouchsafe/vouchsafe-node"
     },
     "output": {
       "delivery": "zip",
@@ -111,6 +112,7 @@
     "scripts/rename-to-esm-files.js",
     ".gitignore",
     "scripts/prepublish.sh",
+    ".github/workflows/release.yml",
     "biome.json",
     ".env.example",
     "examples/package.json",

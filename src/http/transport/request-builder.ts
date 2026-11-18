@@ -55,10 +55,10 @@ export class RequestBuilder<Page extends unknown[] = unknown[]> {
       cookies: new Map(),
       tokenManager: new OAuthTokenManager(),
     };
-    this.addHeaderParam({ key: 'User-Agent', value: '@vouchsafe/node/1.0.0-beta.1' });
+    this.addHeaderParam({ key: 'User-Agent', value: '@vouchsafe/node/1.0.0-beta.2' });
     this.addHeaderParam({ key: 'X-Fern-Language', value: 'JavaScript' });
     this.addHeaderParam({ key: 'X-Fern-SDK-Name', value: '@vouchsafe/node' });
-    this.addHeaderParam({ key: 'X-Fern-SDK-Version', value: '1.0.0-beta.1' });
+    this.addHeaderParam({ key: 'X-Fern-SDK-Version', value: '1.0.0-beta.2' });
     this.addHeaderParam({ key: 'X-Fern-Runtime', value: RUNTIME.type });
     if (RUNTIME.version !== undefined) {
       this.addHeaderParam({ key: 'X-Fern-Runtime-Version', value: RUNTIME.version });
