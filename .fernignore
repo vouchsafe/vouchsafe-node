@@ -2,3 +2,5 @@
 LICENSE
 src/wrapper/
 src/index.ts
+.gitignore
+.gitignore

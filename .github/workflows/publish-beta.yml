@@ -20,7 +20,7 @@ jobs:
           node-version: "22"
           registry-url: "https://registry.npmjs.org"
 
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install
 
       # Fern doesn't emit a repository field, and --provenance needs it.
       - run: npm pkg set repository.url=git+https://github.com/vouchsafe/vouchsafe-node.git
