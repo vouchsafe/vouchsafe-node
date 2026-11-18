@@ -1,20 +1,92 @@
-
 # Contributing
 
-We welcome bug reports, feature requests, and code contributions in a pull request.
+Thanks for your interest in contributing to this SDK! This document provides guidelines for contributing to the project.
 
-For most pull requests, we request that you identify or create an associated issue that has the necessary context. We use these issues to reach agreement on an approach and save the PR author from having to redo work. Fixing typos or documentation issues likely do not need an issue; for any issue that introduces substantial code changes, changes the public interface, or if you aren't sure, please find or [create an issue](https://www.github.com/vouchsafe/vouchsafe-node).
+## Getting Started
 
-## Generated code
+### Prerequisites
 
-This project has a combination of manually maintained code and code generated with [openapi-generator](https://github.com/OpenAPITools/openapi-generator). If your contribution involves changes to generated code, please call this out in the issue or pull request as we will likely need to make a change to the input OpenAPI specification before accepting the contribution.
+- Node.js 18 or higher
+- pnpm package manager
 
-Everything in the `/src/openapi` subfolder is generated code.
+### Installation
 
-## Compatibility with supported language and runtime versions
+Install the project dependencies:
 
-This project supports [many different language and runtime versions](README.md#requirements) and we may not be able to accept any contribution that does not work on _all_ supported versions. If, after discussing the approach in the associated issue, your change must use an API/feature that isn't available in all supported versions, please call this out explicitly in the issue or pull request so we can help figure out the best way forward.
+```bash
+pnpm install
+```
 
-## Set up your dev environment
+### Building
 
-Please refer to this project's [README.md](README.md#development) for instructions on how to set up your development environment.
+Build the project:
+
+```bash
+pnpm build
+```
+
+### Testing
+
+Type-check the project:
+
+```bash
+pnpm test
+```
+
+### Linting and Formatting
+
+Check code style:
+
+```bash
+pnpm lint
+pnpm format:check
+```
+
+Fix code style issues:
+
+```bash
+pnpm lint:fix
+pnpm format
+```
+
+Or use the combined check command:
+
+```bash
+pnpm check:fix
+```
+
+## About Generated Code
+
+**Important**: This SDK is automatically generated from the API definition. Direct modifications to generated files will be overwritten the next time the SDK is regenerated.
+
+While we value open-source contributions to this SDK, this library is generated programmatically.
+Additions made directly to this library would have to be moved over to our generation code,
+otherwise they would be overwritten upon the next generated release. Feel free to open a PR as
+a proof of concept, but know that we will not be able to merge it as-is. We suggest opening
+an issue first to discuss with us!
+
+On the other hand, contributions to the README are always very welcome!
+
+## Making Changes
+
+### Workflow
+
+1. Create a new branch for your changes
+2. Make your modifications
+3. Type-check to ensure nothing breaks: `pnpm test`
+4. Run linting and formatting: `pnpm check:fix`
+5. Build the project: `pnpm build`
+6. Commit your changes with a clear commit message
+7. Push your branch and open an issue to discuss before opening a pull request
+
+### Commit Messages
+
+Write clear, descriptive commit messages that explain what changed and why.
+
+### Code Style
+
+This project uses automated code formatting and linting. Run `pnpm check:fix` before committing to ensure your code meets the project's style guidelines.
+
+## Questions or Issues?
+
+If you have questions or run into issues, please open an issue to discuss.

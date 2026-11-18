@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "es2018",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "isolatedModules": true,
+    "lib": ["es2018", "dom", "DOM.Iterable"]
+  },
+  "include": ["src"],
+  "exclude": []
+}

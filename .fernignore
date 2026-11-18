@@ -1,2 +1,4 @@
 .github/workflows/publish-beta.yml
 LICENSE
+src/wrapper/
+src/index.ts

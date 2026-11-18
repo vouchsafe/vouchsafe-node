@@ -1,228 +1,330 @@
-# Vouchsafe Node.js library
+# Vouchsafe TypeScript Library
 
-The Vouchsafe Node library provides convenient, typed access to the Vouchsafe API for applications written in server-side JavaScript.
+[![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=Vouchsafe%2FTypeScript)
 
-## Requirements
+The Vouchsafe TypeScript library provides convenient access to the Vouchsafe APIs from TypeScript.
 
-Node 18 or better.
+## Table of Contents
 
-## Installation
+- [Reference](#reference)
+- [Usage](#usage)
+- [Environments](#environments)
+- [Request and Response Types](#request-and-response-types)
+- [Exception Handling](#exception-handling)
+- [Advanced](#advanced)
+  - [Subpackage Exports](#subpackage-exports)
+  - [Additional Headers](#additional-headers)
+  - [Additional Query String Parameters](#additional-query-string-parameters)
+  - [Retries](#retries)
+  - [Timeouts](#timeouts)
+  - [Aborting Requests](#aborting-requests)
+  - [Access Raw Response Data](#access-raw-response-data)
+  - [Logging](#logging)
+  - [Custom Fetch](#custom-fetch)
+  - [Custom Fetcher](#custom-fetcher)
+  - [Runtime Compatibility](#runtime-compatibility)
+- [Contributing](#contributing)
 
-```
-npm install @vouchsafe/node
-# or
-yarn add  @vouchsafe/node
-```
+## Reference
+
+A full reference for this library is available [here](./reference.md).
 
 ## Usage
 
-The SDK needs a client ID and secret, which is available in the [Vouchsafe dashboard](https://app.vouchsafe.id). Replace the values below:
+Instantiate and use the client with the following:
 
-```ts
-import { VouchsafeClient } from "@vouchsafe/node"
+```typescript
+import { VouchsafeApiClient } from '@vouchsafe/node';
 
-const client = new VouchsafeClient({
-  client_id: "YOUR_CLIENT_ID",
-  client_secret: "YOUR_CLIENT_SECRET",
-})
-
-// Request a verification
-const res = await client.requestVerification({
-  email: "foo@bar.com",
-})
-
-console.log(res.id) // Trackable verification session ID
-console.log(res.url) // Redirect the user here
-```
-
-### List verifications
-
-```ts
-const res = await client.listVerifications({
-  status: "InProgress", // Or any other supported status
-})
-```
-
-### Get a specific verification
-
-```ts
-const res = await client.getVerification({
-  id: "ID",
-})
-
-console.log(res.checks) // Array of verification checks performed
-console.log(res.enrichments) // Array of background checks
-```
-
-### Download artefacts (documents, photos)
-
-Verification responses may include artefact keys. Use these to get pre-signed download URLs:
-
-```ts
-const verification = await client.getVerification({ id: "ID" })
-
-// Get artefact keys from checks
-const photoIdCheck = verification.checks.find((c) => c.step === "photo_id")
-if (photoIdCheck?.artefacts?.[0]) {
-  const artefact = await client.getArtefact({
-    artefact_key: photoIdCheck.artefacts[0].key,
-  })
-
-  console.log(artefact.download_url) // Pre-signed URL (time-limited)
-  console.log(artefact.expires_at) // When the URL expires
-}
-```
-
-### Verify UK immigration status (eVisa)
-
-Verify a person's immigration status, right to work, or right to rent using their Home Office share code:
-
-```ts
-const result = await client.verifyEvisa({
-  sub_type: "ImmigrationStatus", // or 'RightToRent', 'ImmigrationStatus'
+const client = new VouchsafeApiClient({ clientId: 'CLIENT_ID', clientSecret: 'CLIENT_SECRET' });
+await client.v1.verify.evisa({
+  sub_type: 'ImmigrationStatus',
   payload: {
-    reason: "Education or training",
-    job_title: "Software Engineer",
-    company_name: "Sandbox Company",
-    date_of_birth: "1996-06-07",
-    share_code: "PASS12345",
+    reason: 'Education or training',
+    job_title: 'Compliance Officer',
+    company_name: 'Sandbox Company',
+    date_of_birth: '1996-06-07',
+    share_code: 'PASS12345',
   },
-})
-
-console.log(result.outcome) // 'pass', 'fail', or 'error'
-
-// Access type-specific fields based on sub_type
-if (result.sub_type === 'ImmigrationStatus') {
-  console.log(result.extracted_details.immigration_status) // e.g., 'Settled'
-}
-
-console.log(result.validations.evisa_exists.status) // 'pass' or 'fail'
+});
 ```
 
-**Sandbox testing**: Use these share codes in sandbox mode:
+## Environments
 
-- `PASS12345` - Returns successful verification
-- `FAIL12345` - Returns failed verification (expired status)
-- `ERROR1234` - Returns error response
+This SDK allows you to configure different environments for API requests.
 
-### Verify supporting documents
+```typescript
+import { VouchsafeApiClient, VouchsafeApiEnvironment } from '@vouchsafe/node';
 
-Extract and validate supporting documents like bank statements, utility bills, payslips:
-
-```ts
-import fs from "fs"
-
-const fileBuffer = fs.readFileSync("./bank-statement.pdf")
-const file = new File([fileBuffer], "bank-statement.pdf", {
-  type: "application/pdf",
-})
-
-const result = await client.verifySupportingDocument({
-  document: file,
-  sub_type: "BankStatement",
-  minimum_document_length: 3, // Optional: minimum age in months
-})
-
-console.log(result.outcome) // 'pass', 'fail', or 'error'
-console.log(result.extracted_details.first_name)
-console.log(result.extracted_details.postcode)
-console.log(result.validations.document_age_valid?.status)
+const client = new VouchsafeApiClient({
+  environment: VouchsafeApiEnvironment.Production,
+});
 ```
 
-**Supported document types**:
+## Request and Response Types
 
-- Financial: `BankStatement`, `CreditCardStatement`, `MortgageStatement`, `Payslip`, `PensionAnnualStatement`
-- Utilities: `UtilityBill`, `MobilePhoneBill`
-- Government: `BenefitsLetter`, `HMPPSLetter`, `NHSLetter`
+The SDK exports all request and response types as TypeScript interfaces. Simply import them with the
+following namespace:
 
-### Verify a photo ID
+```typescript
+import { VouchsafeApi } from "@vouchsafe/node";
 
-Extract and validate a photo ID (passport, national ID, driving licence, PASS card, or unfamiliar photo ID), optionally face-matching it against a selfie:
-
-```ts
-import fs from "fs"
-
-const front = new File([fs.readFileSync("./licence-front.jpg")], "licence-front.jpg", {
-  type: "image/jpeg",
-})
-
-const result = await client.verifyPhotoId({
-  sub_type: "DrivingLicence", // Passport | NationalId | DrivingLicence | PASSCard | UnfamiliarPhotoId
-  front,
-  country_code: "GB", // DrivingLicence only
-  // back,           // NationalId only
-  // face_scan,      // Optional selfie to face-match
-})
-
-console.log(result.outcome) // 'pass' or 'fail'
-console.log(result.extracted_details.first_name)
-console.log(result.validations.has_not_expired?.status)
+const request: VouchsafeApi.ListVerificationsRequest = {
+    ...
+};
 ```
 
-**Sub types**:
+## Exception Handling
 
-- `Passport` — MRZ-enabled passports
-- `NationalId` — MRZ-enabled national IDs (requires `back`)
-- `DrivingLicence` — GB and EU licences (requires `country_code`)
-- `PASSCard` — PASS-accredited cards (Citizencard, Young Scot)
-- `UnfamiliarPhotoId` — any other photo ID
+When the API returns a non-success status code (4xx or 5xx response), a subclass of the following error
+will be thrown.
 
-### List verification flows
+```typescript
+import { VouchsafeApiError } from "@vouchsafe/node";
 
-```ts
-const res = await client.listFlows()
-```
-
-### Sandbox mode
-
-Use a sandbox rather than a live client secret to activate [sandbox mode](https://help.vouchsafe.id/en/articles/11979598-how-does-sandbox-mode-work) on methods that support it.
-
-### Re-authentication
-
-The client will automatically cache your access token and insert it into every request, and fetch a new one upon expiry.
-
-If a request fails with a 401 Unauthorised error, it will fetch a new access token and retry once before throwing an error.
-
-#### Multi-instance use
-
-For best performance, you should instantiate the client once and share it across your app as a [singleton](https://www.patterns.dev/vanilla/singleton-pattern/).
-
-If you run multiple instances of your app, each instance can authenticate on its own and cache its own access token.
-
-### Handling errors
-
-Client methods will throw an instance of `VouchsafeApiError` if the API returns a bad response.
-
-You can catch them like this:
-
-```ts
 try {
-  const res = await client.getVerification({
-    id: "non-existent",
-  })
+    await client.v1.verify.evisa(...);
 } catch (err) {
-  if (err instanceof VouchsafeApiError) {
-    console.log(err.statusCode, err.message)
-  }
+    if (err instanceof VouchsafeApiError) {
+        console.log(err.statusCode);
+        console.log(err.message);
+        console.log(err.body);
+        console.log(err.rawResponse);
+    }
 }
 ```
 
-## Development
+## Advanced
 
-**[See the contribution guidelines for this project](https://github.com/vouchsafe/vouchsafe-node/blob/main/CONTRIBUTING.md)**
+### Subpackage Exports
 
-Contributions including issues and pull requests are welcome.
+This SDK supports direct imports of subpackage clients, which allows JavaScript bundlers to tree-shake and include only the imported subpackage code. This results in much smaller bundle sizes.
 
-To run the project locally, clone the repo and run:
+```typescript
+import { V1Client } from '@vouchsafe/node/v1';
 
-```bash
-npm install
-npm run generate # regenerate from API spec
-npm run build # compile typescript
+const client = new V1Client({...});
 ```
 
-## Further reading
+### Additional Headers
 
-- [Developer docs](https://help.vouchsafe.id/en/collections/12439003-developers)
-- [Full API endpoint reference](https://app.vouchsafe.id/docs)
-- [3-minute video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_ZNWBPnysvwmdIwboLViE8)
+If you would like to send additional headers as part of the request, use the `headers` request option.
+
+```typescript
+import { VouchsafeApiClient } from "@vouchsafe/node";
+
+const client = new VouchsafeApiClient({
+    ...
+    headers: {
+        'X-Custom-Header': 'custom value'
+    }
+});
+
+const response = await client.v1.verify.evisa(..., {
+    headers: {
+        'X-Custom-Header': 'custom value'
+    }
+});
+```
+
+### Additional Query String Parameters
+
+If you would like to send additional query string parameters as part of the request, use the `queryParams` request option.
+
+```typescript
+const response = await client.v1.verify.evisa(..., {
+    queryParams: {
+        'customQueryParamKey': 'custom query param value'
+    }
+});
+```
+
+### Retries
+
+The SDK is instrumented with automatic retries with exponential backoff. A request will be retried as long
+as the request is deemed retryable and the number of retry attempts has not grown larger than the configured
+retry limit (default: 2).
+
+Which status codes are retried depends on the `retryStatusCodes` generator configuration:
+
+**`legacy`** (current default): retries on
+
+- [408](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/408) (Timeout)
+- [429](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429) (Too Many Requests)
+- [5XX](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#server_error_responses) (All server errors, including 500)
+
+**`recommended`**: retries on
+
+- [408](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/408) (Timeout)
+- [429](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429) (Too Many Requests)
+- [502](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502) (Bad Gateway)
+- [503](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503) (Service Unavailable)
+- [504](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504) (Gateway Timeout)
+
+Use the `maxRetries` request option to configure this behavior.
+
+```typescript
+const response = await client.v1.verify.evisa(..., {
+    maxRetries: 0 // override maxRetries at the request level
+});
+```
+
+### Timeouts
+
+The SDK defaults to a 60 second timeout. Use the `timeoutInSeconds` option to configure this behavior.
+
+```typescript
+const response = await client.v1.verify.evisa(..., {
+    timeoutInSeconds: 30 // override timeout to 30s
+});
+```
+
+### Aborting Requests
+
+The SDK allows users to abort requests at any point by passing in an abort signal.
+
+```typescript
+const controller = new AbortController();
+const response = await client.v1.verify.evisa(..., {
+    abortSignal: controller.signal
+});
+controller.abort(); // aborts the request
+```
+
+### Access Raw Response Data
+
+The SDK provides access to raw response data, including headers, through the `.withRawResponse()` method.
+The `.withRawResponse()` method returns a promise that results to an object with a `data` and a `rawResponse` property.
+
+```typescript
+const { data, rawResponse } = await client.v1.verify.evisa(...).withRawResponse();
+
+console.log(data);
+console.log(rawResponse.headers['X-My-Header']);
+```
+
+### Logging
+
+The SDK supports logging. You can configure the logger by passing in a `logging` object to the client options.
+
+```typescript
+import { VouchsafeApiClient, logging } from "@vouchsafe/node";
+
+const client = new VouchsafeApiClient({
+    ...
+    logging: {
+        level: logging.LogLevel.Debug, // defaults to logging.LogLevel.Info
+        logger: new logging.ConsoleLogger(), // defaults to ConsoleLogger
+        silent: false, // defaults to true, set to false to enable logging
+    }
+});
+```
+
+The `logging` object can have the following properties:
+
+- `level`: The log level to use. Defaults to `logging.LogLevel.Info`.
+- `logger`: The logger to use. Defaults to a `logging.ConsoleLogger`.
+- `silent`: Whether to silence the logger. Defaults to `true`.
+
+The `level` property can be one of the following values:
+
+- `logging.LogLevel.Debug`
+- `logging.LogLevel.Info`
+- `logging.LogLevel.Warn`
+- `logging.LogLevel.Error`
+
+To provide a custom logger, you can pass in an object that implements the `logging.ILogger` interface.
+
+<details>
+<summary>Custom logger examples</summary>
+
+Here's an example using the popular `winston` logging library.
+
+```ts
+import winston from 'winston';
+
+const winstonLogger = winston.createLogger({...});
+
+const logger: logging.ILogger = {
+    debug: (msg, ...args) => winstonLogger.debug(msg, ...args),
+    info: (msg, ...args) => winstonLogger.info(msg, ...args),
+    warn: (msg, ...args) => winstonLogger.warn(msg, ...args),
+    error: (msg, ...args) => winstonLogger.error(msg, ...args),
+};
+```
+
+Here's an example using the popular `pino` logging library.
+
+```ts
+import pino from 'pino';
+
+const pinoLogger = pino({...});
+
+const logger: logging.ILogger = {
+  debug: (msg, ...args) => pinoLogger.debug(args, msg),
+  info: (msg, ...args) => pinoLogger.info(args, msg),
+  warn: (msg, ...args) => pinoLogger.warn(args, msg),
+  error: (msg, ...args) => pinoLogger.error(args, msg),
+};
+```
+
+</details>
+
+### Custom Fetch
+
+The SDK provides a low-level `fetch` method for making custom HTTP requests while still
+benefiting from SDK-level configuration like authentication, retries, timeouts, and logging.
+This is useful for calling API endpoints not yet supported in the SDK.
+
+```typescript
+const response = await client.fetch(
+  '/v1/custom/endpoint',
+  {
+    method: 'GET',
+  },
+  {
+    timeoutInSeconds: 30,
+    maxRetries: 3,
+    headers: {
+      'X-Custom-Header': 'custom-value',
+    },
+  },
+);
+
+const data = await response.json();
+```
+
+### Custom Fetcher
+
+The SDK provides a way for you to customize the underlying HTTP client / Fetch function. If you're running in an
+unsupported environment, this provides a way for you to break glass and ensure the SDK works.
+
+```typescript
+import { VouchsafeApiClient } from "@vouchsafe/node";
+
+const client = new VouchsafeApiClient({
+    ...
+    fetcher: // provide your implementation here
+});
+```
+
+### Runtime Compatibility
+
+The SDK works in the following runtimes:
+
+- Node.js 18+
+- Vercel
+- Cloudflare Workers
+- Deno v1.25+
+- Bun 1.0+
+- React Native
+
+## Contributing
+
+While we value open-source contributions to this SDK, this library is generated programmatically.
+Additions made directly to this library would have to be moved over to our generation code,
+otherwise they would be overwritten upon the next generated release. Feel free to open a PR as
+a proof of concept, but know that we will not be able to merge it as-is. We suggest opening
+an issue first to discuss with us!
+
+On the other hand, contributions to the README are always very welcome!

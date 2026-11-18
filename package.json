@@ -1,43 +1,214 @@
 {
   "name": "@vouchsafe/node",
-  "version": "0.1.101",
-  "description": "Official TypeScript and Node.js library for the Vouchsafe identity platform. Use it for easy KYC checks, identity verification, remote right-to-work and more.",
+  "version": "1.0.0-beta.0",
+  "description": "Vouchsafe offers a REST API to conduct operations programmatically.  You can request and manage verifications, as well as perform smart lookups.  To use the API, you need a client ID and secret from the Vouchsafe dashboard. [Sign up here](https://app.vouchsafe.id/) if you haven't already.  We also have a [video guide](https://www.youtube.com/playlist?list=PLx6V6SSTMuF_ZNWBPnysvwmdIwboLViE8) showing the basics, as well as [SDKs and libraries](https://help.vouchsafe.id/en/articles/12026847-vouchsafe-sdks-and-libraries) for popular languages.",
+  "source": "./src/index.ts",
+  "type": "commonjs",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.mjs",
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false,
+    "stream": false,
+    "crypto": false
+  },
+  "types": "./dist/cjs/index.d.ts",
+  "packageManager": "pnpm@10.33.0",
+  "scripts": {
+    "test": "vitest",
+    "build": "pnpm build:cjs && pnpm build:esm",
+    "build:cjs": "tsc --project ./tsconfig.cjs.json",
+    "build:esm": "tsc --project ./tsconfig.esm.json && node scripts/rename-to-esm-files.js dist/esm",
+    "format": "biome format --write --skip-parse-errors --no-errors-on-unmatched --max-diagnostics=none",
+    "format:check": "biome format --skip-parse-errors --no-errors-on-unmatched --max-diagnostics=none",
+    "lint": "biome lint --skip-parse-errors --no-errors-on-unmatched --max-diagnostics=none",
+    "lint:fix": "biome lint --fix --unsafe --skip-parse-errors --no-errors-on-unmatched --max-diagnostics=none",
+    "check": "biome check --skip-parse-errors --no-errors-on-unmatched --max-diagnostics=none",
+    "check:fix": "biome check --fix --unsafe --skip-parse-errors --no-errors-on-unmatched --max-diagnostics=none",
+    "prepublishOnly": "chmod +x ./scripts/prepublish.sh && ./scripts/prepublish.sh && npm run build",
+    "test-example": "cd examples && tsc --noEmit"
+  },
   "keywords": [
-    "vouchsafe",
-    "identity",
-    "verification",
+    "typescript",
     "sdk",
-    "kyc",
     "api",
-    "node",
-    "typescript"
+    "client"
+  ],
+  "files": [
+    "dist",
+    "reference.md",
+    "README.md",
+    "LICENSE"
   ],
   "author": "Vouchsafe",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/vouchsafe/vouchsafe-node"
-  },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "generate": "curl -s https://app.vouchsafe.id/openapi/swagger.json -o swagger-temp.json && curl -s https://app.vouchsafe.id/openapi/swagger-v2.json -o swagger-v2-temp.json && orval && rm swagger-temp.json swagger-v2-temp.json && npm run generate:exports",
-    "prepare": "npm run build",
-    "generate:exports": "npx tsx scripts/generate-model-exports.ts"
-  },
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "^2.22.0",
-    "@types/node": "^25.0.10",
-    "orval": "^8.4.0",
-    "typescript": "^5.9.3"
+    "@biomejs/biome": "2.4.10",
+    "@types/node": "^22.14.0",
+    "ts-loader": "^9.5.4",
+    "typescript": "~5.9.3",
+    "vitest": "^3.2.4",
+    "webpack": "^5.105.4"
   },
-  "dependencies": {
-    "fs": "^0.0.1-security",
-    "path": "^0.12.7",
-    "url": "^0.11.4"
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.mts",
+        "default": "./dist/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      },
+      "default": "./dist/cjs/index.js"
+    },
+    "./package.json": "./package.json",
+    "./v1": {
+      "import": {
+        "types": "./dist/esm/api/resources/v1/exports.d.mts",
+        "default": "./dist/esm/api/resources/v1/exports.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/api/resources/v1/exports.d.ts",
+        "default": "./dist/cjs/api/resources/v1/exports.js"
+      },
+      "default": "./dist/cjs/api/resources/v1/exports.js"
+    },
+    "./v1/adverseMedia": {
+      "import": {
+        "types": "./dist/esm/api/resources/v1/resources/adverseMedia/exports.d.mts",
+        "default": "./dist/esm/api/resources/v1/resources/adverseMedia/exports.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/api/resources/v1/resources/adverseMedia/exports.d.ts",
+        "default": "./dist/cjs/api/resources/v1/resources/adverseMedia/exports.js"
+      },
+      "default": "./dist/cjs/api/resources/v1/resources/adverseMedia/exports.js"
+    },
+    "./v1/alerts": {
+      "import": {
+        "types": "./dist/esm/api/resources/v1/resources/alerts/exports.d.mts",
+        "default": "./dist/esm/api/resources/v1/resources/alerts/exports.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/api/resources/v1/resources/alerts/exports.d.ts",
+        "default": "./dist/cjs/api/resources/v1/resources/alerts/exports.js"
+      },
+      "default": "./dist/cjs/api/resources/v1/resources/alerts/exports.js"
+    },
+    "./v1/artefacts": {
+      "import": {
+        "types": "./dist/esm/api/resources/v1/resources/artefacts/exports.d.mts",
+        "default": "./dist/esm/api/resources/v1/resources/artefacts/exports.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/api/resources/v1/resources/artefacts/exports.d.ts",
+        "default": "./dist/cjs/api/resources/v1/resources/artefacts/exports.js"
+      },
+      "default": "./dist/cjs/api/resources/v1/resources/artefacts/exports.js"
+    },
+    "./v1/authentication": {
+      "import": {
+        "types": "./dist/esm/api/resources/v1/resources/authentication/exports.d.mts",
+        "default": "./dist/esm/api/resources/v1/resources/authentication/exports.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/api/resources/v1/resources/authentication/exports.d.ts",
+        "default": "./dist/cjs/api/resources/v1/resources/authentication/exports.js"
+      },
+      "default": "./dist/cjs/api/resources/v1/resources/authentication/exports.js"
+    },
+    "./v1/coverage": {
+      "import": {
+        "types": "./dist/esm/api/resources/v1/resources/coverage/exports.d.mts",
+        "default": "./dist/esm/api/resources/v1/resources/coverage/exports.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/api/resources/v1/resources/coverage/exports.d.ts",
+        "default": "./dist/cjs/api/resources/v1/resources/coverage/exports.js"
+      },
+      "default": "./dist/cjs/api/resources/v1/resources/coverage/exports.js"
+    },
+    "./v1/flows": {
+      "import": {
+        "types": "./dist/esm/api/resources/v1/resources/flows/exports.d.mts",
+        "default": "./dist/esm/api/resources/v1/resources/flows/exports.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/api/resources/v1/resources/flows/exports.d.ts",
+        "default": "./dist/cjs/api/resources/v1/resources/flows/exports.js"
+      },
+      "default": "./dist/cjs/api/resources/v1/resources/flows/exports.js"
+    },
+    "./v1/smartLookups": {
+      "import": {
+        "types": "./dist/esm/api/resources/v1/resources/smartLookups/exports.d.mts",
+        "default": "./dist/esm/api/resources/v1/resources/smartLookups/exports.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/api/resources/v1/resources/smartLookups/exports.d.ts",
+        "default": "./dist/cjs/api/resources/v1/resources/smartLookups/exports.js"
+      },
+      "default": "./dist/cjs/api/resources/v1/resources/smartLookups/exports.js"
+    },
+    "./v1/team": {
+      "import": {
+        "types": "./dist/esm/api/resources/v1/resources/team/exports.d.mts",
+        "default": "./dist/esm/api/resources/v1/resources/team/exports.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/api/resources/v1/resources/team/exports.d.ts",
+        "default": "./dist/cjs/api/resources/v1/resources/team/exports.js"
+      },
+      "default": "./dist/cjs/api/resources/v1/resources/team/exports.js"
+    },
+    "./v1/verifications": {
+      "import": {
+        "types": "./dist/esm/api/resources/v1/resources/verifications/exports.d.mts",
+        "default": "./dist/esm/api/resources/v1/resources/verifications/exports.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/api/resources/v1/resources/verifications/exports.d.ts",
+        "default": "./dist/cjs/api/resources/v1/resources/verifications/exports.js"
+      },
+      "default": "./dist/cjs/api/resources/v1/resources/verifications/exports.js"
+    },
+    "./v1/verify": {
+      "import": {
+        "types": "./dist/esm/api/resources/v1/resources/verify/exports.d.mts",
+        "default": "./dist/esm/api/resources/v1/resources/verify/exports.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/api/resources/v1/resources/verify/exports.d.ts",
+        "default": "./dist/cjs/api/resources/v1/resources/verify/exports.js"
+      },
+      "default": "./dist/cjs/api/resources/v1/resources/verify/exports.js"
+    },
+    "./v2": {
+      "import": {
+        "types": "./dist/esm/api/resources/v2/exports.d.mts",
+        "default": "./dist/esm/api/resources/v2/exports.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/api/resources/v2/exports.d.ts",
+        "default": "./dist/cjs/api/resources/v2/exports.js"
+      },
+      "default": "./dist/cjs/api/resources/v2/exports.js"
+    },
+    "./v2/risk": {
+      "import": {
+        "types": "./dist/esm/api/resources/v2/resources/risk/exports.d.mts",
+        "default": "./dist/esm/api/resources/v2/resources/risk/exports.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/api/resources/v2/resources/risk/exports.d.ts",
+        "default": "./dist/cjs/api/resources/v2/resources/risk/exports.js"
+      },
+      "default": "./dist/cjs/api/resources/v2/resources/risk/exports.js"
+    }
   }
 }

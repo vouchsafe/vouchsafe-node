@@ -1,0 +1,11 @@
+export * from './client';
+export * as verify from './resources/verify/exports';
+export * as verifications from './resources/verifications/exports';
+export * as team from './resources/team/exports';
+export * as smartLookups from './resources/smartLookups/exports';
+export * as flows from './resources/flows/exports';
+export * as coverage from './resources/coverage/exports';
+export * as authentication from './resources/authentication/exports';
+export * as artefacts from './resources/artefacts/exports';
+export * as alerts from './resources/alerts/exports';
+export * as adverseMedia from './resources/adverseMedia/exports';

@@ -1,0 +1,4 @@
+import { FailFailedReasonMrzNotTd3OrFailedReasonIncompleteMrzDataFailedReasonsItem } from '../resources/v1/types/FailFailedReasonMrzNotTd3OrFailedReasonIncompleteMrzDataFailedReasonsItem';
+
+export type FailFailedReasonMrzNotTd3OrFailedReasonIncompleteMrzDataFailedReasons =
+  FailFailedReasonMrzNotTd3OrFailedReasonIncompleteMrzDataFailedReasonsItem[];
