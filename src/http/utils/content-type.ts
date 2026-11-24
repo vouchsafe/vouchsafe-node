@@ -8,7 +8,7 @@ import { ContentType } from '../types';
  * @returns The corresponding ContentType enum value
  */
 export function getContentTypeDefinition(contentType: string): ContentType {
-  const ct = contentType.toLowerCase();
+  const ct = contentType.split(';')[0].trim().toLowerCase();
 
   // XML is handled as text
   if (ct.startsWith('application/') && ct.includes('xml')) {

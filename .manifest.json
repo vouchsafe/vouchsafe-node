@@ -1,6 +1,6 @@
 {
-  "sdkGenVersion": "3.27.0",
-  "resolvedGeneratorVersion": "4.16.0",
+  "sdkGenVersion": "3.30.0",
+  "resolvedGeneratorVersion": "4.17.2",
   "config": {
     "schemaVersion": "sdk-config-ir/v1",
     "source": {
