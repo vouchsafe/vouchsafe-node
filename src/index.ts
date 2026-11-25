@@ -6,4 +6,4 @@ export { VouchsafeApiEnvironment } from './http/environment';
 export type { VouchsafeApiEnvironmentUrls } from './http/environment';
 export * from './exports';
 export { logging } from './exports';
-export { VouchsafeApiClient } from './wrapper/VouchsafeApiClient';
+export { Venne, VouchsafeApiClient } from './wrapper/Venne';
